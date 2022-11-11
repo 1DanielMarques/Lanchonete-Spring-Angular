@@ -27,4 +27,22 @@ public class LancheService {
         return obj.orElseThrow();
     }
 
+    public void delete(Long id) {
+        Lanche obj = findById(id);
+        repository.delete(obj);
+    }
+
+    public Lanche update(Long id, Lanche obj) {
+        Lanche l1 = findById(id);
+        l1 = updateData(l1, obj);
+        return repository.save(l1);
+    }
+
+    private Lanche updateData(Lanche l1, Lanche l2) {
+        l1.setNome(l2.getNome());
+        l1.setPreco(l2.getPreco());
+        l1.setDescricao(l2.getDescricao());
+        return l1;
+    }
+
 }
