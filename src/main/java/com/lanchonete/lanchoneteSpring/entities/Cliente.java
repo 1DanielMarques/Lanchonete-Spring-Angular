@@ -21,11 +21,10 @@ public class Cliente implements Serializable {
     private String nome;
     private String telefone;
     private Date aniversario;
-    @JsonIgnore
+
     @OneToOne(mappedBy = "morador")
     private Endereco endereco;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "cliente")
     private List<Pedido> pedidos = new ArrayList<>();
 
@@ -33,12 +32,11 @@ public class Cliente implements Serializable {
 
     }
 
-    public Cliente(Long id, String nome, String telefone, Date aniversario, Endereco endereco) {
+    public Cliente(Long id, String nome, String telefone, Date aniversario) {
         this.id = id;
         this.nome = nome;
         this.telefone = telefone;
         this.aniversario = aniversario;
-        this.endereco = endereco;
     }
 
     public Long getId() {

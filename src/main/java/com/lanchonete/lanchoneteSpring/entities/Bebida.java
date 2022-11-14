@@ -1,5 +1,7 @@
 package com.lanchonete.lanchoneteSpring.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -18,20 +20,23 @@ public class Bebida implements Serializable {
     private String sabor;
     private double preco;
 
+    @JsonIgnore
     @ManyToOne
-    private Pedido pedido;
+    @JoinColumn(name = "pedidoBebida_id")
+    private Pedido pedidoBebida;
 
     public Bebida() {
 
     }
 
-    public Bebida(Long id, String nome, String marca, String litragem, String sabor, double preco) {
+    public Bebida(Long id, String nome, String marca, String litragem, String sabor, double preco, Pedido pedido) {
         this.id = id;
         this.nome = nome;
         this.marca = marca;
         this.litragem = litragem;
         this.sabor = sabor;
         this.preco = preco;
+        this.pedidoBebida = pedido;
     }
 
     public Long getId() {
@@ -80,6 +85,14 @@ public class Bebida implements Serializable {
 
     public void setPreco(double preco) {
         this.preco = preco;
+    }
+
+    public Pedido getPedidoBebida() {
+        return pedidoBebida;
+    }
+
+    public void setPedidoBebida(Pedido pedidoBebida) {
+        this.pedidoBebida = pedidoBebida;
     }
 
     @Override

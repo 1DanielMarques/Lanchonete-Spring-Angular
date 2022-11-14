@@ -1,5 +1,7 @@
 package com.lanchonete.lanchoneteSpring.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -17,8 +19,10 @@ public class Lanche implements Serializable {
     private double preco;
     private String descricao;
 
+    @JsonIgnore
     @ManyToOne
-    private Pedido pedido;
+    @JoinColumn(name = "pedidoLanche_id")
+    private Pedido pedidoLanche;
 
     public Lanche() {
 
@@ -29,7 +33,7 @@ public class Lanche implements Serializable {
         this.nome = nome;
         this.preco = preco;
         this.descricao = descricao;
-        this.pedido = pedido;
+        this.pedidoLanche = pedido;
     }
 
     public Long getId() {
@@ -62,6 +66,14 @@ public class Lanche implements Serializable {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public Pedido getPedidoLanche() {
+        return pedidoLanche;
+    }
+
+    public void setPedidoLanche(Pedido pedidoLanche) {
+        this.pedidoLanche = pedidoLanche;
     }
 
     @Override

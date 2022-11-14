@@ -1,6 +1,5 @@
 package com.lanchonete.lanchoneteSpring.entities;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -18,16 +17,16 @@ public class Pedido implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "pedido")
+    @OneToMany(mappedBy = "pedidoLanche")
     private List<Lanche> lanches = new ArrayList<>();
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "pedido")
+    @OneToMany(mappedBy = "pedidoBebida")
     private List<Bebida> bebidas = new ArrayList<>();
     private int qtdLanches;
     private int qtdBebidas;
@@ -36,13 +35,13 @@ public class Pedido implements Serializable {
 
     }
 
-    public Pedido(Long id, Cliente cliente, List<Lanche> lanches, List<Bebida> bebidas, int qtdLanches, int qtdBebidas) {
+    public Pedido(Long id, Cliente cliente) {
         this.id = id;
         this.cliente = cliente;
+        this.qtdLanches = 0;
+        this.qtdBebidas = 0;
         this.lanches = lanches;
         this.bebidas = bebidas;
-        this.qtdLanches = qtdLanches;
-        this.qtdBebidas = qtdBebidas;
     }
 
     public Long getId() {
