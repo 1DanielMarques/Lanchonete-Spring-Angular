@@ -22,8 +22,8 @@ public class Inicializacao implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Lanche l1 = new Lanche(null, "X-Frango", 10.0, "Descricao do X-Frango");
-        Lanche l2 = new Lanche(null, "X-Bacon", 16.55, "Descricao do X-Bacon");
+        Lanche l1 = new Lanche(null, "X-Frango", 10.0, "Descricao do X-Frango", null);
+        Lanche l2 = new Lanche(null, "X-Bacon", 16.55, "Descricao do X-Bacon", null);
 
         Bebida b1 = new Bebida(null, "Refrigerante", "Coca-Cola", "2L", "Cola", 12.55);
         Bebida b2 = new Bebida(null, "Suco", "Natu", "1L", "Laranja", 8.00);

@@ -18,6 +18,9 @@ public class Bebida implements Serializable {
     private String sabor;
     private double preco;
 
+    @ManyToOne
+    private Pedido pedido;
+
     public Bebida() {
 
     }

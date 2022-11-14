@@ -1,5 +1,8 @@
 package com.lanchonete.lanchoneteSpring.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -15,8 +18,16 @@ public class Pedido implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
     private Cliente cliente;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "pedido")
     private List<Lanche> lanches = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "pedido")
     private List<Bebida> bebidas = new ArrayList<>();
     private int qtdLanches;
     private int qtdBebidas;

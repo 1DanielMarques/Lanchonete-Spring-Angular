@@ -17,15 +17,19 @@ public class Lanche implements Serializable {
     private double preco;
     private String descricao;
 
+    @ManyToOne
+    private Pedido pedido;
+
     public Lanche() {
 
     }
 
-    public Lanche(Long id, String nome, double preco, String descricao) {
+    public Lanche(Long id, String nome, double preco, String descricao, Pedido pedido) {
         this.id = id;
         this.nome = nome;
         this.preco = preco;
         this.descricao = descricao;
+        this.pedido = pedido;
     }
 
     public Long getId() {

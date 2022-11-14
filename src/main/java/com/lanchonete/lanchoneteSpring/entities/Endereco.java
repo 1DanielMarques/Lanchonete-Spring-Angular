@@ -1,7 +1,6 @@
 package com.lanchonete.lanchoneteSpring.entities;
 
 import javax.persistence.*;
-import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -17,9 +16,11 @@ public class Endereco implements Serializable {
     private String bairro;
     private String rua;
     private int numero;
+    @OneToOne
+    @JoinColumn(name = "morador_id")
     private Cliente morador;
 
-    public Endereco(){
+    public Endereco() {
 
     }
 

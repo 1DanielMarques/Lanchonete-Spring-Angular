@@ -1,8 +1,12 @@
 package com.lanchonete.lanchoneteSpring.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -17,17 +21,24 @@ public class Cliente implements Serializable {
     private String nome;
     private String telefone;
     private Date aniversario;
+    @JsonIgnore
+    @OneToOne(mappedBy = "morador")
+    private Endereco endereco;
 
-    //private Endereco endereco;
+    @JsonIgnore
+    @OneToMany(mappedBy = "cliente")
+    private List<Pedido> pedidos = new ArrayList<>();
+
     public Cliente() {
 
     }
 
-    public Cliente(Long id, String nome, String telefone, Date aniversario) {
+    public Cliente(Long id, String nome, String telefone, Date aniversario, Endereco endereco) {
         this.id = id;
         this.nome = nome;
         this.telefone = telefone;
         this.aniversario = aniversario;
+        this.endereco = endereco;
     }
 
     public Long getId() {
@@ -60,6 +71,18 @@ public class Cliente implements Serializable {
 
     public void setAniversario(Date aniversario) {
         this.aniversario = aniversario;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
+    public List<Pedido> getPedidos() {
+        return pedidos;
     }
 
     @Override
