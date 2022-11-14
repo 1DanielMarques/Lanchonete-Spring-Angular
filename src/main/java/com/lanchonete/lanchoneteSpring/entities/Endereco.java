@@ -20,20 +20,19 @@ public class Endereco implements Serializable {
     private int numero;
 
     @JsonIgnore
-    @OneToOne
-    @JoinColumn(name = "morador_id")
+    @OneToOne(mappedBy = "endereco")
     private Cliente morador;
 
     public Endereco() {
 
     }
 
-    public Endereco(Long id, String bairro, String rua, int numero, Cliente morador) {
+    public Endereco(Long id, String bairro, String rua, int numero) {
         this.id = id;
         this.bairro = bairro;
         this.rua = rua;
         this.numero = numero;
-        this.morador = morador;
+
     }
 
     public Long getId() {

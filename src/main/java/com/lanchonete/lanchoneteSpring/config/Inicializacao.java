@@ -32,12 +32,11 @@ public class Inicializacao implements CommandLineRunner {
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
+        Endereco e1 = new Endereco(null, "Marieta", "Jose Ruzzon", 133);
+        Endereco e2 = new Endereco(null, "Violin", "Maria Sinop", 147);
 
-        Cliente c1 = new Cliente(null, "Daniel Marques", "33397902", sdf.parse("09/09/2003"));
-        Cliente c2 = new Cliente(null, "Ricardo Lopes", "2342 8826", sdf.parse("23/05/1997"));
-
-        Endereco e1 = new Endereco(null, "Marieta", "Jose Ruzzon", 133, c1);
-        Endereco e2 = new Endereco(null, "Violin", "Maria Sinop", 147, c2);
+        Cliente c1 = new Cliente(null, "Daniel Marques", "33397902", sdf.parse("09/09/2003"), e1);
+        Cliente c2 = new Cliente(null, "Ricardo Lopes", "2342 8826", sdf.parse("23/05/1997"), e2);
 
         Pedido p1 = new Pedido(null, c1);
         Pedido p2 = new Pedido(null, c1);
@@ -48,8 +47,8 @@ public class Inicializacao implements CommandLineRunner {
         Bebida b1 = new Bebida(null, "Refrigerante", "Coca-Cola", "2L", "Cola", 12.55, p1);
         Bebida b2 = new Bebida(null, "Suco", "Natu", "1L", "Laranja", 8.00, p2);
 
-        clienteRepository.saveAll(Arrays.asList(c1, c2));
         enderecoRepository.saveAll(Arrays.asList(e1, e2));
+        clienteRepository.saveAll(Arrays.asList(c1, c2));
         pedidoRepository.saveAll(Arrays.asList(p1, p2));
         lancheRepository.saveAll(Arrays.asList(l1, l2));
         bebidaRepository.saveAll(Arrays.asList(b1, b2));

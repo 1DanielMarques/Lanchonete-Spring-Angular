@@ -20,7 +20,8 @@ public class Cliente implements Serializable {
     private String telefone;
     private Date aniversario;
 
-    @OneToOne(mappedBy = "morador")
+    @OneToOne
+    @JoinColumn(name = "endereco_cliente")
     private Endereco endereco;
 
     @OneToMany(mappedBy = "cliente")
@@ -30,11 +31,12 @@ public class Cliente implements Serializable {
 
     }
 
-    public Cliente(Long id, String nome, String telefone, Date aniversario) {
+    public Cliente(Long id, String nome, String telefone, Date aniversario, Endereco endereco) {
         this.id = id;
         this.nome = nome;
         this.telefone = telefone;
         this.aniversario = aniversario;
+        this.endereco = endereco;
     }
 
     public Long getId() {
