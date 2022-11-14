@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Configuration;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.List;
 
 @Configuration
 public class Inicializacao implements CommandLineRunner {
