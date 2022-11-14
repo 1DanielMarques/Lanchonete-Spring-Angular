@@ -43,7 +43,7 @@ public class Inicializacao implements CommandLineRunner {
         Pedido p2 = new Pedido(null, c1);
 
         Lanche l1 = new Lanche(null, "X-Frango", 10.0, "Descricao do X-Frango", p1);
-        Lanche l2 = new Lanche(null, "X-Bacon", 16.55, "Descricao do X-Bacon", p2);
+        Lanche l2 = new Lanche(null, "X-Bacon", 16.55, "Descricao do X-Bacon", p1);
 
         Bebida b1 = new Bebida(null, "Refrigerante", "Coca-Cola", "2L", "Cola", 12.55, p1);
         Bebida b2 = new Bebida(null, "Suco", "Natu", "1L", "Laranja", 8.00, p2);

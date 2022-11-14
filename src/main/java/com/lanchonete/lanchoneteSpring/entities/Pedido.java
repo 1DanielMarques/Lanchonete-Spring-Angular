@@ -65,10 +65,16 @@ public class Pedido implements Serializable {
     }
 
     public List<Bebida> getBebidas() {
+        for (Bebida b : bebidas) {
+            qtdBebidas += 1;
+        }
         return bebidas;
     }
 
     public int getQtdLanches() {
+        for (Lanche l : lanches) {
+            qtdLanches += 1;
+        }
         return qtdLanches;
     }
 
