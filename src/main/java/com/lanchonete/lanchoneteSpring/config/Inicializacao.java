@@ -1,4 +1,4 @@
-package com.lanchonete.lanchoneteSpring.config;
+/*package com.lanchonete.lanchoneteSpring.config;
 
 import com.lanchonete.lanchoneteSpring.entities.*;
 import com.lanchonete.lanchoneteSpring.repositories.*;
@@ -53,6 +53,5 @@ public class Inicializacao implements CommandLineRunner {
         lancheRepository.saveAll(Arrays.asList(l1, l2));
         bebidaRepository.saveAll(Arrays.asList(b1, b2));
 
-
     }
-}
+}*/

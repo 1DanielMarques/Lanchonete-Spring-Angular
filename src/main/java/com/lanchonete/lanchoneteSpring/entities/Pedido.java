@@ -31,6 +31,8 @@ public class Pedido implements Serializable {
     private int qtdLanches;
     private int qtdBebidas;
 
+    private double total;
+
     public Pedido() {
 
     }
@@ -88,6 +90,16 @@ public class Pedido implements Serializable {
 
     public void setQtdBebidas(int qtdBebidas) {
         this.qtdBebidas = qtdBebidas;
+    }
+
+    public double getTotal() {
+        for (Lanche l : lanches) {
+            total += l.getPreco();
+        }
+        for (Bebida b : bebidas) {
+            total += b.getPreco();
+        }
+        return total;
     }
 
     @Override
