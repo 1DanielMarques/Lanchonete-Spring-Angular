@@ -81,11 +81,11 @@ public class Lanche implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Lanche lanche = (Lanche) o;
-        return id.equals(lanche.id);
+        return id.equals(lanche.id) && nome.equals(lanche.nome);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(id, nome);
     }
 }
