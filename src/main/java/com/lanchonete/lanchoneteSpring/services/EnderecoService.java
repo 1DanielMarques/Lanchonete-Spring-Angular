@@ -2,8 +2,11 @@ package com.lanchonete.lanchoneteSpring.services;
 
 import com.lanchonete.lanchoneteSpring.entities.Endereco;
 import com.lanchonete.lanchoneteSpring.repositories.IEnderecoRepository;
+import com.lanchonete.lanchoneteSpring.services.exceptions.DatabaseException;
 import com.lanchonete.lanchoneteSpring.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,7 +33,15 @@ public class EnderecoService {
 
     public void delete(Long id) {
         Endereco obj = findById(id);
-        repository.delete(obj);
+        try {
+            repository.delete(obj);
+        } catch (
+                EmptyResultDataAccessException e) {
+            throw new ResourceNotFoundException(id);
+        } catch (
+                DataIntegrityViolationException e) {
+            throw new DatabaseException(e.getMessage());
+        }
     }
 
     public Endereco update(Long id, Endereco obj) {
