@@ -23,6 +23,10 @@ public class ClienteService {
         return repository.save(obj);
     }
 
+    public List<Cliente> insertAll(List<Cliente> obj) {
+        return repository.saveAll(obj);
+    }
+
     public List<Cliente> findAll() {
         return repository.findAll();
     }
@@ -50,7 +54,7 @@ public class ClienteService {
         try {
             c1 = updateData(c1, obj);
             return repository.save(c1);
-        }catch (EntityNotFoundException e) {
+        } catch (EntityNotFoundException e) {
             throw new ResourceNotFoundException(id);
         }
     }

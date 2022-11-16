@@ -23,6 +23,10 @@ public class BebidaService {
         return repository.save(obj);
     }
 
+    public List<Bebida> insertAll(List<Bebida> obj) {
+        return repository.saveAll(obj);
+    }
+
     public List<Bebida> findAll() {
         return repository.findAll();
     }
@@ -50,7 +54,7 @@ public class BebidaService {
         try {
             b1 = updateData(b1, obj);
             return repository.save(b1);
-        }catch (EntityNotFoundException e) {
+        } catch (EntityNotFoundException e) {
             throw new ResourceNotFoundException(id);
         }
     }

@@ -23,6 +23,10 @@ public class LancheService {
         return repository.save(obj);
     }
 
+    public List<Lanche> insertAll(List<Lanche> obj) {
+        return repository.saveAll(obj);
+    }
+
     public List<Lanche> findAll() {
         return repository.findAll();
     }

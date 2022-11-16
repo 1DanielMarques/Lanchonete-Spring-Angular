@@ -23,6 +23,10 @@ public class PedidoService {
         return repository.save(obj);
     }
 
+    public List<Pedido> insertAll(List<Pedido> obj) {
+        return repository.saveAll(obj);
+    }
+
     public List<Pedido> findAll() {
         return repository.findAll();
     }
@@ -50,7 +54,7 @@ public class PedidoService {
         try {
             p1 = updateData(p1, obj);
             return repository.save(p1);
-        }catch (EntityNotFoundException e) {
+        } catch (EntityNotFoundException e) {
             throw new ResourceNotFoundException(id);
         }
     }

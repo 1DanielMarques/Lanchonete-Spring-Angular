@@ -23,6 +23,10 @@ public class EnderecoService {
         return repository.save(obj);
     }
 
+    public List<Endereco> insertAll(List<Endereco> obj) {
+        return repository.saveAll(obj);
+    }
+
     public List<Endereco> findAll() {
         return repository.findAll();
     }
@@ -50,7 +54,7 @@ public class EnderecoService {
         try {
             e1 = updateData(e1, obj);
             return repository.save(e1);
-        }catch (EntityNotFoundException e) {
+        } catch (EntityNotFoundException e) {
             throw new ResourceNotFoundException(id);
         }
     }
