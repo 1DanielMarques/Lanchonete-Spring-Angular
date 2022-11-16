@@ -9,6 +9,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,8 +47,12 @@ public class LancheService {
 
     public Lanche update(Long id, Lanche obj) {
         Lanche l1 = findById(id);
-        l1 = updateData(l1, obj);
-        return repository.save(l1);
+        try {
+            l1 = updateData(l1, obj);
+            return repository.save(l1);
+        } catch (EntityNotFoundException e) {
+            throw new ResourceNotFoundException(id);
+        }
     }
 
     private Lanche updateData(Lanche l1, Lanche l2) {

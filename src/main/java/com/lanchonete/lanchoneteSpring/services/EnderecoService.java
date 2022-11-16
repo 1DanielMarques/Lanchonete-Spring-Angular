@@ -9,6 +9,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,8 +47,12 @@ public class EnderecoService {
 
     public Endereco update(Long id, Endereco obj) {
         Endereco e1 = findById(id);
-        e1 = updateData(e1, obj);
-        return repository.save(e1);
+        try {
+            e1 = updateData(e1, obj);
+            return repository.save(e1);
+        }catch (EntityNotFoundException e) {
+            throw new ResourceNotFoundException(id);
+        }
     }
 
     private Endereco updateData(Endereco e1, Endereco e2) {
