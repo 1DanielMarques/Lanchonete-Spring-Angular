@@ -2,6 +2,7 @@ package com.lanchonete.lanchoneteSpring.services;
 
 import com.lanchonete.lanchoneteSpring.entities.Bebida;
 import com.lanchonete.lanchoneteSpring.repositories.IBebidaRepository;
+import com.lanchonete.lanchoneteSpring.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,7 @@ public class BebidaService {
 
     public Bebida findById(Long id) {
         Optional<Bebida> obj = repository.findById(id);
-        return obj.orElseThrow();
+        return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     public void delete(Long id) {
