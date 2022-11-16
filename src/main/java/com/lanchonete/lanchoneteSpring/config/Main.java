@@ -1,6 +1,7 @@
 package com.lanchonete.lanchoneteSpring.config;
 
 import com.lanchonete.lanchoneteSpring.entities.*;
+import com.lanchonete.lanchoneteSpring.entities.enums.TipoPagamento;
 import com.lanchonete.lanchoneteSpring.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -73,7 +74,7 @@ public class Main implements CommandLineRunner {
                 Cliente cliente = new Cliente(null, nomeCliente, telefone, sdf.parse(aniversario), endereco);
                 clienteRepository.save(cliente);
 
-                Pedido p = new Pedido(null, cliente);
+                Pedido p = new Pedido(null, cliente, TipoPagamento.DINHEIRO);
                 pedidoRepository.save(p);
 
                 char resposta = 's';

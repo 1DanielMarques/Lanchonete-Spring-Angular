@@ -1,6 +1,7 @@
 package com.lanchonete.lanchoneteSpring.config;
 
 import com.lanchonete.lanchoneteSpring.entities.*;
+import com.lanchonete.lanchoneteSpring.entities.enums.TipoPagamento;
 import com.lanchonete.lanchoneteSpring.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -40,8 +41,8 @@ public class Inicializacao implements CommandLineRunner {
         Cliente c2 = new Cliente(null, "Ricardo Lopes", "2342 8826", sdf.parse("23/05/1997"), e2);
         clienteRepository.saveAll(Arrays.asList(c1, c2));
 
-        Pedido p1 = new Pedido(null, c1);
-        Pedido p2 = new Pedido(null, c1);
+        Pedido p1 = new Pedido(null, c1, TipoPagamento.DINHEIRO);
+        Pedido p2 = new Pedido(null, c1, TipoPagamento.DEBITO);
         pedidoRepository.saveAll(Arrays.asList(p1, p2));
 
         Lanche l1 = new Lanche(null, "X-Frango", 10.0, "Descricao do X-Frango", null);

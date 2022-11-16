@@ -1,6 +1,7 @@
 package com.lanchonete.lanchoneteSpring.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.lanchonete.lanchoneteSpring.entities.enums.TipoPagamento;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -26,6 +27,8 @@ public class Pedido implements Serializable {
     @OneToMany(mappedBy = "pedidoLanche")
     private List<Lanche> lanches = new ArrayList<>();
 
+    private Integer tipoPagamento;
+
     @OneToMany(mappedBy = "pedidoBebida")
     private List<Bebida> bebidas = new ArrayList<>();
     private int qtdLanches;
@@ -37,13 +40,14 @@ public class Pedido implements Serializable {
 
     }
 
-    public Pedido(Long id, Cliente cliente) {
+    public Pedido(Long id, Cliente cliente, TipoPagamento tipoPagamento) {
         this.id = id;
         this.cliente = cliente;
         this.qtdLanches = 0;
         this.qtdBebidas = 0;
         this.lanches = lanches;
         this.bebidas = bebidas;
+        setTipoPagamento(tipoPagamento);
     }
 
     public Long getId() {
@@ -100,6 +104,16 @@ public class Pedido implements Serializable {
             total += b.getPreco();
         }
         return total;
+    }
+
+    public TipoPagamento getTipoPagamento() {
+        return TipoPagamento.valueOf(tipoPagamento);
+    }
+
+    public void setTipoPagamento(TipoPagamento tipoPagamento) {
+        if (tipoPagamento != null) {
+            this.tipoPagamento = tipoPagamento.getCodigo();
+        }
     }
 
     @Override
