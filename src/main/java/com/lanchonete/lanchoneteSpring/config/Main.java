@@ -76,8 +76,7 @@ public class Main implements CommandLineRunner {
 
                 Pedido p = new Pedido(null, cliente, TipoPagamento.DINHEIRO);
                 pedidoRepository.save(p);
-
-                char resposta = 's';
+                
                 int qtdPedidos = 1;
                 int opcao = 0;
 
