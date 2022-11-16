@@ -2,6 +2,7 @@ package com.lanchonete.lanchoneteSpring.resources;
 
 import com.lanchonete.lanchoneteSpring.entities.Cliente;
 import com.lanchonete.lanchoneteSpring.services.ClienteService;
+import com.lanchonete.lanchoneteSpring.services.EnderecoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,9 @@ public class ClienteResource {
     @Autowired
     ClienteService service;
 
+    @Autowired
+    EnderecoService enderecoService;
+
     @GetMapping
     public ResponseEntity<List<Cliente>> findAll() {
         List<Cliente> list = service.findAll();
@@ -31,6 +35,14 @@ public class ClienteResource {
 
     @PostMapping
     public ResponseEntity<Cliente> insert(@RequestBody Cliente obj) {
+        obj = service.insert(obj);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+        return ResponseEntity.created(uri).body(obj);
+    }
+
+    @PostMapping("/address/{id}")
+    public ResponseEntity<Cliente> insert(@RequestBody Cliente obj, @PathVariable Long id) {
+        obj.setEndereco(enderecoService.findById(id));
         obj = service.insert(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).body(obj);

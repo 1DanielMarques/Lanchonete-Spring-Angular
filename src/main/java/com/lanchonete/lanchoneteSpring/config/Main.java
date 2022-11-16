@@ -10,7 +10,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-@Configuration
+//@Configuration
 public class Main implements CommandLineRunner {
 
     @Autowired
