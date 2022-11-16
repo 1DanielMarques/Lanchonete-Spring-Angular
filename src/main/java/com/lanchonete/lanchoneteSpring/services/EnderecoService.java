@@ -24,7 +24,10 @@ public class EnderecoService {
     }
 
     public List<Endereco> insertAll(List<Endereco> obj) {
-        return repository.saveAll(obj);
+        for (Endereco e : obj) {
+            insert(e);
+        }
+        return obj;
     }
 
     public List<Endereco> findAll() {

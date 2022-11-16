@@ -24,7 +24,10 @@ public class BebidaService {
     }
 
     public List<Bebida> insertAll(List<Bebida> obj) {
-        return repository.saveAll(obj);
+        for (Bebida b : obj) {
+            insert(b);
+        }
+        return obj;
     }
 
     public List<Bebida> findAll() {

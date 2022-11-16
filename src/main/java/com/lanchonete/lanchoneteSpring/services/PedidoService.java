@@ -24,7 +24,10 @@ public class PedidoService {
     }
 
     public List<Pedido> insertAll(List<Pedido> obj) {
-        return repository.saveAll(obj);
+        for (Pedido p : obj) {
+            insert(p);
+        }
+        return obj;
     }
 
     public List<Pedido> findAll() {

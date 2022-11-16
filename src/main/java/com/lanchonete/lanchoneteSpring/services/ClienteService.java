@@ -24,7 +24,10 @@ public class ClienteService {
     }
 
     public List<Cliente> insertAll(List<Cliente> obj) {
-        return repository.saveAll(obj);
+        for (Cliente c : obj) {
+            insert(c);
+        }
+        return obj;
     }
 
     public List<Cliente> findAll() {
