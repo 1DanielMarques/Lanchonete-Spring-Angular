@@ -40,7 +40,7 @@ public class ClienteResource {
         return ResponseEntity.created(uri).body(obj);
     }
 
-    @PostMapping("/address/{id}")
+    @PostMapping(value = "/address/{id}")
     public ResponseEntity<Cliente> insert(@RequestBody Cliente obj, @PathVariable Long id) {
         obj.setEndereco(enderecoService.findById(id));
         obj = service.insert(obj);

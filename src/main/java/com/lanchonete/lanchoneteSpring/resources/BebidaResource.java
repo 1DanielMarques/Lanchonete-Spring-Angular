@@ -2,6 +2,7 @@ package com.lanchonete.lanchoneteSpring.resources;
 
 import com.lanchonete.lanchoneteSpring.entities.Bebida;
 import com.lanchonete.lanchoneteSpring.services.BebidaService;
+import com.lanchonete.lanchoneteSpring.services.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,9 @@ public class BebidaResource {
     @Autowired
     BebidaService service;
 
+    @Autowired
+    PedidoService pedidoService;
+
     @GetMapping
     public ResponseEntity<List<Bebida>> findAll() {
         List<Bebida> list = service.findAll();
@@ -31,6 +35,14 @@ public class BebidaResource {
 
     @PostMapping
     public ResponseEntity<Bebida> insert(@RequestBody Bebida obj) {
+        obj = service.insert(obj);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+        return ResponseEntity.created(uri).body(obj);
+    }
+
+    @PostMapping(value = "/order/{id}")
+    public ResponseEntity<Bebida> insert(@RequestBody Bebida obj, @PathVariable Long id) {
+        obj.setPedidoBebida(pedidoService.findById(id));
         obj = service.insert(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).body(obj);

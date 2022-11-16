@@ -2,6 +2,7 @@ package com.lanchonete.lanchoneteSpring.resources;
 
 import com.lanchonete.lanchoneteSpring.entities.Lanche;
 import com.lanchonete.lanchoneteSpring.services.LancheService;
+import com.lanchonete.lanchoneteSpring.services.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,9 @@ public class LancheResource {
     @Autowired
     LancheService service;
 
+    @Autowired
+    PedidoService pedidoService;
+
     @GetMapping
     public ResponseEntity<List<Lanche>> findAll() {
         List<Lanche> list = service.findAll();
@@ -31,6 +35,14 @@ public class LancheResource {
 
     @PostMapping
     public ResponseEntity<Lanche> insert(@RequestBody Lanche obj) {
+        obj = service.insert(obj);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+        return ResponseEntity.created(uri).body(obj);
+    }
+
+    @PostMapping(value = "/order/{id}")
+    public ResponseEntity<Lanche> insert(@RequestBody Lanche obj, @PathVariable Long id) {
+        obj.setPedidoLanche(pedidoService.findById(id));
         obj = service.insert(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).body(obj);
