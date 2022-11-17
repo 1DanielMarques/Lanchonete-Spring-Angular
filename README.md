@@ -1,5 +1,3 @@
-# LanchoneteSpring
-
 # LanchoneteSpring 🚀
 O Projeto **Lanchonete** foi desenvolvido a fim de 
 
