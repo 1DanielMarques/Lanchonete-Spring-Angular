@@ -48,7 +48,7 @@ public class Inicializacao implements CommandLineRunner {
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
-        Endereco e1 = new Endereco(null, "Marieta", "Jose Ruzzon", 133);
+        Endereco e1 = new Endereco(null, "Via Lactea", "Saturno", 255);
         Endereco e2 = new Endereco(null, "Violin", "Maria Sinop", 147);
         enderecoService.insertAll(Arrays.asList(e1, e2));
 
@@ -65,8 +65,8 @@ public class Inicializacao implements CommandLineRunner {
         Lanche l2 = new Lanche(null, "X-Bacon", 16.55, "Descricao do X-Bacon", p1);
         lancheService.insertAll(Arrays.asList(l1, l2));
 
-        l1.setPedidoLanche(p1);
-        lancheService.insert(l1);
+        //l1.setPedidoLanche(p1);
+        //lancheService.insert(l1);
 
         Bebida b1 = new Bebida(null, "Refrigerante", "Coca-Cola", "2L", "Cola", 12.55, p1);
         Bebida b2 = new Bebida(null, "Suco", "Natu", "1L", "Laranja", 8.00, p2);
