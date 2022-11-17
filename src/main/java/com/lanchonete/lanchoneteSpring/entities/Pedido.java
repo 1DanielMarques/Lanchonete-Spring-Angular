@@ -49,8 +49,6 @@ public class Pedido implements Serializable {
         this.cliente = cliente;
         this.qtdLanches = 0;
         this.qtdBebidas = 0;
-        this.lanches = lanches;
-        this.bebidas = bebidas;
         setTipoPagamento(tipoPagamento);
     }
 

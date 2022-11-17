@@ -63,9 +63,10 @@ public class PedidoService {
     }
 
     private Pedido updateData(Pedido p1, Pedido p2) {
-        p1.setCliente(p2.getCliente());
-        p1.setQtdBebidas(p2.getQtdBebidas());
-        p1.setQtdBebidas(p2.getQtdBebidas());
+        CalculoTotalImpl calc = new CalculoTotalImpl();
+        p1.setTipoPagamento(p2.getTipoPagamento());
+        calc.calculoTaxa(p2);
+        p1.setTaxa(p2.getTaxa());
         return p1;
     }
 
