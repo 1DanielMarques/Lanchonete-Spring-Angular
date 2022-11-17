@@ -59,6 +59,5 @@ public class BebidaResource {
         obj = service.update(id, obj);
         return ResponseEntity.ok().body(obj);
     }
-
-
+    
 }

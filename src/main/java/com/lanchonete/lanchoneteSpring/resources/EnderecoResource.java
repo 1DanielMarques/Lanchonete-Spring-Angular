@@ -48,5 +48,4 @@ public class EnderecoResource {
         return ResponseEntity.ok().body(obj);
     }
 
-
 }

@@ -60,5 +60,4 @@ public class ClienteResource {
         return ResponseEntity.ok().body(obj);
     }
 
-
 }
