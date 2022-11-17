@@ -91,6 +91,9 @@ public class Pedido implements Serializable {
     }
 
     public int getQtdBebidas() {
+        for (Bebida b : bebidas) {
+            qtdBebidas += 1;
+        }
         return qtdBebidas;
     }
 
