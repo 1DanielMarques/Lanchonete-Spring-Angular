@@ -131,7 +131,6 @@ public class Pedido implements Serializable {
         Pedido pedido = (Pedido) o;
         return id.equals(pedido.id);
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(id);
