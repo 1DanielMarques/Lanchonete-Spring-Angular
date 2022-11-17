@@ -8,7 +8,7 @@ O Projeto **Lanchonete** foi desenvolvido a fim de desenvolver uma API em Java u
  Requisição GET utilizando o Postman e já buscando por ID:<br>
 <img width="600"   src="https://user-images.githubusercontent.com/100451032/202533482-f9fb4253-c083-41a3-8453-2cdadc8b381c.png" /><br>
 Corpo da requisição no formato JSON:<br>
-<img width="250"   src="https://user-images.githubusercontent.com/100451032/202533492-12499d23-2c6d-43af-8688-0e21866cc423.png" /> 
+
 <img width="250"   src="https://user-images.githubusercontent.com/100451032/202533415-2d375c4c-bfa9-475d-be7e-051baba7cfb9.png" />
   
 ## Tecnologias usadas
