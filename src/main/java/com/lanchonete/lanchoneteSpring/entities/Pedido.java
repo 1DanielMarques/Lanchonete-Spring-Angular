@@ -39,7 +39,6 @@ public class Pedido implements Serializable {
 
     private double total;
 
-
     public Pedido() {
 
     }
@@ -69,6 +68,9 @@ public class Pedido implements Serializable {
     }
 
     public List<Lanche> getLanches() {
+        for (Lanche l : lanches) {
+            qtdLanches += 1;
+        }
         return lanches;
     }
 
@@ -80,9 +82,6 @@ public class Pedido implements Serializable {
     }
 
     public int getQtdLanches() {
-        for (Lanche l : lanches) {
-            qtdLanches += 1;
-        }
         return qtdLanches;
     }
 
@@ -91,9 +90,6 @@ public class Pedido implements Serializable {
     }
 
     public int getQtdBebidas() {
-        for (Bebida b : bebidas) {
-            qtdBebidas += 1;
-        }
         return qtdBebidas;
     }
 
@@ -109,6 +105,8 @@ public class Pedido implements Serializable {
 
 
     public double getTaxa() {
+        CalculoTotalImpl calc = new CalculoTotalImpl();
+        calc.calculoTaxa(this);
         return taxa;
     }
 
