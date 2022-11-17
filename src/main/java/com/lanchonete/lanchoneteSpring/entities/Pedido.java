@@ -2,6 +2,7 @@ package com.lanchonete.lanchoneteSpring.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.lanchonete.lanchoneteSpring.entities.enums.TipoPagamento;
+import com.lanchonete.lanchoneteSpring.services.CalculoTotalImpl;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -29,12 +30,15 @@ public class Pedido implements Serializable {
 
     private Integer tipoPagamento;
 
+    private double taxa;
+
     @OneToMany(mappedBy = "pedidoBebida")
     private List<Bebida> bebidas = new ArrayList<>();
     private int qtdLanches;
     private int qtdBebidas;
 
     private double total;
+
 
     public Pedido() {
 
@@ -97,13 +101,18 @@ public class Pedido implements Serializable {
     }
 
     public double getTotal() {
-        for (Lanche l : lanches) {
-            total += l.getPreco();
-        }
-        for (Bebida b : bebidas) {
-            total += b.getPreco();
-        }
+        CalculoTotalImpl calc = new CalculoTotalImpl();
+        this.total = calc.calculoTotal(this);
         return total;
+    }
+
+
+    public double getTaxa() {
+        return taxa;
+    }
+
+    public void setTaxa(double taxa) {
+        this.taxa = taxa;
     }
 
     public TipoPagamento getTipoPagamento() {

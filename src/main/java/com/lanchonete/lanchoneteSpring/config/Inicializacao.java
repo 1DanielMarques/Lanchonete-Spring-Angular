@@ -57,7 +57,7 @@ public class Inicializacao implements CommandLineRunner {
         clienteService.insertAll(Arrays.asList(c1, c2));
 
         Pedido p1 = new Pedido(null, c1, TipoPagamento.DINHEIRO);
-        Pedido p2 = new Pedido(null, c1, TipoPagamento.DEBITO);
+        Pedido p2 = new Pedido(null, c1, TipoPagamento.CREDITO);
         //pedidoRepository.saveAll(Arrays.asList(p1, p2));
         pedidoService.insertAll(Arrays.asList(p1, p2));
 
