@@ -21,7 +21,7 @@ Corpo da requisição no formato JSON:<br>
 ## Conhecimentos adquiridos <br>
  * Mapear os objetos com as anotações (@)
  * Utilizar as anotações (@) para Injeção de dependência (@Autowired), entre outros como @Id, @JsonIgnore, @GeneratedValue, @RequestMapping...
- * Trabalhar com o padrão MVC (inspirado), tendo as **Entidades**, os **Repositorios**, **Services** e **Resources** que são os *Controladores*.
+ * Trabalhar com o padrão MVC (inspirado), tendo as **Entidades**, os **Repositorios**, **Services** e **Resources** (*Controladores*).
 
 ## Autor
 * **Daniel Marques** <br>
