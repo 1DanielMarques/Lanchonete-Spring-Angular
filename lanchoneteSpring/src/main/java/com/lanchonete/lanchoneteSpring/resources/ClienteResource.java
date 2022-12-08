@@ -1,5 +1,6 @@
 package com.lanchonete.lanchoneteSpring.resources;
 
+
 import com.lanchonete.lanchoneteSpring.entities.Cliente;
 import com.lanchonete.lanchoneteSpring.services.ClienteService;
 import com.lanchonete.lanchoneteSpring.services.EnderecoService;
@@ -11,8 +12,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 
+
 @RestController
-@RequestMapping(value = "/clientes")
+@RequestMapping(value = "/lanchonete")
 public class ClienteResource {
 
     @Autowired
