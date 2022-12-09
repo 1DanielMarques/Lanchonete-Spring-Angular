@@ -12,7 +12,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/lanches")
+@RequestMapping(value = "/api/lanches")
 public class LancheResource {
 
     @Autowired
