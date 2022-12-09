@@ -14,7 +14,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping(value = "/lanchonete")
+@RequestMapping(value = "/api/clientes")
 public class ClienteResource {
 
     @Autowired

@@ -11,7 +11,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/enderecos")
+@RequestMapping(value = "/api/enderecos")
 public class EnderecoResource {
 
     @Autowired
