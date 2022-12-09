@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { Lanche } from './../model/lanche';
+import { LancheService } from './../services/lanche.service';
 
 @Component({
   selector: 'app-lanches',
@@ -8,18 +10,14 @@ import { Lanche } from './../model/lanche';
   styleUrls: ['./lanches.component.scss'],
 })
 export class LanchesComponent implements OnInit {
+
+  lanches: Observable<Lanche[]>;
+  
   readonly displayedColumns = ['nome', 'preco', 'descricao'];
 
-  lanches: Lanche[] = [
-    {
-      id: '1',
-      nome: 'X-Frango',
-      preco: '15,55',
-      descricao: 'Algumas coisa ae',
-    },
-  ];
+  constructor(private service: LancheService) {
+    this.lanches = this.service.findAll();
+  }
 
-  constructor() {}
-
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 }
