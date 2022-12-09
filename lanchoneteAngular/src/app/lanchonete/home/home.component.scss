@@ -1,8 +1,22 @@
 .actionButton {
   display: table-cell;
-  max-width: 600px;
+  text-align: center;
+
+}
+
+.initButton{
+  width: 100px;
+}
+
+#tituloHome{
+  display: table-cell;
 }
 
 .actionButton .mat-mdc-button-base {
   margin: 8px 8px 8px 0;
+}
+mat-card {
+  max-width: 90%;
+  margin: 2em auto;
+  text-align: center;
 }

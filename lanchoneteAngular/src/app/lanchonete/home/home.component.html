@@ -1,16 +1,16 @@
 <mat-card>
-  <mat-card-header>
+  <mat-card-header id="tituloHome">
     <mat-card-title>HOME</mat-card-title>
     <mat-card-subtitle>Choose one</mat-card-subtitle>
   </mat-card-header>
 
-      <div class="actionButton">
-        <button mat-raised-button color="primary">Clientes</button>
-        <button mat-raised-button color="primary">Enderecos</button>
-        <button mat-raised-button color="primary">Pedidos</button>
-        <button mat-raised-button color="primary" (click)="onLanches()">Lanches</button>
-        <button mat-raised-button color="primary">Bebidas</button>
-      </div>
- 
+  <div class="actionButton">
+    <button class="initButton" mat-raised-button color="primary">Clientes</button>
+    <button class="initButton" mat-raised-button color="primary">Enderecos</button>
+    <button class="initButton" mat-raised-button color="primary">Pedidos</button>
+    <button class="initButton" mat-raised-button color="primary" (click)="onLanches()">
+      Lanches
+    </button>
+    <button class="initButton" mat-raised-button color="primary">Bebidas</button>
+  </div>
 </mat-card>
-
