@@ -2,9 +2,10 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { AppMaterialModule } from './../shared/app-material/app-material.module';
+import { SharedModule } from './../shared/shared.module';
 import { HomeComponent } from './home/home.component';
-import { LanchoneteRoutingModule } from './lanchonete-routing.module';
 import { LanchesComponent } from './lanches/lanches.component';
+import { LanchoneteRoutingModule } from './lanchonete-routing.module';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { LanchesComponent } from './lanches/lanches.component';
   imports: [
     CommonModule,
     LanchoneteRoutingModule,
-    AppMaterialModule
+    AppMaterialModule,
+    SharedModule
   ]
 })
 export class LanchoneteModule { }

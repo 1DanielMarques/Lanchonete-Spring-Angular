@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { catchError, Observable, of } from 'rxjs';
+import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
 
 import { Lanche } from './../model/lanche';
 import { LancheService } from './../services/lanche.service';
@@ -16,8 +19,20 @@ export class LanchesComponent implements OnInit {
 
   readonly displayedColumns = ['nome', 'preco', 'descricao'];
 
-  constructor(private service: LancheService, private router : Router) {
-    this.lanches$ = this.service.findAll();
+  constructor(private service: LancheService, private router: Router, public dialog: MatDialog) {
+    this.lanches$ = this.service.findAll().
+      pipe(
+        catchError(error => {
+          this.onError('Erro ao carregar Lanches.');
+          return of([])
+        })
+      );
+  }
+
+  onError(errorMsg: string) {
+    this.dialog.open(ErrorDialogComponent, {
+      data: errorMsg,
+    });
   }
 
   ngOnInit(): void { }
