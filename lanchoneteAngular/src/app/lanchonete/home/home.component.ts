@@ -12,6 +12,6 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {}
 
   onLanches() {
-    this.router.navigate(['home/lanches']);
+    this.router.navigate(['lanchonete/lanches']);
   }
 }

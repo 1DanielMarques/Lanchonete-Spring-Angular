@@ -24,6 +24,6 @@ export class LanchesComponent implements OnInit {
 
 
   onHome() {
-    this.router.navigate(['home']);
+    this.router.navigate(['lanchonete']);
   }
 }
