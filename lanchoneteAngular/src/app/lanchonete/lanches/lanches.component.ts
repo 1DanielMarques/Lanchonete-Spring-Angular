@@ -12,12 +12,12 @@ import { LancheService } from './../services/lanche.service';
 })
 export class LanchesComponent implements OnInit {
 
-  lanches: Observable<Lanche[]>;
+  lanches$: Observable<Lanche[]>;
 
   readonly displayedColumns = ['nome', 'preco', 'descricao'];
 
   constructor(private service: LancheService, private router : Router) {
-    this.lanches = this.service.findAll();
+    this.lanches$ = this.service.findAll();
   }
 
   ngOnInit(): void { }
