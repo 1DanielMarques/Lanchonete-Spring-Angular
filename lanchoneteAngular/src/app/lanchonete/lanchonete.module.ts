@@ -6,12 +6,14 @@ import { SharedModule } from './../shared/shared.module';
 import { HomeComponent } from './home/home.component';
 import { LanchesComponent } from './lanches/lanches.component';
 import { LanchoneteRoutingModule } from './lanchonete-routing.module';
+import { LancheFormComponent } from './forms/lanche-form/lanche-form.component';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
-    LanchesComponent
+    LanchesComponent,
+    LancheFormComponent
   ],
   imports: [
     CommonModule,
