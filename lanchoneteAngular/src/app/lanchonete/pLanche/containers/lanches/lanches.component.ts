@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, Observable, of } from 'rxjs';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
 
-import { Lanche } from './../model/lanche';
-import { LancheService } from './../services/lanche.service';
+import { Lanche } from '../../../model/lanche';
+import { LancheService } from '../../../services/lanche/lanche.service';
+
 
 @Component({
   selector: 'app-lanches',

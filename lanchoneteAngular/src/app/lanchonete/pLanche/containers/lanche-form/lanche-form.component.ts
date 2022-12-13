@@ -2,8 +2,7 @@ import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { NonNullableFormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
-import { LancheService } from './../../services/lanche.service';
+import { LancheService } from 'src/app/lanchonete/services/lanche/lanche.service';
 
 @Component({
   selector: 'app-lanche-form',

@@ -4,11 +4,10 @@ import { NgModule } from '@angular/core';
 import { AppMaterialModule } from './../shared/app-material/app-material.module';
 import { SharedModule } from './../shared/shared.module';
 import { HomeComponent } from './home/home.component';
-import { LanchesComponent } from './lanches/lanches.component';
 import { LanchoneteRoutingModule } from './lanchonete-routing.module';
-import { LancheFormComponent } from './forms/lanche-form/lanche-form.component';
-import { LanchesListComponent } from './lanches-list/lanches-list.component';
-
+import { LanchesListComponent } from './pLanche/components/lanches-list/lanches-list.component';
+import { LancheFormComponent } from './pLanche/containers/lanche-form/lanche-form.component';
+import { LanchesComponent } from './pLanche/containers/lanches/lanches.component';
 
 @NgModule({
   declarations: [

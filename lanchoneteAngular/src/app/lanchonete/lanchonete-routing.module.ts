@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { LancheFormComponent } from './forms/lanche-form/lanche-form.component';
 import { HomeComponent } from './home/home.component';
-import { LanchesComponent } from './lanches/lanches.component';
+import { LancheFormComponent } from './pLanche/containers/lanche-form/lanche-form.component';
+import { LanchesComponent } from './pLanche/containers/lanches/lanches.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },

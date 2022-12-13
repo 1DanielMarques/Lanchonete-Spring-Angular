@@ -1,7 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-
-import { Lanche } from '../model/lanche';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Lanche } from 'src/app/lanchonete/model/lanche';
 
 @Component({
   selector: 'app-lanches-list',
@@ -11,15 +9,16 @@ import { Lanche } from '../model/lanche';
 export class LanchesListComponent {
 
   @Input() lanches: Lanche[] = [];
+  @Output() add = new EventEmitter(false);
 
   readonly displayedColumns = ['nome', 'preco', 'descricao', 'action'];
 
-  constructor(private router: Router, private route: ActivatedRoute) {
+  constructor() {
 
   }
 
   onAdd() {
-    this.router.navigate(['new'], { relativeTo: this.route });
+    this.add.emit(true);
   }
 
 }
