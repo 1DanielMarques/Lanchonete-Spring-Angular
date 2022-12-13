@@ -1,0 +1,44 @@
+<mat-table [dataSource]="lanches">
+  <!-- Nome -->
+  <ng-container matColumnDef="nome">
+    <mat-header-cell *matHeaderCellDef>Lanche</mat-header-cell>
+    <mat-cell *matCellDef="let lanche">{{ lanche.nome }}</mat-cell>
+  </ng-container>
+
+  <!-- Preco Column -->
+  <ng-container matColumnDef="preco">
+    <mat-header-cell *matHeaderCellDef>Preço</mat-header-cell>
+    <mat-cell *matCellDef="let lanche">R${{ lanche.preco }}</mat-cell>
+  </ng-container>
+
+  <!-- Descricao Column -->
+  <ng-container matColumnDef="descricao">
+    <mat-header-cell *matHeaderCellDef>Descrição</mat-header-cell>
+    <mat-cell *matCellDef="let lanche">{{ lanche.descricao }}</mat-cell>
+  </ng-container>
+
+  <!-- Actions Column -->
+  <ng-container matColumnDef="action">
+    <mat-header-cell *matHeaderCellDef class="action-column-header">
+      <button
+        mat-mini-fab
+        color="primary"
+        aria-label="Adicionar Lanche"
+        (click)="onAdd()"
+      >
+        <mat-icon>add</mat-icon>
+      </button>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let lanche" class="action-column">
+      <button mat-icon-button color="primary" aria-label="Editar Lanche">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button aria-label="Deletar Lanche" color="warn">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</mat-table>

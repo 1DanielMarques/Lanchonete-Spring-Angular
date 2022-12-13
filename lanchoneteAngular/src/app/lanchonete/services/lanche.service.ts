@@ -22,7 +22,7 @@ export class LancheService {
       );
   }
 
-  save(lanche: Lanche) {
+  save(lanche: Partial<Lanche>) {
     return this.httpClient.post<Lanche>(this.API, lanche);
   }
 

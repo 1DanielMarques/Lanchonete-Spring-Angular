@@ -16,7 +16,7 @@ export class LanchesComponent implements OnInit {
 
   lanches$: Observable<Lanche[]>;
 
-  readonly displayedColumns = ['nome', 'preco', 'descricao', 'action'];
+
 
   constructor(private service: LancheService, private router: Router, public dialog: MatDialog, private route: ActivatedRoute) {
     this.lanches$ = this.service.findAll().

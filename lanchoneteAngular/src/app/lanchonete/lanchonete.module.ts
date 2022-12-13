@@ -7,13 +7,15 @@ import { HomeComponent } from './home/home.component';
 import { LanchesComponent } from './lanches/lanches.component';
 import { LanchoneteRoutingModule } from './lanchonete-routing.module';
 import { LancheFormComponent } from './forms/lanche-form/lanche-form.component';
+import { LanchesListComponent } from './lanches-list/lanches-list.component';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
     LanchesComponent,
-    LancheFormComponent
+    LancheFormComponent,
+    LanchesListComponent
   ],
   imports: [
     CommonModule,

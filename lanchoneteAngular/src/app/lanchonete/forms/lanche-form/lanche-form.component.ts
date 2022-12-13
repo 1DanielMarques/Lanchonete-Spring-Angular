@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { NonNullableFormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { LancheService } from './../../services/lanche.service';
@@ -12,14 +12,14 @@ import { LancheService } from './../../services/lanche.service';
 })
 export class LancheFormComponent {
 
-  form: FormGroup;
+  form = this.formBuilder.group({
+    nome: [''],
+    preco: [''],
+    descricao: ['']
+  });
 
-  constructor(private formBuilder: FormBuilder, private service: LancheService, private snackBar: MatSnackBar, private location: Location) {
-    this.form = this.formBuilder.group({
-      nome: [null],
-      preco: [null],
-      descricao: [null]
-    });
+  constructor(private formBuilder: NonNullableFormBuilder, private service: LancheService, private snackBar: MatSnackBar, private location: Location) {
+
   }
 
   onSubmit() {
