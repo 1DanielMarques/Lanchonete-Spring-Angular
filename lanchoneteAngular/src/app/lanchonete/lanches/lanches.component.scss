@@ -1,5 +1,11 @@
-table {
-  width: 100%;
+.action-column-header {
+  flex: 0 0 100px;
+}
+.action-column {
+  flex: 0 0 125px;
+}
+
+#btAdd {
 }
 
 mat-card {

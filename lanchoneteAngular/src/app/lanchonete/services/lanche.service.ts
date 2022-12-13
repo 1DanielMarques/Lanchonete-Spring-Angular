@@ -21,4 +21,9 @@ export class LancheService {
         tap(l => console.log(l))
       );
   }
+
+  save(lanche: Lanche) {
+    return this.httpClient.post<Lanche>(this.API, lanche);
+  }
+
 }
