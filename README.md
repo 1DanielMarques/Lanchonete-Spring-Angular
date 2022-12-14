@@ -1,4 +1,4 @@
-# LanchoneteSpring 🚀
+# Lanchonete-Spring-Angular 🚀
 O Projeto **Lanchonete** foi desenvolvido a fim de desenvolver uma API em Java utilizando Spring Boot.
 
 ## Testes<br>
