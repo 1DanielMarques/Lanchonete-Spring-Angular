@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, Observable, of } from 'rxjs';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
@@ -15,11 +16,18 @@ import { LancheService } from '../../../services/lanche/lanche.service';
 })
 export class LanchesComponent implements OnInit {
 
-  lanches$: Observable<Lanche[]>;
+  lanches$: Observable<Lanche[]> | null = null;
 
+  constructor(
+    private service: LancheService,
+    private router: Router,
+    public dialog: MatDialog,
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar,) {
+    this.refresh();
+  }
 
-
-  constructor(private service: LancheService, private router: Router, public dialog: MatDialog, private route: ActivatedRoute) {
+  refresh() {
     this.lanches$ = this.service.findAll().
       pipe(
         catchError(error => {
@@ -48,6 +56,17 @@ export class LanchesComponent implements OnInit {
 
   onEdit(lanche: Lanche) {
     this.router.navigate(['edit', lanche.id], { relativeTo: this.route });
+  }
+
+  onDelete(lanche: Lanche) {
+    this.service.remove(lanche.id).subscribe(
+      () => {
+        this.refresh();
+        return this.snackBar.open('Lanche removido com sucesso!', '', { duration: 5000, verticalPosition: 'top', horizontalPosition: 'center' });
+      },
+      () => this.onError('Erro ao tentar remover Lanche')
+
+    );
   }
 
 }

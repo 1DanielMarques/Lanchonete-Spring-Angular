@@ -37,8 +37,14 @@ export class LancheService {
     return this.httpClient.put<Lanche>(`${this.API}/${lanche.id}`, lanche);
   }
 
+  public remove(id: string) {
+    return this.httpClient.delete<Lanche>(`${this.API}/${id}`);
+  }
+
   findById(id: string) {
     return this.httpClient.get<Lanche>(`${this.API}/${id}`);
   }
+
+
 
 }
