@@ -16,7 +16,7 @@ export class LanchesResolver implements Resolve<Lanche> {
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Lanche> {
     if (route.params && route.params['id']) {
-      this.service.findById(route.params['id']);
+      return this.service.findById(route.params['id']);
     }
     return of({ id: '', nome: '', preco: '', descricao: '' });
   }

@@ -23,7 +23,18 @@ export class LancheService {
   }
 
   save(lanche: Partial<Lanche>) {
+    if (lanche.id) {
+      return this.update(lanche);
+    }
+    return this.create(lanche);
+  }
+
+  private create(lanche: Partial<Lanche>) {
     return this.httpClient.post<Lanche>(this.API, lanche);
+  }
+
+  private update(lanche: Partial<Lanche>) {
+    return this.httpClient.put<Lanche>(`${this.API}/${lanche.id}`, lanche);
   }
 
   findById(id: string) {
