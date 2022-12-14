@@ -26,4 +26,8 @@ export class LancheService {
     return this.httpClient.post<Lanche>(this.API, lanche);
   }
 
+  findById(id: string) {
+    return this.httpClient.get<Lanche>(`${this.API}/${id}`);
+  }
+
 }

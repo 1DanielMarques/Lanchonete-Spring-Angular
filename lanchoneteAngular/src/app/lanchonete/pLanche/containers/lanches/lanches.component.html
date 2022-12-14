@@ -8,6 +8,7 @@
       *ngIf="lanches$ | async as lanches; else loading"
       [lanches]="lanches"
       (add)="onAdd()"
+      (edit)="onEdit($event)"
     >
     </app-lanches-list>
 

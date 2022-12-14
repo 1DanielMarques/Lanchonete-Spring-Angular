@@ -10,6 +10,7 @@ export class LanchesListComponent {
 
   @Input() lanches: Lanche[] = [];
   @Output() add = new EventEmitter(false);
+  @Output() edit = new EventEmitter(false);
 
   readonly displayedColumns = ['nome', 'preco', 'descricao', 'action'];
 
@@ -20,5 +21,10 @@ export class LanchesListComponent {
   onAdd() {
     this.add.emit(true);
   }
+
+  onEdit(lanche: Lanche) {
+    this.edit.emit(lanche);
+  }
+
 
 }

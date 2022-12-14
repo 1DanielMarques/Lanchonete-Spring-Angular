@@ -30,7 +30,7 @@
       </button>
     </mat-header-cell>
     <mat-cell *matCellDef="let lanche" class="action-column">
-      <button mat-icon-button color="primary" aria-label="Editar Lanche">
+      <button mat-icon-button color="primary" aria-label="Editar Lanche" (click)="onEdit(lanche)">
         <mat-icon>edit</mat-icon>
       </button>
       <button mat-icon-button aria-label="Deletar Lanche" color="warn">

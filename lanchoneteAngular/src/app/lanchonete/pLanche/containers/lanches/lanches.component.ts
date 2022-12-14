@@ -45,4 +45,9 @@ export class LanchesComponent implements OnInit {
   onAdd() {
     this.router.navigate(['new'], { relativeTo: this.route });
   }
+
+  onEdit(lanche: Lanche) {
+    this.router.navigate(['edit', lanche.id], { relativeTo: this.route });
+  }
+
 }
