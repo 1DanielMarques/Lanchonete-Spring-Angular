@@ -5,12 +5,30 @@
   </mat-card-header>
 
   <div class="actionButton">
-    <button class="initButton" mat-raised-button color="primary">Clientes</button>
-    <button class="initButton" mat-raised-button color="primary">Enderecos</button>
-    <button class="initButton" mat-raised-button color="primary">Pedidos</button>
-    <button class="initButton" mat-raised-button color="primary" (click)="onLanches()">
+    <button class="initButton" mat-raised-button color="primary">
+      Clientes
+    </button>
+    <button class="initButton" mat-raised-button color="primary">
+      Enderecos
+    </button>
+    <button class="initButton" mat-raised-button color="primary">
+      Pedidos
+    </button>
+    <button
+      class="initButton"
+      mat-raised-button
+      color="primary"
+      (click)="onLanches()"
+    >
       Lanches
     </button>
-    <button class="initButton" mat-raised-button color="primary">Bebidas</button>
+    <button
+      class="initButton"
+      mat-raised-button
+      color="primary"
+      (click)="onBebidas()"
+    >
+      Bebidas
+    </button>
   </div>
 </mat-card>

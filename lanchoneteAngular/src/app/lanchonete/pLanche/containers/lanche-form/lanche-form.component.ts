@@ -40,8 +40,8 @@ export class LancheFormComponent implements OnInit {
   onSubmit() {
     this.service.save(this.form.value)
       .subscribe(
-        result => this.onSuccess(),
-        error => this.onError());
+        () => this.onSuccess(),
+        () => this.onError());
   }
 
   private onError() {

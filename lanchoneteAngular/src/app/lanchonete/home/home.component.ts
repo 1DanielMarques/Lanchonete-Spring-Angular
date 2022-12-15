@@ -14,4 +14,9 @@ export class HomeComponent implements OnInit {
   onLanches() {
     this.router.navigate(['lanches'], { relativeTo: this.route });
   }
+
+  onBebidas() {
+    this.router.navigate(['bebidas'], { relativeTo: this.route });
+  }
+
 }

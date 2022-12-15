@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { first, tap } from 'rxjs';
+import { delay, first, tap } from 'rxjs';
 
 import { Lanche } from '../../model/lanche';
 
@@ -17,7 +17,7 @@ export class LancheService {
     return this.httpClient.get<Lanche[]>(this.API).
       pipe(
         first(),
-        //delay(5000),
+       // delay(5000),
         tap(l => console.log(l))
       );
   }

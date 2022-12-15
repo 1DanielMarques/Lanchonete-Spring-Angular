@@ -13,7 +13,7 @@ export class LanchesListComponent {
   @Output() edit = new EventEmitter(false);
   @Output() delete = new EventEmitter(false);
 
-  readonly displayedColumns = ['nome', 'preco', 'descricao', 'action'];
+  readonly displayedColumns = ['nome', 'descricao', 'preco', 'action'];
 
   constructor() {
 
