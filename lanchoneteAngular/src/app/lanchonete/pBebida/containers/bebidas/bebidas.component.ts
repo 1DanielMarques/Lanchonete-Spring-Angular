@@ -24,7 +24,7 @@ export class BebidasComponent {
     this.bebidas$ = this.service.findAll().
       pipe(
         catchError(() => {
-          this.onError('Erro ao carregar Lanches.');
+          this.onError('Erro ao carregar Bebidas.');
           return of([])
         })
       );
