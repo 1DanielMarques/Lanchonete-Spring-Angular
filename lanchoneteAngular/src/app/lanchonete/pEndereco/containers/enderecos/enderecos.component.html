@@ -1,15 +1,21 @@
 <mat-card class="mat-card">
   <mat-card-header>
-    <mat-toolbar color="primary"> Bebidas Disponíveis </mat-toolbar>
+    <mat-toolbar color="primary"> Endereços </mat-toolbar>
   </mat-card-header>
-  <div class="mat-elevation-z8">
-    <app-bebida-list
-      *ngIf="bebidas$ | async as bebida; else loading"
-      [bebidas]="bebida"
-      (add)="onAdd()"
+
+  <div
+    *ngIf="enderecos$ | async as enderecos; else loading"
+    class="mat-elevation-z8"
+  >
+    <app-enderecos-list
+    [enderecos]="enderecos"
+    (add)="onAdd()"
     >
-    </app-bebida-list>
+
+
+  </app-enderecos-list>
   </div>
+
   <ng-template #loading>
     <div class="loading-spinner">
       <mat-spinner></mat-spinner>

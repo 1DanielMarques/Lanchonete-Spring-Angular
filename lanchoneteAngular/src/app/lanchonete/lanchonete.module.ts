@@ -11,6 +11,9 @@ import { LanchesComponent } from './pLanche/containers/lanches/lanches.component
 import { BebidasComponent } from './pBebida/containers/bebidas/bebidas.component';
 import { BebidalistComponent } from './pBebida/components/bebidalist/bebidalist.component';
 import { BebidaFormComponent } from './pBebida/containers/bebida-form/bebida-form.component';
+import { EnderecosComponent } from './pEndereco/containers/enderecos/enderecos.component';
+import { EnderecosListComponent } from './pEndereco/components/enderecos-list/enderecos-list.component';
+import { EnderecoFormComponent } from './pEndereco/containers/endereco-form/endereco-form/endereco-form.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,10 @@ import { BebidaFormComponent } from './pBebida/containers/bebida-form/bebida-for
     LanchesListComponent,
     BebidasComponent,
     BebidalistComponent,
-    BebidaFormComponent
+    BebidaFormComponent,
+    EnderecosComponent,
+    EnderecosListComponent,
+    EnderecoFormComponent
   ],
   imports: [
     CommonModule,

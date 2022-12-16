@@ -1,0 +1,55 @@
+<mat-table [dataSource]="enderecos">
+  <!-- Rua Column -->
+  <ng-container matColumnDef="rua">
+    <mat-header-cell *matHeaderCellDef> Rua </mat-header-cell>
+    <mat-cell *matCellDef="let endereco"> {{ endereco.rua }} </mat-cell>
+  </ng-container>
+
+  <!-- Numero Column -->
+  <ng-container matColumnDef="numero">
+    <mat-header-cell *matHeaderCellDef> N° </mat-header-cell>
+    <mat-cell *matCellDef="let endereco"> {{ endereco.numero }} </mat-cell>
+  </ng-container>
+
+  <!-- Bairro Column -->
+  <ng-container matColumnDef="bairro">
+    <mat-header-cell *matHeaderCellDef> Bairro </mat-header-cell>
+    <mat-cell *matCellDef="let endereco"> {{ endereco.bairro }} </mat-cell>
+  </ng-container>
+
+  <!-- Action Column -->
+  <ng-container matColumnDef="action">
+    <mat-header-cell *matHeaderCellDef class="action-column-header">
+      <button
+        mat-mini-fab
+        color="accent"
+        aria-label="Example icon button with a plus one icon"
+        color="primary"
+        (click)="onAdd()"
+      >
+        <mat-icon>add</mat-icon>
+      </button>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let endereco" class="action-column">
+      <button
+        mat-icon-button
+        color="primary"
+        aria-label="Example icon button with a home icon"
+        color="primary"
+      >
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        color="primary"
+        aria-label="Example icon button with a home icon"
+        color="warn"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</mat-table>
