@@ -1,3 +1,4 @@
+import { NonNullableFormBuilder } from '@angular/forms';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,5 +7,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./bebida-form.component.scss']
 })
 export class BebidaFormComponent {
+
+  form = this.formBuilder.group({
+    nome: [''],
+    marca: [''],
+    litragem: [''],
+    sabor: [''],
+    preco: ['']
+  });
+
+  constructor(private formBuilder: NonNullableFormBuilder) {
+
+  }
 
 }
