@@ -1,5 +1,9 @@
-import { NonNullableFormBuilder } from '@angular/forms';
+import { Location } from '@angular/common';
 import { Component } from '@angular/core';
+import { NonNullableFormBuilder } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
+import { BebidaService } from './../../../services/bebida/bebida.service';
 
 @Component({
   selector: 'app-bebida-form',
@@ -16,8 +20,24 @@ export class BebidaFormComponent {
     preco: ['']
   });
 
-  constructor(private formBuilder: NonNullableFormBuilder) {
+  constructor(private formBuilder: NonNullableFormBuilder, private service: BebidaService, private location: Location, private snackBar: MatSnackBar) {
 
+  }
+
+  onSubmit() {
+    this.service.insert(this.form.value).subscribe(() => this.onSuccess(), () => this.onError());
+    this.onCancel();
+  }
+  onCancel() {
+    this.location.back();
+  }
+
+  onSuccess() {
+    this.snackBar.open('Bebida salva com sucesso!', '', { duration: 5000 });
+  }
+
+  onError() {
+    this.snackBar.open('Erro ao salvar Bebida.', '', { duration: 5000 });
   }
 
 }
