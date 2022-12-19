@@ -22,4 +22,9 @@ export class EnderecoService {
       )
   }
 
+  insert(endereco: Partial<Endereco>) {
+    return this.httpClient.post<Endereco>(this.API, endereco);
+  }
+
+
 }
