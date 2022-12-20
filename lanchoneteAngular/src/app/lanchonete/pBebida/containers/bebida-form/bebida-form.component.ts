@@ -1,5 +1,6 @@
+import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NonNullableFormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -10,9 +11,10 @@ import { BebidaService } from './../../../services/bebida/bebida.service';
   templateUrl: './bebida-form.component.html',
   styleUrls: ['./bebida-form.component.scss']
 })
-export class BebidaFormComponent {
+export class BebidaFormComponent implements OnInit {
 
   form = this.formBuilder.group({
+    id: [''],
     nome: [''],
     marca: [''],
     litragem: [''],
@@ -20,12 +22,23 @@ export class BebidaFormComponent {
     preco: ['']
   });
 
-  constructor(private formBuilder: NonNullableFormBuilder, private service: BebidaService, private location: Location, private snackBar: MatSnackBar) {
+  constructor(private formBuilder: NonNullableFormBuilder, private service: BebidaService, private location: Location, private snackBar: MatSnackBar, private route: ActivatedRoute) {
 
+  }
+  ngOnInit(): void {
+    const bebida = this.route.snapshot.data['bebida'];
+    this.form.setValue({
+      id: bebida.id,
+      nome: bebida.nome,
+      marca: bebida.marca,
+      litragem: bebida.litragem,
+      sabor: bebida.sabor,
+      preco: bebida.preco
+    })
   }
 
   onSubmit() {
-    this.service.insert(this.form.value).subscribe(() => this.onSuccess(), () => this.onError());
+    this.service.save(this.form.value).subscribe(() => this.onSuccess(), () => this.onError());
     this.onCancel();
   }
   onCancel() {

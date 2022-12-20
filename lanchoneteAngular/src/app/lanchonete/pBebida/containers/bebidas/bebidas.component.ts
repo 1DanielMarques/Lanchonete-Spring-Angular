@@ -44,6 +44,9 @@ export class BebidasComponent {
   onAdd() {
     this.router.navigate(['new'], { relativeTo: this.route });
   }
+  onEdit(bebida: Bebida) {
+    this.router.navigate(['edit', bebida.id], { relativeTo: this.route });
+  }
 
 
 

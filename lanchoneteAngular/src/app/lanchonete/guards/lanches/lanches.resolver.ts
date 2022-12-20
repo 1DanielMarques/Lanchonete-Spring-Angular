@@ -3,7 +3,9 @@ import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/r
 import { Observable, of } from 'rxjs';
 import { LancheService } from 'src/app/lanchonete/services/lanche/lanche.service';
 
-import { Lanche } from './../model/lanche';
+import { Lanche } from '../../model/lanche';
+
+
 
 @Injectable({
   providedIn: 'root'

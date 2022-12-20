@@ -37,7 +37,7 @@
 
     </mat-header-cell>
     <mat-cell *matCellDef="let bebida" class="action-column">
-      <button mat-icon-button color="primary" aria-label="Example icon button with a menu icon">
+      <button mat-icon-button color="primary" aria-label="Example icon button with a menu icon" (click)="onEdit(bebida)">
         <mat-icon>edit</mat-icon>
       </button>
       <button mat-icon-button color="warn" aria-label="Example icon button with a menu icon">

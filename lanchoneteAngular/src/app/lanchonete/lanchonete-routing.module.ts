@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { LanchesResolver } from './guards/lanches.resolver';
+import { BebidasResolver } from './guards/bebidas/bebidas.resolver';
+import { LanchesResolver } from './guards/lanches/lanches.resolver';
 import { HomeComponent } from './home/home.component';
 import { BebidaFormComponent } from './pBebida/containers/bebida-form/bebida-form.component';
 import { BebidasComponent } from './pBebida/containers/bebidas/bebidas.component';
@@ -15,8 +16,11 @@ const routes: Routes = [
   { path: 'lanches', component: LanchesComponent },
   { path: 'lanches/new', component: LancheFormComponent, resolve: { lanche: LanchesResolver } },
   { path: 'lanches/edit/:id', component: LancheFormComponent, resolve: { lanche: LanchesResolver } },
+
   { path: 'bebidas', component: BebidasComponent },
-  { path: 'bebidas/new', component: BebidaFormComponent },
+  { path: 'bebidas/new', component: BebidaFormComponent, resolve: { bebida: BebidasResolver } },
+  { path: 'bebidas/edit/:id', component: BebidaFormComponent, resolve: { bebida: BebidasResolver } },
+
   { path: 'enderecos', component: EnderecosComponent },
   { path: 'enderecos/new', component: EnderecoFormComponent },
 

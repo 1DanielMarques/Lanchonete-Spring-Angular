@@ -9,7 +9,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class BebidalistComponent {
 
   @Input() bebidas: Bebida[] = [];
-  @Output() add = new EventEmitter();
+  @Output() add = new EventEmitter(false);
+  @Output() edit = new EventEmitter(false);
   readonly displayedColumns = ['nome', 'marca', 'litragem', 'sabor', 'preco', 'action'];
 
   constructor() {
@@ -18,6 +19,9 @@ export class BebidalistComponent {
 
   onAdd() {
     this.add.emit(true);
+  }
+  onEdit(bebida: Bebida) {
+    this.edit.emit(bebida);
   }
 
 }

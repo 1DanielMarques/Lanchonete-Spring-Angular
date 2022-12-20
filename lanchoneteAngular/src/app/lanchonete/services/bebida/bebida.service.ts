@@ -23,10 +23,24 @@ export class BebidaService {
       );
   }
 
-  insert(bebida: Partial<Bebida>) {
+  save(bebida: Partial<Bebida>) {
+    if (bebida.id) {
+      return this.update(bebida);
+    }
+    return this.insert(bebida);
+  }
+
+  private insert(bebida: Partial<Bebida>) {
     return this.httpClient.post<Bebida>(this.API, bebida);
   }
 
+  private update(bebida: Partial<Bebida>) {
+    return this.httpClient.put<Bebida>(`${this.API}/${bebida.id}`, bebida);
+  }
 
-  
+  findById(id: string) {
+    return this.httpClient.get<Bebida>(`${this.API}/${id}`)
+  }
+
+
 }
