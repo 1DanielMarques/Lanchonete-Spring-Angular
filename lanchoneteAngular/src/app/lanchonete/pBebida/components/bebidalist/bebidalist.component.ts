@@ -11,6 +11,7 @@ export class BebidalistComponent {
   @Input() bebidas: Bebida[] = [];
   @Output() add = new EventEmitter(false);
   @Output() edit = new EventEmitter(false);
+  @Output() remove = new EventEmitter(false);
   readonly displayedColumns = ['nome', 'marca', 'litragem', 'sabor', 'preco', 'action'];
 
   constructor() {
@@ -22,6 +23,9 @@ export class BebidalistComponent {
   }
   onEdit(bebida: Bebida) {
     this.edit.emit(bebida);
+  }
+  onRemove(bebida: Bebida) {
+    this.remove.emit(bebida);
   }
 
 }
