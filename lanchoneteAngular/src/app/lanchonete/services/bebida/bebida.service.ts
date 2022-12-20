@@ -41,6 +41,7 @@ export class BebidaService {
   findById(id: string) {
     return this.httpClient.get<Bebida>(`${this.API}/${id}`)
   }
+  
   remove(id: string) {
     return this.httpClient.delete(`${this.API}/${id}`);
   }

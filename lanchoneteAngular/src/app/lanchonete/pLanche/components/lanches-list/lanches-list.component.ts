@@ -11,7 +11,7 @@ export class LanchesListComponent {
   @Input() lanches: Lanche[] = [];
   @Output() add = new EventEmitter(false);
   @Output() edit = new EventEmitter(false);
-  @Output() delete = new EventEmitter(false);
+  @Output() remove = new EventEmitter(false);
 
   readonly displayedColumns = ['nome', 'descricao', 'preco', 'action'];
 
@@ -27,8 +27,8 @@ export class LanchesListComponent {
     this.edit.emit(lanche);
   }
 
-  onDelete(lanche: Lanche) {
-    this.delete.emit(lanche);
+  onRemove(lanche: Lanche) {
+    this.remove.emit(lanche);
   }
 
 

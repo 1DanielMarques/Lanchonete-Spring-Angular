@@ -37,9 +37,12 @@ export class EnderecoService {
     return this.httpClient.put<Endereco>(`${this.API}/${endereco.id}`, endereco);
   }
 
+  remove(id: string) {
+    return this.httpClient.delete(`${this.API}/${id}`);
+  }
+
   findById(id: string) {
     return this.httpClient.get<Endereco>(`${this.API}/${id}`);
   }
-
 
 }

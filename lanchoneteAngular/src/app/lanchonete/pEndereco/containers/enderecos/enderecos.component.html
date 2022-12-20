@@ -8,13 +8,12 @@
     class="mat-elevation-z8"
   >
     <app-enderecos-list
-    [enderecos]="enderecos"
-    (add)="onAdd()"
-    (edit)="onEdit($event)"
+      [enderecos]="enderecos"
+      (add)="onAdd()"
+      (edit)="onEdit($event)"
+      (remove)="onRemove($event)"
     >
-
-
-  </app-enderecos-list>
+    </app-enderecos-list>
   </div>
 
   <ng-template #loading>

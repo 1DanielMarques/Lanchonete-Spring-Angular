@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, Observable, of } from 'rxjs';
 import { Endereco } from 'src/app/lanchonete/model/endereco';
@@ -16,9 +17,8 @@ export class EnderecosComponent {
 
   enderecos$: Observable<Endereco[]> | null = null;
 
-  constructor(private router: Router, private service: EnderecoService, public dialog: MatDialog, private route: ActivatedRoute) {
+  constructor(private router: Router, private service: EnderecoService, public dialog: MatDialog, private route: ActivatedRoute, private snackBar: MatSnackBar) {
     this.refresh();
-
   }
 
   refresh() {
@@ -48,6 +48,17 @@ export class EnderecosComponent {
   }
   onEdit(endereco: Endereco) {
     this.router.navigate(['edit', endereco.id], { relativeTo: this.route })
+  }
+  onRemove(endereco: Endereco) {
+    this.service.remove(endereco.id).subscribe(
+      () => {
+        this.refresh();
+        this.snackBar.open('Endereco removido com sucesso!', '', { duration: 5000 });
+      },
+      () => {
+        this.onError('Erro ao tentar remover Endereco!');
+      }
+    );
   }
 
 }

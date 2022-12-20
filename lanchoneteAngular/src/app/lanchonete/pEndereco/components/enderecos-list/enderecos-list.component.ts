@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Endereco } from 'src/app/lanchonete/model/endereco';
 
 @Component({
@@ -11,7 +11,7 @@ export class EnderecosListComponent {
   @Input() enderecos: Endereco[] = [];
   @Output() add = new EventEmitter(false);
   @Output() edit = new EventEmitter(false);
-
+  @Output() remove = new EventEmitter(false);
 
   readonly displayedColumns = ['rua', 'numero', 'bairro', 'action'];
 
@@ -24,6 +24,10 @@ export class EnderecosListComponent {
   }
   onEdit(endereco: Endereco) {
     this.edit.emit(endereco);
+  }
+
+  onRemove(endereco: Endereco) {
+    this.remove.emit(endereco);
   }
 
 }

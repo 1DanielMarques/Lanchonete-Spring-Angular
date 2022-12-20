@@ -58,7 +58,7 @@ export class LanchesComponent implements OnInit {
     this.router.navigate(['edit', lanche.id], { relativeTo: this.route });
   }
 
-  onDelete(lanche: Lanche) {
+  onRemove(lanche: Lanche) {
     this.service.remove(lanche.id).subscribe(
       () => {
         this.refresh();

@@ -1,4 +1,4 @@
-<mat-table [dataSource]="bebidas" class="mat-table" >
+<mat-table [dataSource]="bebidas" class="mat-table">
   <!-- Nome Column -->
   <ng-container matColumnDef="nome">
     <mat-header-cell *matHeaderCellDef>Bebida</mat-header-cell>
@@ -31,19 +31,32 @@
 
   <ng-container matColumnDef="action">
     <mat-header-cell *matHeaderCellDef class="action-column-header">
-      <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon" (click)="onAdd()">
+      <button
+        mat-mini-fab
+        color="primary"
+        aria-label="Example icon button with a menu icon"
+        (click)="onAdd()"
+      >
         <mat-icon>add</mat-icon>
       </button>
-
     </mat-header-cell>
     <mat-cell *matCellDef="let bebida" class="action-column">
-      <button mat-icon-button color="primary" aria-label="Example icon button with a menu icon" (click)="onEdit(bebida)">
+      <button
+        mat-icon-button
+        color="primary"
+        aria-label="Example icon button with a menu icon"
+        (click)="onEdit(bebida)"
+      >
         <mat-icon>edit</mat-icon>
       </button>
-      <button mat-icon-button color="warn" aria-label="Example icon button with a menu icon" (click)="onRemove(bebida)">
+      <button
+        mat-icon-button
+        color="warn"
+        aria-label="Example icon button with a menu icon"
+        (click)="onRemove(bebida)"
+      >
         <mat-icon>delete</mat-icon>
       </button>
-
     </mat-cell>
   </ng-container>
 
