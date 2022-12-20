@@ -50,7 +50,8 @@ public class Inicializacao implements CommandLineRunner {
 
         Endereco e1 = new Endereco(null, "Via Lactea", "Saturno", 255);
         Endereco e2 = new Endereco(null, "Violin", "Maria Sinop", 147);
-        enderecoService.insertAll(Arrays.asList(e1, e2));
+        Endereco e3 = new Endereco(null, "Bandeirantes", "Rua Teste", 222);
+        enderecoService.insertAll(Arrays.asList(e1, e2,e3));
 
         Cliente c1 = new Cliente(null, "Daniel Marques", "33397902", sdf.parse("09/09/2003"), e1);
         Cliente c2 = new Cliente(null, "Ricardo Lopes", "2342 8826", sdf.parse("23/05/1997"), e2);
