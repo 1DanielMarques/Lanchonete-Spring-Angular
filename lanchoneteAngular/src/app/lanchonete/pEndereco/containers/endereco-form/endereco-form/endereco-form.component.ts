@@ -1,7 +1,8 @@
 import { Location } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NonNullableFormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
 
 import { EnderecoService } from './../../../../services/endereco/endereco.service';
 
@@ -10,21 +11,31 @@ import { EnderecoService } from './../../../../services/endereco/endereco.servic
   templateUrl: './endereco-form.component.html',
   styleUrls: ['./endereco-form.component.scss']
 })
-export class EnderecoFormComponent {
+export class EnderecoFormComponent implements OnInit {
 
   form = this.formBuilder.group({
+    id: [''],
     rua: [''],
     numero: [''],
     bairro: ['']
   });
 
 
-  constructor(private formBuilder: NonNullableFormBuilder, private service: EnderecoService, private snackBar: MatSnackBar, private location: Location) {
+  constructor(private formBuilder: NonNullableFormBuilder, private service: EnderecoService, private snackBar: MatSnackBar, private location: Location, private route: ActivatedRoute) {
 
+  }
+  ngOnInit(): void {
+    const endereco = this.route.snapshot.data['endereco'];
+    this.form.setValue({
+      id: endereco.id,
+      rua: endereco.rua,
+      numero: endereco.numero,
+      bairro: endereco.bairro
+    });
   }
 
   onSubmit() {
-    this.service.insert(this.form.value).subscribe();
+    this.service.save(this.form.value).subscribe();
     this.onCancel();
   }
   onCancel() {

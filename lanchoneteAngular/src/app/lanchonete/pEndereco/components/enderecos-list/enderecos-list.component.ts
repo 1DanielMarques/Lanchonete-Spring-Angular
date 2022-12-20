@@ -10,6 +10,7 @@ export class EnderecosListComponent {
 
   @Input() enderecos: Endereco[] = [];
   @Output() add = new EventEmitter(false);
+  @Output() edit = new EventEmitter(false);
 
 
   readonly displayedColumns = ['rua', 'numero', 'bairro', 'action'];
@@ -20,6 +21,9 @@ export class EnderecosListComponent {
 
   onAdd() {
     this.add.emit(true);
+  }
+  onEdit(endereco: Endereco) {
+    this.edit.emit(endereco);
   }
 
 }

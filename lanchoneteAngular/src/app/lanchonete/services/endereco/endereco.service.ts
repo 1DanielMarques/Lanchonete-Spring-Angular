@@ -22,8 +22,23 @@ export class EnderecoService {
       )
   }
 
-  insert(endereco: Partial<Endereco>) {
+  save(endereco: Partial<Endereco>) {
+    if (endereco.id) {
+      return this.update(endereco);
+    }
+    return this.insert(endereco);
+  }
+
+  private insert(endereco: Partial<Endereco>) {
     return this.httpClient.post<Endereco>(this.API, endereco);
+  }
+
+  private update(endereco: Partial<Endereco>) {
+    return this.httpClient.put<Endereco>(`${this.API}/${endereco.id}`, endereco);
+  }
+
+  findById(id: string) {
+    return this.httpClient.get<Endereco>(`${this.API}/${id}`);
   }
 
 

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, Observable, of } from 'rxjs';
 import { Endereco } from 'src/app/lanchonete/model/endereco';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
@@ -13,8 +13,6 @@ import { EnderecoService } from './../../../services/endereco/endereco.service';
   styleUrls: ['./enderecos.component.scss']
 })
 export class EnderecosComponent {
-
-
 
   enderecos$: Observable<Endereco[]> | null = null;
 
@@ -46,7 +44,10 @@ export class EnderecosComponent {
   }
 
   onAdd() {
-    this.router.navigate(['new'], {relativeTo:this.route})
+    this.router.navigate(['new'], { relativeTo: this.route })
+  }
+  onEdit(endereco: Endereco) {
+    this.router.navigate(['edit', endereco.id], { relativeTo: this.route })
   }
 
 }
