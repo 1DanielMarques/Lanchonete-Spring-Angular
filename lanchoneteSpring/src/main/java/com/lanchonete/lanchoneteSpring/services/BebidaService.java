@@ -66,6 +66,7 @@ public class BebidaService {
         b1.setNome(b2.getNome());
         b1.setMarca(b2.getMarca());
         b1.setLitragem(b2.getLitragem());
+        b1.setSabor(b2.getSabor());
         b1.setPreco(b2.getPreco());
         return b1;
     }
