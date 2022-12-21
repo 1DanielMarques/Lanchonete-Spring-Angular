@@ -23,4 +23,8 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['enderecos'], { relativeTo: this.route });
   }
 
+  onPedidos(){
+    this.router.navigate(['pedidos'], { relativeTo: this.route });
+  }
+
 }

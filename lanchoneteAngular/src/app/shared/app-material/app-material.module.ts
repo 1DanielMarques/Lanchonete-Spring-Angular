@@ -10,6 +10,12 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatListModule} from '@angular/material/list';
+
+
+
 
 
 @NgModule({
@@ -26,7 +32,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
       FormsModule,
       ReactiveFormsModule,
       MatInputModule,
-      MatSnackBarModule
+      MatSnackBarModule,
+      MatExpansionModule,
+      MatDividerModule,
+      MatListModule,
 
     ],
 })

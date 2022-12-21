@@ -1,3 +1,4 @@
+import { PedidosComponent } from './pPedido/containers/pedidos/pedidos/pedidos.component';
 import { EnderecosResolver } from './guards/enderecos/enderecos.resolver';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -25,6 +26,8 @@ const routes: Routes = [
   { path: 'enderecos', component: EnderecosComponent },
   { path: 'enderecos/new', component: EnderecoFormComponent, resolve: { endereco: EnderecosResolver } },
   { path: 'enderecos/edit/:id', component: EnderecoFormComponent, resolve: { endereco: EnderecosResolver } },
+
+  { path: 'pedidos', component: PedidosComponent },
 
 
 ];
