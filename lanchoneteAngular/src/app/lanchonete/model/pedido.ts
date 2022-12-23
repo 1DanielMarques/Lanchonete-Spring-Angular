@@ -9,7 +9,7 @@ export interface Pedido {
   //cliente: Cliente,
   lanches: Lanche[],
   qtdLanches: string,
-  bebidas: Observable<Bebida[]>,
+  bebidas: Bebida,
   qtdBebidas: string,
   pagamento: string,
   taxa: string,
