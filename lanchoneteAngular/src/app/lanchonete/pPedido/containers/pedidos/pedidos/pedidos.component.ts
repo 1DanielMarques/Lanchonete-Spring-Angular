@@ -20,7 +20,7 @@ export class PedidosComponent {
 
   pedidos$: Observable<Pedido[]> | null = null;
 
-  readonly displayedColumnsLanche = ['id', 'lanches', 'bebidas', 'pagamento', 'taxa', 'total'];
+  readonly displayedColumnsLanche = ['id', 'lanches', 'qtdLanches', 'bebidas', 'qtdBebidas', 'pagamento', 'taxa', 'total'];
 
   panelOpenState = false;
 

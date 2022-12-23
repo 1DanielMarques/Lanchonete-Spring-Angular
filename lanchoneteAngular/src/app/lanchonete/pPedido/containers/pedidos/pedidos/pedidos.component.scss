@@ -2,19 +2,44 @@
   flex: 0 0 40px;
 }
 
-/*#pagamentoHeader {
-  flex: 0 0 95px;
-}
-
-#pagamentoColumn {
-  flex: 0 0 86px;
-}*/
-
 .smallColumn {
-  flex: 0 0 100px;
+  flex: 0 0 150px;
+  padding-left: 30px;
 }
 
 .smallColumnTaxa {
-  flex: 0 0 60px;
+  padding-right: 40px;
 }
 
+
+.mat-expansion-panel-header {
+  padding: 0px 8px 0px 8px;
+  height: 50px;
+}
+
+//Lanches
+.pedido-column-lanche {
+  padding-left: 2em;
+  flex: 0 0 260px;
+}
+
+.mat-expansion-panel-body-lanches {
+  padding: 0px 0px 0px 10px;
+  width: 180px;
+}
+
+.qtd {
+  padding: 0px 100px 0px 20px;
+
+}
+
+//Bebidas
+.mat-expansion-panel-body-bebidas {
+  padding: 0px 0px 0px 10px;
+  width: 220px;
+}
+
+.pedido-column-bebida {
+  padding-left: 2em;
+  flex: 0 0 300px;
+}
