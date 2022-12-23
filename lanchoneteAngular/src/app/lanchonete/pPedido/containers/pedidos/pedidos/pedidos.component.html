@@ -1,8 +1,8 @@
-<mat-card>
+<mat-card class="mat-card">
   <mat-card-header>
     <mat-toolbar color="primary"> Pedidos Disponíveis </mat-toolbar>
   </mat-card-header>
-  <div *ngIf="pedidos$ | async as pedidos">
+  <div *ngIf="pedidos$ | async as pedidos" class="column-flex">
     <mat-table [dataSource]="pedidos" class="mat-elevation-z8">
       <!-- ID Column -->
       <ng-container matColumnDef="id">
@@ -126,3 +126,6 @@
     </mat-table>
   </div>
 </mat-card>
+<div class="home">
+<button mat-raised-button color="primary" (click)="onHome()">Início</button>
+</div>

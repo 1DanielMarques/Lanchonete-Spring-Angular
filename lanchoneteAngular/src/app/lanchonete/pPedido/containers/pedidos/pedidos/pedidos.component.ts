@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { catchError, Observable, of } from 'rxjs';
 import { Pedido } from 'src/app/lanchonete/model/pedido';
 import { PedidoService } from 'src/app/lanchonete/services/pedido/pedido.service';
@@ -14,7 +15,7 @@ import { LancheService } from './../../../../services/lanche/lanche.service';
 })
 export class PedidosComponent {
 
-  constructor(private lancheService: LancheService, private bebidaService: BebidaService, private pedidoService: PedidoService) {
+  constructor(private lancheService: LancheService, private bebidaService: BebidaService, private pedidoService: PedidoService, private router: Router, private route: ActivatedRoute) {
     this.refresh();
   }
 
@@ -34,5 +35,9 @@ export class PedidosComponent {
           }
         )
       );
+  }
+
+  onHome() {
+    this.router.navigate(['lanchonete']);
   }
 }
