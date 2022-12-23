@@ -1,5 +1,5 @@
 # Lanchonete-Spring-Angular 🚀
-O Projeto **Lanchonete-Spring-Angular** foi desenvolvido a fim de desenvolver uma API em Java utilizando Spring Boot.
+**Lanchonete-Spring-Angular** é um projeto full-stack com o Front-End desenvolvido em Angular e o Back-End com Spring.
 
 ## Testes<br>
 * Classes/Interfaces do projeto:<br>
