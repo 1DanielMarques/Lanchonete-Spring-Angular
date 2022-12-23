@@ -19,19 +19,6 @@ export class PedidosComponent {
   }
 
   pedidos$: Observable<Pedido[]> | null = null;
-  data$: Pedido[] = [
-    {
-      id: '1',
-      lanches: [{ id: '', nome: 'X-Frango', preco: '15.89', descricao: '' },{ id: '', nome: 'X-Bacon', preco: '15.89', descricao: '' }],
-      qtdLanches: '1',
-      bebidas: { id: '', nome: 'Suco', litragem: '2L', sabor: 'laranja', marca: 'Natu', preco: '12.99' },
-      qtdBebidas: '2',
-      taxa: '12.55',
-      pagamento: 'DEBITO',
-      total: '22.59'
-
-    }
-  ]
 
   readonly displayedColumnsLanche = ['id', 'lanches', 'bebidas', 'pagamento', 'taxa', 'total'];
 

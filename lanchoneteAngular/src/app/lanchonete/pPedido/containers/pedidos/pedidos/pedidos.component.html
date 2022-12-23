@@ -3,7 +3,7 @@
     <mat-toolbar color="primary"> Pedidos Disponíveis </mat-toolbar>
   </mat-card-header>
   <div *ngIf="pedidos$ | async as pedidos">
-    <mat-table [dataSource]="data$" class="mat-elevation-z8">
+    <mat-table [dataSource]="pedidos" class="mat-elevation-z8">
       <!-- ID Column -->
       <ng-container matColumnDef="id">
         <mat-header-cell *matHeaderCellDef class="id"> ID </mat-header-cell>
@@ -26,7 +26,7 @@
               </mat-expansion-panel-header>
               <mat-list>
                 <mat-list-item *ngFor="let lanche of pedido.lanches">
-                  {{ lanche.nome }}
+                  {{ lanche.nome }} R${{ lanche.preco }}
                 </mat-list-item>
                 <mat-divider></mat-divider>
               </mat-list>
@@ -48,10 +48,8 @@
                 <mat-panel-title> Bebidas </mat-panel-title>
               </mat-expansion-panel-header>
               <mat-list>
-                <mat-list-item
-                  >{{ pedido.bebidas.marca }} | R${{
-                    pedido.bebidas.preco
-                  }}</mat-list-item
+                <mat-list-item *ngFor="let bebida of pedido.bebidas"
+                  >{{ bebida.marca }} R${{ bebida.preco }}</mat-list-item
                 >
                 <mat-divider></mat-divider>
               </mat-list>
@@ -60,22 +58,34 @@
         </mat-cell>
       </ng-container>
 
-      <!-- Pagamento Column -->
-      <ng-container matColumnDef="pagamento">
-        <mat-header-cell *matHeaderCellDef> Pagamento </mat-header-cell>
-        <mat-cell *matCellDef="let pedido"> {{ pedido.pagamento }} </mat-cell>
-      </ng-container>
-
       <!-- Taxa Column -->
       <ng-container matColumnDef="taxa">
-        <mat-header-cell *matHeaderCellDef> Taxa </mat-header-cell>
-        <mat-cell *matCellDef="let pedido"> {{ pedido.taxa }} </mat-cell>
+        <mat-header-cell *matHeaderCellDef class="smallColumnTaxa">
+          Taxa
+        </mat-header-cell>
+        <mat-cell *matCellDef="let pedido" class="smallColumnTaxa">
+          {{ pedido.taxa }}
+        </mat-cell>
+      </ng-container>
+
+      <!-- Pagamento Column -->
+      <ng-container matColumnDef="pagamento">
+        <mat-header-cell *matHeaderCellDef class="smallColumn">
+          Pagamento
+        </mat-header-cell>
+        <mat-cell *matCellDef="let pedido" class="smallColumn">
+          {{ pedido.tipoPagamento }}
+        </mat-cell>
       </ng-container>
 
       <!-- Total Column -->
       <ng-container matColumnDef="total">
-        <mat-header-cell *matHeaderCellDef> Total </mat-header-cell>
-        <mat-cell *matCellDef="let pedido"> {{ pedido.total }} </mat-cell>
+        <mat-header-cell *matHeaderCellDef class="smallColumn">
+          Total
+        </mat-header-cell>
+        <mat-cell *matCellDef="let pedido" class="smallColumn">
+          R${{ pedido.total }}
+        </mat-cell>
       </ng-container>
 
       <mat-header-row

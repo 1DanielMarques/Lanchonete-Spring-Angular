@@ -1,5 +1,3 @@
-import { Observable } from 'rxjs';
-
 import { Bebida } from './bebida';
 import { Lanche } from './lanche';
 
@@ -9,9 +7,9 @@ export interface Pedido {
   //cliente: Cliente,
   lanches: Lanche[],
   qtdLanches: string,
-  bebidas: Bebida,
+  bebidas: Bebida[],
   qtdBebidas: string,
-  pagamento: string,
+  tipoPagamento: string,
   taxa: string,
   total: string
 
