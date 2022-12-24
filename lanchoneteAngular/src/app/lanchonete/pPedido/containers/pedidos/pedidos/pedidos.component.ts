@@ -21,10 +21,6 @@ export class PedidosComponent {
 
   pedidos$: Observable<Pedido[]> | null = null;
 
-  readonly displayedColumns = ['id', 'lanches', 'qtdLanches', 'bebidas', 'qtdBebidas', 'pagamento', 'taxa', 'total', 'action'];
-
-  panelOpenState = false;
-
   refresh() {
     this.pedidos$ = this.pedidoService.findAll().
       pipe(
@@ -41,11 +37,13 @@ export class PedidosComponent {
     this.router.navigate(['lanchonete']);
   }
 
-  verificaVazio(pedido: Pedido) {
-    if (pedido.lanches.length > 0) {
-      return true;
-    }
-    return false;
-
+  onAdd() {
+    console.log('ADD');
+  }
+  onEdit(pedido: Pedido) {
+    console.log('edit');
+  }
+  onRemove(pedido: Pedido) {
+    console.log('remove');
   }
 }
