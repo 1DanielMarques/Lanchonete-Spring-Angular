@@ -21,7 +21,7 @@ export class PedidosComponent {
 
   pedidos$: Observable<Pedido[]> | null = null;
 
-  readonly displayedColumns = ['id', 'lanches', 'qtdLanches', 'bebidas', 'qtdBebidas', 'pagamento', 'taxa', 'total','action'];
+  readonly displayedColumns = ['id', 'lanches', 'qtdLanches', 'bebidas', 'qtdBebidas', 'pagamento', 'taxa', 'total', 'action'];
 
   panelOpenState = false;
 
@@ -39,5 +39,13 @@ export class PedidosComponent {
 
   onHome() {
     this.router.navigate(['lanchonete']);
+  }
+
+  verificaVazio(pedido: Pedido) {
+    if (pedido.lanches.length > 0) {
+      return true;
+    }
+    return false;
+
   }
 }

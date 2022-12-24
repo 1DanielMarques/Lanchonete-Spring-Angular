@@ -18,7 +18,7 @@
           Lanches
         </mat-header-cell>
         <mat-cell *matCellDef="let pedido" class="pedido-column-lanche">
-          <mat-accordion>
+          <mat-accordion *ngIf="verificaVazio(pedido); else emptyData">
             <mat-expansion-panel
               (opened)="panelOpenState = true"
               (closed)="panelOpenState = false"
@@ -135,6 +135,29 @@
           </button>
         </mat-cell>
       </ng-container>
+
+      <!-- Template-->
+      <ng-template #emptyData>
+        <mat-accordion>
+          <mat-expansion-panel
+            (opened)="panelOpenState = true"
+            (closed)="panelOpenState = false"
+          >
+            <mat-expansion-panel-header class="mat-expansion-panel-header">
+              <mat-panel-title> Dados </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <button
+              class="mat-expansion-panel-body-lanches"
+              mat-icon-button
+              color="primary"
+              aria-label="Example icon button with a menu icon"
+            >
+              <mat-icon>block</mat-icon>
+            </button>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </ng-template>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
