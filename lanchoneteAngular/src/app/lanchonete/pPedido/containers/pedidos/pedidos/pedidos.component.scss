@@ -3,12 +3,13 @@
 }
 
 .smallColumn {
-  flex: 0 0 150px;
+  flex: 0 0 130px;
   padding-left: 30px;
 }
 
 .smallColumnTaxa {
-  padding-right: 40px;
+  flex: 0 0 158px;
+  padding-left: 55px;
 }
 
 
@@ -43,3 +44,8 @@
   padding-left: 2em;
   flex: 0 0 300px;
 }
+/* */
+.action-column-header-pedido{
+  padding-left: 40px;
+}
+

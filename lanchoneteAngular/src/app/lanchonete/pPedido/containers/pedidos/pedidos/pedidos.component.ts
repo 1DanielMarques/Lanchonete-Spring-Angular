@@ -21,7 +21,7 @@ export class PedidosComponent {
 
   pedidos$: Observable<Pedido[]> | null = null;
 
-  readonly displayedColumnsLanche = ['id', 'lanches', 'qtdLanches', 'bebidas', 'qtdBebidas', 'pagamento', 'taxa', 'total'];
+  readonly displayedColumns = ['id', 'lanches', 'qtdLanches', 'bebidas', 'qtdBebidas', 'pagamento', 'taxa', 'total','action'];
 
   panelOpenState = false;
 

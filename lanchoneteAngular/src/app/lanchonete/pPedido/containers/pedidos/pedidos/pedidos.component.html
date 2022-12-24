@@ -3,7 +3,7 @@
     <mat-toolbar color="primary"> Pedidos Disponíveis </mat-toolbar>
   </mat-card-header>
   <div *ngIf="pedidos$ | async as pedidos" class="column-flex">
-    <mat-table [dataSource]="pedidos" class="mat-elevation-z8">
+    <mat-table [dataSource]="pedidos" class="mat-elevation-z8 mat-table">
       <!-- ID Column -->
       <ng-container matColumnDef="id">
         <mat-header-cell *matHeaderCellDef class="id"> ID </mat-header-cell>
@@ -32,7 +32,7 @@
                   *ngFor="let lanche of pedido.lanches"
                   class="mat-expansion-panel-body-lanches"
                 >
-                <mat-divider ></mat-divider>
+                  <mat-divider></mat-divider>
                   {{ lanche.nome }} | R${{ lanche.preco }}
                 </mat-list-item>
               </mat-list>
@@ -119,13 +119,28 @@
         </mat-cell>
       </ng-container>
 
-      <mat-header-row
-        *matHeaderRowDef="displayedColumnsLanche"
-      ></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumnsLanche"></mat-row>
+      <!-- Action Column -->
+      <ng-container matColumnDef="action">
+        <mat-header-cell *matHeaderCellDef class="action-column-header-pedido">
+          <button mat-mini-fab color="primary">
+            <mat-icon>add</mat-icon>
+          </button>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let pedido" class="action-column-pedido">
+          <button mat-icon-button color="primary">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
     </mat-table>
   </div>
 </mat-card>
 <div class="home">
-<button mat-raised-button color="primary" (click)="onHome()">Início</button>
+  <button mat-raised-button color="primary" (click)="onHome()">Início</button>
 </div>
