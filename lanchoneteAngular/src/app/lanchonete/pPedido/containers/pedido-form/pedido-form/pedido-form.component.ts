@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-pedido-form',
@@ -6,5 +7,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./pedido-form.component.scss']
 })
 export class PedidoFormComponent {
+  constructor() {
+
+  }
+
+  toppings = new FormControl('');
+
+  toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
+
+  onSubmit() {
+
+  }
+  onCancel() {
+
+  }
+
 
 }

@@ -1,7 +1,8 @@
-<mat-card class="mat-card">
+<mat-card>
   <mat-card-header>
     <mat-toolbar color="primary"> Pedidos Disponíveis </mat-toolbar>
   </mat-card-header>
+
   <div *ngIf="pedidos$ | async as pedidos; else loading" class="column-flex">
     <app-pedidos-list
       [pedidos]="pedidos"
