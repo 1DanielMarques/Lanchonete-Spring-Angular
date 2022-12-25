@@ -46,7 +46,7 @@ export class PedidosComponent {
   }
 
   onAdd() {
-    console.log('ADD');
+    this.router.navigate(['new'], { relativeTo: this.route });
   }
   onEdit(pedido: Pedido) {
     console.log('edit');

@@ -19,8 +19,8 @@ export class PedidosListComponent {
   readonly displayedColumns = ['id', 'lanches', 'qtdLanches', 'bebidas', 'qtdBebidas', 'pagamento', 'taxa', 'total', 'action'];
   panelOpenState = false;
 
-  verificaVazio(pedido: Pedido) {
-    if (pedido.lanches.length > 0) {
+  verificaVazio(items: string[]) {
+    if (items.length > 0) {
       return true;
     }
     return false;

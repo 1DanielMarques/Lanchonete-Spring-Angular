@@ -13,7 +13,7 @@
       Lanches
     </mat-header-cell>
     <mat-cell *matCellDef="let pedido" class="pedido-column-lanche">
-      <mat-accordion *ngIf="verificaVazio(pedido); else emptyData">
+      <mat-accordion *ngIf="verificaVazio(pedido.lanches); else emptyData">
         <mat-expansion-panel
           (opened)="panelOpenState = true"
           (closed)="panelOpenState = false"
@@ -50,7 +50,7 @@
       Bebidas
     </mat-header-cell>
     <mat-cell *matCellDef="let pedido" class="pedido-column-bebida">
-      <mat-accordion>
+      <mat-accordion *ngIf="verificaVazio(pedido.bebidas); else emptyData">
         <mat-expansion-panel
           (opened)="panelOpenState = true"
           (closed)="panelOpenState = false"
