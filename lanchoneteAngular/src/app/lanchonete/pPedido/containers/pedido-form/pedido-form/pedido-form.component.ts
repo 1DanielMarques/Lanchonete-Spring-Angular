@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, NonNullableFormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-pedido-form',
@@ -7,13 +7,16 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./pedido-form.component.scss']
 })
 export class PedidoFormComponent {
-  constructor() {
+
+  form = this.formBuilder.group({
+    id:['']
+  });
+
+  constructor(private formBuilder: NonNullableFormBuilder) {
 
   }
 
-  toppings = new FormControl('');
 
-  toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
 
   onSubmit() {
 

@@ -21,7 +21,7 @@ public class Endereco implements Serializable {
 
     @JsonIgnore
     @OneToOne(mappedBy = "endereco")
-    private Cliente morador;
+    private Pedido pedido;
 
     public Endereco() {
 
@@ -65,14 +65,6 @@ public class Endereco implements Serializable {
 
     public void setNumero(int numero) {
         this.numero = numero;
-    }
-
-    public Cliente getMorador() {
-        return morador;
-    }
-
-    public void setMorador(Cliente morador) {
-        this.morador = morador;
     }
 
     @Override

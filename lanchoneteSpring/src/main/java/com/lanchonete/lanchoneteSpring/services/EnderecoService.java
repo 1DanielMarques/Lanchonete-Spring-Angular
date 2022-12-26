@@ -1,8 +1,6 @@
 package com.lanchonete.lanchoneteSpring.services;
 
-import com.lanchonete.lanchoneteSpring.entities.Cliente;
 import com.lanchonete.lanchoneteSpring.entities.Endereco;
-import com.lanchonete.lanchoneteSpring.repositories.IClienteRepository;
 import com.lanchonete.lanchoneteSpring.repositories.IEnderecoRepository;
 import com.lanchonete.lanchoneteSpring.services.exceptions.DatabaseException;
 import com.lanchonete.lanchoneteSpring.services.exceptions.ResourceNotFoundException;
@@ -12,7 +10,6 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,9 +18,6 @@ public class EnderecoService {
 
     @Autowired
     IEnderecoRepository repository;
-
-    @Autowired
-    ClienteService clienteService;
 
     public Endereco insert(Endereco obj) {
         return repository.save(obj);
@@ -46,13 +40,6 @@ public class EnderecoService {
     }
 
     public void delete(Long id) {
-        for (Cliente c : clienteService.findAll()) {
-            if (c.getEndereco() != null) {
-                if (c.getEndereco().getId() == id) {
-                    c.setEndereco(null);
-                }
-            }
-        }
         try {
             repository.delete(findById(id));
         } catch (
@@ -78,7 +65,6 @@ public class EnderecoService {
         e1.setBairro(e2.getBairro());
         e1.setRua(e2.getRua());
         e1.setNumero(e2.getNumero());
-        e1.setMorador(e2.getMorador());
         return e1;
     }
 

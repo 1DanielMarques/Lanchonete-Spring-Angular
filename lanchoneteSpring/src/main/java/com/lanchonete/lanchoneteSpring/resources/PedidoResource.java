@@ -1,7 +1,6 @@
 package com.lanchonete.lanchoneteSpring.resources;
 
 import com.lanchonete.lanchoneteSpring.entities.Pedido;
-import com.lanchonete.lanchoneteSpring.services.ClienteService;
 import com.lanchonete.lanchoneteSpring.services.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +17,6 @@ public class PedidoResource {
     @Autowired
     PedidoService service;
 
-    @Autowired
-    ClienteService clienteService;
 
     @GetMapping
     public ResponseEntity<List<Pedido>> findAll() {
@@ -42,7 +39,6 @@ public class PedidoResource {
 
     @PostMapping(value = "/client/{id}")
     public ResponseEntity<Pedido> insert(@RequestBody Pedido obj, @PathVariable Long id) {
-        obj.setCliente(clienteService.findById(id));
         obj = service.insert(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).body(obj);

@@ -20,11 +20,6 @@ public class Pedido implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "cliente_id")
-    private Cliente cliente;
-
     @OneToMany(mappedBy = "pedidoLanche")
     private List<Lanche> lanches = new ArrayList<>();
 
@@ -39,15 +34,19 @@ public class Pedido implements Serializable {
 
     private double total;
 
+    @OneToOne
+    @JoinColumn(name = "pedido_endereco")
+    private Endereco endereco;
+
     public Pedido() {
 
     }
 
-    public Pedido(Long id, Cliente cliente, TipoPagamento tipoPagamento) {
+    public Pedido(Long id, TipoPagamento tipoPagamento, Endereco endereco) {
         this.id = id;
-        this.cliente = cliente;
         this.qtdLanches = 0;
         this.qtdBebidas = 0;
+        this.endereco = endereco;
         setTipoPagamento(tipoPagamento);
     }
 
@@ -57,14 +56,6 @@ public class Pedido implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
     }
 
     public List<Lanche> getLanches() {
@@ -122,6 +113,14 @@ public class Pedido implements Serializable {
         if (tipoPagamento != null) {
             this.tipoPagamento = tipoPagamento.getCodigo();
         }
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 
     @Override
