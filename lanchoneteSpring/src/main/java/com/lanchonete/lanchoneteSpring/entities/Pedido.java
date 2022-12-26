@@ -1,6 +1,5 @@
 package com.lanchonete.lanchoneteSpring.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.lanchonete.lanchoneteSpring.entities.enums.TipoPagamento;
 import com.lanchonete.lanchoneteSpring.services.CalculoTotalImpl;
 
@@ -20,15 +19,17 @@ public class Pedido implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "pedidoLanche")
+    @OneToMany
     private List<Lanche> lanches = new ArrayList<>();
+
+    @OneToMany
+    private List<Bebida> bebidas = new ArrayList<>();
 
     private Integer tipoPagamento;
 
     private double taxa;
 
-    @OneToMany(mappedBy = "pedidoBebida")
-    private List<Bebida> bebidas = new ArrayList<>();
+
     private int qtdLanches;
     private int qtdBebidas;
 
@@ -42,10 +43,16 @@ public class Pedido implements Serializable {
 
     }
 
-    public Pedido(Long id, TipoPagamento tipoPagamento, Endereco endereco) {
+    public Pedido(Long id, List<Lanche> lanches, List<Bebida> bebidas, TipoPagamento tipoPagamento, Endereco endereco) {
         this.id = id;
-        this.qtdLanches = 0;
-        this.qtdBebidas = 0;
+        this.lanches = lanches;
+        this.bebidas = bebidas;
+        for (Lanche l : lanches) {
+            this.qtdLanches += 1;
+        }
+        for (Bebida b : bebidas) {
+            this.qtdBebidas += 1;
+        }
         this.endereco = endereco;
         setTipoPagamento(tipoPagamento);
     }
@@ -59,16 +66,10 @@ public class Pedido implements Serializable {
     }
 
     public List<Lanche> getLanches() {
-        for (Lanche l : lanches) {
-            qtdLanches += 1;
-        }
         return lanches;
     }
 
     public List<Bebida> getBebidas() {
-        for (Bebida b : bebidas) {
-            qtdBebidas += 1;
-        }
         return bebidas;
     }
 
@@ -94,6 +95,9 @@ public class Pedido implements Serializable {
         return total;
     }
 
+    public void setTotal(double total) {
+        this.total = total;
+    }
 
     public double getTaxa() {
         CalculoTotalImpl calc = new CalculoTotalImpl();
@@ -130,6 +134,7 @@ public class Pedido implements Serializable {
         Pedido pedido = (Pedido) o;
         return id.equals(pedido.id);
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(id);

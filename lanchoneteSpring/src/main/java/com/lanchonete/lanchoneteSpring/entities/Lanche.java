@@ -21,19 +21,18 @@ public class Lanche implements Serializable {
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "pedidoLanche_id")
     private Pedido pedidoLanche;
 
     public Lanche() {
 
     }
 
-    public Lanche(Long id, String nome, double preco, String descricao, Pedido pedido) {
+    public Lanche(Long id, String nome, double preco, String descricao) {
         this.id = id;
         this.nome = nome;
         this.preco = preco;
         this.descricao = descricao;
-        this.pedidoLanche = pedido;
+
     }
 
     public Long getId() {
@@ -68,13 +67,6 @@ public class Lanche implements Serializable {
         this.descricao = descricao;
     }
 
-    public Pedido getPedidoLanche() {
-        return pedidoLanche;
-    }
-
-    public void setPedidoLanche(Pedido pedidoLanche) {
-        this.pedidoLanche = pedidoLanche;
-    }
 
     @Override
     public boolean equals(Object o) {

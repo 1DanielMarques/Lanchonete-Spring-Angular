@@ -42,7 +42,6 @@ public class LancheResource {
 
     @PostMapping(value = "/order/{id}")
     public ResponseEntity<Lanche> insert(@RequestBody Lanche obj, @PathVariable Long id) {
-        obj.setPedidoLanche(pedidoService.findById(id));
         obj = service.insert(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).body(obj);

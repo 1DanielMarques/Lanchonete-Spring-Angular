@@ -42,7 +42,6 @@ public class BebidaResource {
 
     @PostMapping(value = "/order/{id}")
     public ResponseEntity<Bebida> insert(@RequestBody Bebida obj, @PathVariable Long id) {
-        obj.setPedidoBebida(pedidoService.findById(id));
         obj = service.insert(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).body(obj);

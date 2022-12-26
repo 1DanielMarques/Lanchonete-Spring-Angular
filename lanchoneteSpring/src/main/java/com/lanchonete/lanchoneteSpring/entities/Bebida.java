@@ -22,21 +22,19 @@ public class Bebida implements Serializable {
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "pedidoBebida_id")
     private Pedido pedidoBebida;
 
     public Bebida() {
 
     }
 
-    public Bebida(Long id, String nome, String marca, String litragem, String sabor, double preco, Pedido pedido) {
+    public Bebida(Long id, String nome, String marca, String litragem, String sabor, double preco) {
         this.id = id;
         this.nome = nome;
         this.marca = marca;
         this.litragem = litragem;
         this.sabor = sabor;
         this.preco = preco;
-        this.pedidoBebida = pedido;
     }
 
     public Long getId() {
@@ -85,14 +83,6 @@ public class Bebida implements Serializable {
 
     public void setPreco(double preco) {
         this.preco = preco;
-    }
-
-    public Pedido getPedidoBebida() {
-        return pedidoBebida;
-    }
-
-    public void setPedidoBebida(Pedido pedidoBebida) {
-        this.pedidoBebida = pedidoBebida;
     }
 
     @Override

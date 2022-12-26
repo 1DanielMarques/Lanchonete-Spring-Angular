@@ -31,18 +31,12 @@ public class PedidoResource {
     }
 
     @PostMapping
-    public ResponseEntity<Pedido> insert(@RequestBody Pedido obj) {
-        obj = service.insert(obj);
+    public ResponseEntity<Pedido> insert(@RequestBody String json) {
+        Pedido obj = service.parseInsert(json);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).body(obj);
     }
 
-    @PostMapping(value = "/client/{id}")
-    public ResponseEntity<Pedido> insert(@RequestBody Pedido obj, @PathVariable Long id) {
-        obj = service.insert(obj);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-        return ResponseEntity.created(uri).body(obj);
-    }
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
