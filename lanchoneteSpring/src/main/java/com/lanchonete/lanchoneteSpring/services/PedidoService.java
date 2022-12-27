@@ -53,23 +53,17 @@ public class PedidoService {
         List<Lanche> lancheList = new ArrayList<>();
         for (int i = 0; i < lanches.length(); i++) {
             Long id = lanches.getJSONObject(i).getLong("id");
-            Lanche found = lancheService.findById(id);
-            Lanche l = new Lanche(null, found.getNome(), found.getPreco(), found.getDescricao());
-            lancheService.insert(l);
-            lancheList.add(l);
+            lancheList.add(lancheService.findById(id));
         }
 
         JSONArray bebidas = obj.getJSONArray("bebidas");
         List<Bebida> bebidaList = new ArrayList<>();
         for (int i = 0; i < bebidas.length(); i++) {
             Long id = bebidas.getJSONObject(i).getLong("id");
-            Bebida found = bebidaService.findById(id);
-            Bebida b = new Bebida(null, found.getNome(), found.getMarca(), found.getLitragem(), found.getSabor(), found.getPreco());
-            bebidaService.insert(b);
-            bebidaList.add(b);
+            bebidaList.add(bebidaService.findById(id));
         }
 
-        Pedido p = new Pedido(null, lancheList,bebidaList, tipoPagamento, endereco);
+        Pedido p = new Pedido(null, lancheList, bebidaList, tipoPagamento, endereco);
 
         return repository.save(p);
     }
@@ -107,22 +101,54 @@ public class PedidoService {
         }
     }
 
-    public Pedido update(Long id, Pedido obj) {
+    public Pedido update(Long id, String json) {
         Pedido p1 = findById(id);
         try {
-            p1 = updateData(p1, obj);
+            p1 = updateData(p1, json);
             return repository.save(p1);
         } catch (EntityNotFoundException e) {
             throw new ResourceNotFoundException(id);
         }
     }
 
-    private Pedido updateData(Pedido p1, Pedido p2) {
-        CalculoTotalImpl calc = new CalculoTotalImpl();
-        p1.setTipoPagamento(p2.getTipoPagamento());
-        p1.setEndereco(p2.getEndereco());
-        p1.setLanches(p2.getLanches());
-        p1.setBebidas(p2.getBebidas());
+    private Pedido updateData(Pedido p1, String jsonRequest) {
+        String json = jsonRequest;
+
+        JSONObject obj = new JSONObject(json);
+
+        TipoPagamento tipoPagamento = TipoPagamento.valueOf(obj.getString("tipoPagamento"));
+        p1.setTipoPagamento(tipoPagamento);
+
+        String bairro = obj.getJSONObject("endereco").getString("bairro");
+        String rua = obj.getJSONObject("endereco").getString("rua");
+        int numero = obj.getJSONObject("endereco").getInt("numero");
+        p1.getEndereco().setBairro(bairro);
+        p1.getEndereco().setRua(rua);
+        p1.getEndereco().setNumero(numero);
+
+        JSONArray lanches = obj.getJSONArray("lanches");
+        List<Lanche> lancheList = new ArrayList<>();
+        int qtdLanches = 0;
+        for (int i = 0; i < lanches.length(); i++) {
+            Long id = lanches.getJSONObject(i).getLong("id");
+            lancheList.add(lancheService.findById(id));
+            qtdLanches++;
+        }
+        p1.setQtdLanches(qtdLanches);
+        p1.setLanches(lancheList);
+
+        JSONArray bebidas = obj.getJSONArray("bebidas");
+        List<Bebida> bebidaList = new ArrayList<>();
+        int qtdBebidas = 0;
+        for (int i = 0; i < bebidas.length(); i++) {
+            Long id = bebidas.getJSONObject(i).getLong("id");
+            bebidaList.add(bebidaService.findById(id));
+            qtdBebidas++;
+        }
+        p1.setQtdBebidas(qtdBebidas);
+        p1.setBebidas(bebidaList);
+
+
         return p1;
     }
 

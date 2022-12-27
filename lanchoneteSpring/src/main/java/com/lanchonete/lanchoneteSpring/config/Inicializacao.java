@@ -42,7 +42,6 @@ public class Inicializacao implements CommandLineRunner {
         Endereco e3 = new Endereco(null, "Bandeirantes", "Rua Teste", 222);
         enderecoService.insertAll(Arrays.asList(e1, e2, e3));
 
-
         Lanche l1 = new Lanche(null, "X-Frango", 10.0, "Descricao do X-Frango");
         Lanche l2 = new Lanche(null, "X-Bacon", 16.55, "Descricao do X-Bacon");
         lancheService.insertAll(Arrays.asList(l1, l2));
@@ -52,7 +51,7 @@ public class Inicializacao implements CommandLineRunner {
         bebidaService.insertAll(Arrays.asList(b1, b2));
 
         Pedido p1 = new Pedido(null,Arrays.asList(l1),Arrays.asList(b1,b2), TipoPagamento.DINHEIRO, e1);
-        Pedido p2 = new Pedido(null,Arrays.asList(l1,l2),Arrays.asList(b2),  TipoPagamento.CREDITO, null);
+        Pedido p2 = new Pedido(null,Arrays.asList(l1,l2),Arrays.asList(b2),  TipoPagamento.CREDITO, e2);
         pedidoService.insertAll(Arrays.asList(p1, p2));
     }
 }
