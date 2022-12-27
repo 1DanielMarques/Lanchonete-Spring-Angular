@@ -19,10 +19,16 @@ public class Pedido implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany
+    @ManyToMany
+    @JoinTable(name = "pedido_lanche",
+            joinColumns = @JoinColumn(name = "pedido_id"),
+            inverseJoinColumns = @JoinColumn(name = "lanche_id"))
     private List<Lanche> lanches = new ArrayList<>();
 
-    @OneToMany
+    @ManyToMany
+    @JoinTable(name = "pedido_bebida",
+            joinColumns = @JoinColumn(name = "pedido_id"),
+            inverseJoinColumns = @JoinColumn(name = "bebida_id"))
     private List<Bebida> bebidas = new ArrayList<>();
 
     private Integer tipoPagamento;
@@ -36,24 +42,24 @@ public class Pedido implements Serializable {
     private double total;
 
     @OneToOne
-    @JoinColumn(name = "pedido_endereco")
+    @JoinColumn(name = "endereco_id")
     private Endereco endereco;
 
     public Pedido() {
 
     }
 
-    public Pedido(Long id, List<Lanche> lanches, List<Bebida> bebidas, TipoPagamento tipoPagamento, Endereco endereco) {
+    public Pedido(Long id,List<Lanche> lanches, List<Bebida> bebidas, TipoPagamento tipoPagamento, Endereco endereco) {
         this.id = id;
+        this.endereco = endereco;
+        for(Lanche l : lanches){
+            qtdLanches +=1;
+        }
+        for(Bebida b : bebidas){
+            qtdBebidas +=1;
+        }
         this.lanches = lanches;
         this.bebidas = bebidas;
-        for (Lanche l : lanches) {
-            this.qtdLanches += 1;
-        }
-        for (Bebida b : bebidas) {
-            this.qtdBebidas += 1;
-        }
-        this.endereco = endereco;
         setTipoPagamento(tipoPagamento);
     }
 
@@ -69,8 +75,17 @@ public class Pedido implements Serializable {
         return lanches;
     }
 
+    public void setLanches(List<Lanche> lanches) {
+        this.lanches = lanches;
+    }
+
     public List<Bebida> getBebidas() {
         return bebidas;
+    }
+
+
+    public void setBebidas(List<Bebida> bebidas) {
+        this.bebidas = bebidas;
     }
 
     public int getQtdLanches() {
@@ -127,13 +142,6 @@ public class Pedido implements Serializable {
         this.endereco = endereco;
     }
 
-    public void setLanches(List<Lanche> lanches) {
-        this.lanches = lanches;
-    }
-
-    public void setBebidas(List<Bebida> bebidas) {
-        this.bebidas = bebidas;
-    }
 
     @Override
     public boolean equals(Object o) {

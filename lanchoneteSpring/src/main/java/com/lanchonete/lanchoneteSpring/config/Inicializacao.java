@@ -1,8 +1,14 @@
 package com.lanchonete.lanchoneteSpring.config;
 
-import com.lanchonete.lanchoneteSpring.entities.*;
+import com.lanchonete.lanchoneteSpring.entities.Bebida;
+import com.lanchonete.lanchoneteSpring.entities.Endereco;
+import com.lanchonete.lanchoneteSpring.entities.Lanche;
+import com.lanchonete.lanchoneteSpring.entities.Pedido;
 import com.lanchonete.lanchoneteSpring.entities.enums.TipoPagamento;
-import com.lanchonete.lanchoneteSpring.services.*;
+import com.lanchonete.lanchoneteSpring.services.BebidaService;
+import com.lanchonete.lanchoneteSpring.services.EnderecoService;
+import com.lanchonete.lanchoneteSpring.services.LancheService;
+import com.lanchonete.lanchoneteSpring.services.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -36,6 +42,7 @@ public class Inicializacao implements CommandLineRunner {
         Endereco e3 = new Endereco(null, "Bandeirantes", "Rua Teste", 222);
         enderecoService.insertAll(Arrays.asList(e1, e2, e3));
 
+
         Lanche l1 = new Lanche(null, "X-Frango", 10.0, "Descricao do X-Frango");
         Lanche l2 = new Lanche(null, "X-Bacon", 16.55, "Descricao do X-Bacon");
         lancheService.insertAll(Arrays.asList(l1, l2));
@@ -44,10 +51,8 @@ public class Inicializacao implements CommandLineRunner {
         Bebida b2 = new Bebida(null, "Suco", "Natu", "1L", "Laranja", 8.00);
         bebidaService.insertAll(Arrays.asList(b1, b2));
 
-        Pedido p1 = new Pedido(null, Arrays.asList(l1, l2), Arrays.asList(), TipoPagamento.DINHEIRO, e1);
-        Pedido p2 = new Pedido(null, Arrays.asList(), Arrays.asList(b1, b2), TipoPagamento.CREDITO, null);
+        Pedido p1 = new Pedido(null,Arrays.asList(l1),Arrays.asList(b1,b2), TipoPagamento.DINHEIRO, e1);
+        Pedido p2 = new Pedido(null,Arrays.asList(l1,l2),Arrays.asList(b2),  TipoPagamento.CREDITO, null);
         pedidoService.insertAll(Arrays.asList(p1, p2));
-
-
     }
 }

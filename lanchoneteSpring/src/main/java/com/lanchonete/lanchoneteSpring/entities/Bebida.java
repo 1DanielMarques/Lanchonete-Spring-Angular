@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -21,8 +22,8 @@ public class Bebida implements Serializable {
     private double preco;
 
     @JsonIgnore
-    @ManyToOne
-    private Pedido pedidoBebida;
+    @ManyToMany(mappedBy = "bebidas")
+    private List<Pedido> pedidoBebida;
 
     public Bebida() {
 
@@ -35,6 +36,7 @@ public class Bebida implements Serializable {
         this.litragem = litragem;
         this.sabor = sabor;
         this.preco = preco;
+
     }
 
     public Long getId() {
@@ -85,12 +87,8 @@ public class Bebida implements Serializable {
         this.preco = preco;
     }
 
-    public Pedido getPedidoBebida() {
+    public List<Pedido> getPedidoBebida() {
         return pedidoBebida;
-    }
-
-    public void setPedidoBebida(Pedido pedidoBebida) {
-        this.pedidoBebida = pedidoBebida;
     }
 
     @Override

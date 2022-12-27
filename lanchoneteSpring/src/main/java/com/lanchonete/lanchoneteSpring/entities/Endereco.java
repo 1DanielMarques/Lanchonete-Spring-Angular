@@ -1,7 +1,5 @@
 package com.lanchonete.lanchoneteSpring.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -19,7 +17,6 @@ public class Endereco implements Serializable {
     private String rua;
     private int numero;
 
-    @JsonIgnore
     @OneToOne(mappedBy = "endereco")
     private Pedido pedido;
 
@@ -32,7 +29,6 @@ public class Endereco implements Serializable {
         this.bairro = bairro;
         this.rua = rua;
         this.numero = numero;
-
     }
 
     public Long getId() {

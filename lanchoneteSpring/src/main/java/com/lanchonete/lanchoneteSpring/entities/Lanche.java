@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -20,8 +22,8 @@ public class Lanche implements Serializable {
     private String descricao;
 
     @JsonIgnore
-    @ManyToOne
-    private Pedido pedidoLanche;
+    @ManyToMany(mappedBy = "lanches")
+    private List<Pedido> pedidoLanche = new ArrayList<>();
 
     public Lanche() {
 
@@ -32,6 +34,7 @@ public class Lanche implements Serializable {
         this.nome = nome;
         this.preco = preco;
         this.descricao = descricao;
+
 
     }
 
@@ -67,12 +70,8 @@ public class Lanche implements Serializable {
         this.descricao = descricao;
     }
 
-    public Pedido getPedidoLanche() {
+    public List<Pedido> getPedidoLanche() {
         return pedidoLanche;
-    }
-
-    public void setPedidoLanche(Pedido pedidoLanche) {
-        this.pedidoLanche = pedidoLanche;
     }
 
     @Override

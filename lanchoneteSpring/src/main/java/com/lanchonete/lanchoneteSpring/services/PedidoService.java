@@ -69,7 +69,7 @@ public class PedidoService {
             bebidaList.add(b);
         }
 
-        Pedido p = new Pedido(null, lancheList, bebidaList, tipoPagamento, endereco);
+        Pedido p = new Pedido(null, lancheList,bebidaList, tipoPagamento, endereco);
 
         return repository.save(p);
     }
@@ -120,22 +120,9 @@ public class PedidoService {
     private Pedido updateData(Pedido p1, Pedido p2) {
         CalculoTotalImpl calc = new CalculoTotalImpl();
         p1.setTipoPagamento(p2.getTipoPagamento());
-
         p1.setEndereco(p2.getEndereco());
-
-
         p1.setLanches(p2.getLanches());
-        for (Lanche l : p2.getLanches()) {
-            l.setPedidoLanche(p1);
-        }
-
-
         p1.setBebidas(p2.getBebidas());
-        for (Bebida b : p2.getBebidas()) {
-            b.setPedidoBebida(p1);
-        }
-
-
         return p1;
     }
 
