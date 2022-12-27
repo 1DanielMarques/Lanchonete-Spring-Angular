@@ -32,7 +32,7 @@ public class PedidoResource {
 
     @PostMapping
     public ResponseEntity<Pedido> insert(@RequestBody String json) {
-        Pedido obj = service.parseInsert(json);
+        Pedido obj = service.insert(json);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).body(obj);
     }

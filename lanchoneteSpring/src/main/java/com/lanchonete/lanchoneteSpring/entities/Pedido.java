@@ -127,6 +127,14 @@ public class Pedido implements Serializable {
         this.endereco = endereco;
     }
 
+    public void setLanches(List<Lanche> lanches) {
+        this.lanches = lanches;
+    }
+
+    public void setBebidas(List<Bebida> bebidas) {
+        this.bebidas = bebidas;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -36,16 +36,12 @@ public class PedidoService {
     EnderecoService enderecoService;
 
 
-    public Pedido parseInsert(String jsonRequest) {
+    public Pedido insert(String jsonRequest) {
         String json = jsonRequest;
 
         JSONObject obj = new JSONObject(json);
 
         TipoPagamento tipoPagamento = TipoPagamento.valueOf(obj.getString("tipoPagamento"));
-        double taxa = obj.getDouble("taxa");
-        int qtdLanches = obj.getInt("qtdLanches");
-        int qtdBebidas = obj.getInt("qtdBebidas");
-        double total = obj.getDouble("total");
 
         String bairro = obj.getJSONObject("endereco").getString("bairro");
         String rua = obj.getJSONObject("endereco").getString("rua");
@@ -74,10 +70,7 @@ public class PedidoService {
         }
 
         Pedido p = new Pedido(null, lancheList, bebidaList, tipoPagamento, endereco);
-        p.setTaxa(taxa);
-        p.setQtdLanches(qtdLanches);
-        p.setQtdBebidas(qtdBebidas);
-        p.setTotal(total);
+
         return repository.save(p);
     }
 
@@ -127,8 +120,22 @@ public class PedidoService {
     private Pedido updateData(Pedido p1, Pedido p2) {
         CalculoTotalImpl calc = new CalculoTotalImpl();
         p1.setTipoPagamento(p2.getTipoPagamento());
-        calc.calculoTaxa(p2);
-        p1.setTaxa(p2.getTaxa());
+
+        p1.setEndereco(p2.getEndereco());
+
+
+        p1.setLanches(p2.getLanches());
+        for (Lanche l : p2.getLanches()) {
+            l.setPedidoLanche(p1);
+        }
+
+
+        p1.setBebidas(p2.getBebidas());
+        for (Bebida b : p2.getBebidas()) {
+            b.setPedidoBebida(p1);
+        }
+
+
         return p1;
     }
 

@@ -85,6 +85,14 @@ public class Bebida implements Serializable {
         this.preco = preco;
     }
 
+    public Pedido getPedidoBebida() {
+        return pedidoBebida;
+    }
+
+    public void setPedidoBebida(Pedido pedidoBebida) {
+        this.pedidoBebida = pedidoBebida;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

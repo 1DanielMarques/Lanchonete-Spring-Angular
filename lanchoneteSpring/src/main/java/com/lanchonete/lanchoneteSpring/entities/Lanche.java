@@ -67,6 +67,13 @@ public class Lanche implements Serializable {
         this.descricao = descricao;
     }
 
+    public Pedido getPedidoLanche() {
+        return pedidoLanche;
+    }
+
+    public void setPedidoLanche(Pedido pedidoLanche) {
+        this.pedidoLanche = pedidoLanche;
+    }
 
     @Override
     public boolean equals(Object o) {
