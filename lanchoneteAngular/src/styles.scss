@@ -1,0 +1,77 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.column-flex {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+}
+/*Listagem */
+.home {
+  max-width: 90%;
+  margin: 2em auto;
+}
+
+.loading-spinner {
+  padding: 25px;
+  background: rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+mat-table {
+  overflow: auto;
+  max-height: 600px;
+}
+
+.action-column-header {
+  flex: 0 0 100px;
+}
+.action-column {
+  flex: 0 0 125px;
+}
+
+
+
+/*Form */
+.full-width {
+  width: 100%;
+}
+
+.min-width {
+  width: 100%;
+  min-width: 150px;
+  padding-top: 15px;
+}
+
+mat-card-actions {
+  justify-content: center;
+}
+
+mat-card {
+  max-width: 90%;
+  margin: 2em auto;
+  text-align: center;
+}
+
+.btSave {
+  margin-right: 15px;
+  width: 80px;
+}
+
+.btCancel {
+  margin-left: 15px;
+  width: 80px;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

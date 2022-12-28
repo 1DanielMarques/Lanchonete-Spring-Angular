@@ -1,0 +1,165 @@
+<mat-table [dataSource]="pedidos" class="mat-elevation-z8">
+  <!-- ID Column -->
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef class="id"> ID </mat-header-cell>
+    <mat-cell *matCellDef="let pedido" class="id">
+      {{ pedido.id }}
+    </mat-cell>
+  </ng-container>
+
+  <!-- Lanches Column -->
+  <ng-container matColumnDef="lanches">
+    <mat-header-cell *matHeaderCellDef class="pedido-column-lanche">
+      Lanches
+    </mat-header-cell>
+    <mat-cell *matCellDef="let pedido" class="pedido-column-lanche">
+      <mat-accordion *ngIf="verificaVazio(pedido.lanches); else emptyData">
+        <mat-expansion-panel
+          (opened)="panelOpenState = true"
+          (closed)="panelOpenState = false"
+        >
+          <mat-expansion-panel-header class="mat-expansion-panel-header">
+            <mat-panel-title> Dados </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <mat-list>
+            <mat-list-item
+              *ngFor="let lanche of pedido.lanches"
+              class="mat-expansion-panel-body-lanches"
+            >
+              <mat-divider></mat-divider>
+              {{ lanche.nome }} | R${{ lanche.preco }}
+            </mat-list-item>
+          </mat-list>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-cell>
+  </ng-container>
+
+  <!-- QtdLanches Column -->
+  <ng-container matColumnDef="qtdLanches">
+    <mat-header-cell *matHeaderCellDef class="id qtd"> Qtd. </mat-header-cell>
+    <mat-cell *matCellDef="let pedido" class="id qtd">
+      {{ pedido.qtdLanches }}
+    </mat-cell>
+  </ng-container>
+
+  <!-- Bebidas Column -->
+  <ng-container matColumnDef="bebidas">
+    <mat-header-cell *matHeaderCellDef class="pedido-column-bebida">
+      Bebidas
+    </mat-header-cell>
+    <mat-cell *matCellDef="let pedido" class="pedido-column-bebida">
+      <mat-accordion *ngIf="verificaVazio(pedido.bebidas); else emptyData">
+        <mat-expansion-panel
+          (opened)="panelOpenState = true"
+          (closed)="panelOpenState = false"
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title> Dados </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-list>
+            <mat-list-item
+              *ngFor="let bebida of pedido.bebidas"
+              class="mat-expansion-panel-body-bebidas"
+              >{{ bebida.marca }} | {{ bebida.litragem }} | R${{
+                bebida.preco
+              }}</mat-list-item
+            >
+          </mat-list>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-cell>
+  </ng-container>
+
+  <!-- QtdBebidas Column -->
+  <ng-container matColumnDef="qtdBebidas">
+    <mat-header-cell *matHeaderCellDef class="id qtd"> Qtd. </mat-header-cell>
+    <mat-cell *matCellDef="let pedido" class="id qtd">
+      {{ pedido.qtdBebidas }}
+    </mat-cell>
+  </ng-container>
+
+  <!-- Endereco Column -->
+  <ng-container matColumnDef="endereco">
+    <mat-header-cell *matHeaderCellDef class="header-endereco" > Endereço </mat-header-cell>
+    <mat-cell *matCellDef="let pedido" class="cell-endereco">
+      <button mat-button (click)="onEndereco(pedido.endereco)">Mostrar Endereço</button>
+    </mat-cell>
+  </ng-container>
+
+
+
+  <!-- Pagamento Column -->
+  <ng-container matColumnDef="pagamento">
+    <mat-header-cell *matHeaderCellDef class="smallColumn">
+      Pagamento
+    </mat-header-cell>
+    <mat-cell *matCellDef="let pedido" class="smallColumn">
+      {{ pedido.tipoPagamento }}
+    </mat-cell>
+  </ng-container>
+
+  <!-- Taxa Column -->
+  <ng-container matColumnDef="taxa">
+    <mat-header-cell *matHeaderCellDef class="smallColumnTaxa">
+      Taxa
+    </mat-header-cell>
+    <mat-cell *matCellDef="let pedido" class="smallColumnTaxa">
+      {{ pedido.taxa }}
+    </mat-cell>
+  </ng-container>
+
+  <!-- Total Column -->
+  <ng-container matColumnDef="total">
+    <mat-header-cell *matHeaderCellDef class="smallColumn">
+      Total
+    </mat-header-cell>
+    <mat-cell *matCellDef="let pedido" class="smallColumn">
+      R${{ pedido.total }}
+    </mat-cell>
+  </ng-container>
+
+  <!-- Action Column -->
+  <ng-container matColumnDef="action">
+    <mat-header-cell *matHeaderCellDef class="action-column-header-pedido">
+      <button mat-mini-fab color="primary" (click)="onAdd()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let pedido" class="action-column-pedido">
+      <button mat-icon-button color="primary" (click)="onEdit(pedido)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="onRemove(pedido)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <!-- Template-->
+  <ng-template #emptyData>
+    <mat-accordion>
+      <mat-expansion-panel
+        (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false"
+      >
+        <mat-expansion-panel-header class="mat-expansion-panel-header">
+          <mat-panel-title> Dados </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <button
+          class="mat-expansion-panel-body-lanches"
+          mat-icon-button
+          color="warn"
+          aria-label="Example icon button with a menu icon"
+        >
+          <mat-icon>block</mat-icon>
+        </button>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </ng-template>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</mat-table>

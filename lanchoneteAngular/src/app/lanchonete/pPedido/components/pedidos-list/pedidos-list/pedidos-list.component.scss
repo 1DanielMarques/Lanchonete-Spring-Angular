@@ -1,0 +1,69 @@
+.id {
+  flex: 0 0 40px;
+}
+
+.smallColumn {
+  flex: 0 0 140px;
+ padding-left: 45px;
+
+}
+
+.smallColumnTaxa {
+  flex: 0 0 158px;
+  padding-left: 55px;
+}
+
+
+.mat-expansion-panel-header {
+  padding: 0px 8px 0px 8px;
+  height: 50px;
+}
+
+//Lanches
+.pedido-column-lanche {
+  padding-left: 2em;
+  flex: 0 0 260px;
+}
+
+.mat-expansion-panel-body-lanches {
+  padding: 0px 0px 0px 10px;
+  width: 180px;
+}
+
+.qtd {
+  padding: 0px 35px 0px 10px;
+
+}
+
+//Bebidas
+.mat-expansion-panel-body-bebidas {
+  padding: 0px 0px 0px 10px;
+  width: 220px;
+}
+
+.pedido-column-bebida {
+  padding-left: 2em;
+  flex: 0 0 300px;
+}
+/* */
+.action-column-header-pedido{
+  padding-left: 42px;
+  flex: 0 0 126px;
+
+}
+
+.action-column-pedido{
+  padding-left: 17px;
+}
+
+//Endereco
+.header-endereco{
+  padding-left: 20px;
+  flex: 0 0 128px;
+}
+
+.cell-endereco{
+  padding: 0px 0px 0px 0px;
+  flex: 0 0 128px;
+}
+

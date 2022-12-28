@@ -1,0 +1,28 @@
+<mat-card>
+  <mat-card-header id="tituloHome">
+    <mat-card-title>HOME</mat-card-title>
+    <mat-card-subtitle>Choose one</mat-card-subtitle>
+  </mat-card-header>
+
+  <div class="actionButton">
+    <button class="initButton" mat-raised-button color="primary" (click)="onPedidos()">
+      Pedidos
+    </button>
+    <button
+      class="initButton"
+      mat-raised-button
+      color="primary"
+      (click)="onLanches()"
+    >
+      Lanches
+    </button>
+    <button
+      class="initButton"
+      mat-raised-button
+      color="primary"
+      (click)="onBebidas()"
+    >
+      Bebidas
+    </button>
+  </div>
+</mat-card>
