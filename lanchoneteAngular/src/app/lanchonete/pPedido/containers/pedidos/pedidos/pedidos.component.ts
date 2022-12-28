@@ -1,3 +1,4 @@
+import { Endereco } from 'src/app/lanchonete/model/endereco';
 import { EnderecoDialogComponent } from './../../../components/endereco-dialog/endereco-dialog.component';
 import { ErrorDialogComponent } from './../../../../../shared/components/error-dialog/error-dialog.component';
 import { Component } from '@angular/core';
@@ -56,7 +57,12 @@ export class PedidosComponent {
     console.log('remove');
   }
 
-  onEndereco() {
-   this.dialog.open(EnderecoDialogComponent);
+  onEndereco(endereco: Endereco) {
+
+    this.dialog.open(EnderecoDialogComponent, {
+      data:
+        endereco
+
+    });
   }
 }

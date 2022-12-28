@@ -1,5 +1,10 @@
-<h1 mat-dialog-title>Dialog with elements</h1>
-<div mat-dialog-content>This dialog showcases the title, close, content and actions elements.</div>
-<div mat-dialog-actions>
-  <button mat-button mat-dialog-close>Close</button>
+<h1 mat-dialog-title>Endereço</h1>
+<div mat-dialog-content>
+  Rua: {{ endereco.rua }} <br />
+  Bairro: {{ endereco.bairro }} <br />N° {{ endereco.numero }}
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-mini-fab mat-dialog-close color="warn">
+    <mat-icon>close</mat-icon>
+  </button>
 </div>

@@ -1,3 +1,4 @@
+import { Endereco } from 'src/app/lanchonete/model/endereco';
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { Pedido } from 'src/app/lanchonete/model/pedido';
 
@@ -37,8 +38,8 @@ export class PedidosListComponent {
     this.delete.emit(pedido);
   }
 
-  onEndereco(){
-      this.dialog.emit(true);
+  onEndereco(endereco:Endereco){
+      this.dialog.emit(endereco);
   }
 
 
