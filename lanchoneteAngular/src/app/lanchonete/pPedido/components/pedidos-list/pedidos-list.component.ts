@@ -15,6 +15,7 @@ export class PedidosListComponent {
   @Output() add = new EventEmitter(false);
   @Output() edit = new EventEmitter(false);
   @Output() delete = new EventEmitter(false);
+  @Output() dialog = new EventEmitter(false);
 
   readonly displayedColumns = ['id', 'lanches', 'qtdLanches', 'bebidas', 'qtdBebidas','endereco', 'pagamento', 'taxa', 'total', 'action'];
   panelOpenState = false;
@@ -36,8 +37,8 @@ export class PedidosListComponent {
     this.delete.emit(pedido);
   }
 
-  openDialog(){
-
+  onEndereco(){
+      this.dialog.emit(true);
   }
 
 

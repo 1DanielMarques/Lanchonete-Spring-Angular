@@ -18,6 +18,7 @@ import { LanchesComponent } from './pLanche/containers/lanches/lanches.component
 import { PedidosComponent } from './pPedido/containers/pedidos/pedidos/pedidos.component';
 import { PedidosListComponent } from './pPedido/components/pedidos-list/pedidos-list.component';
 import { PedidoFormComponent } from './pPedido/containers/pedido-form/pedido-form/pedido-form.component';
+import { EnderecoDialogComponent } from './pPedido/components/endereco-dialog/endereco-dialog.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { PedidoFormComponent } from './pPedido/containers/pedido-form/pedido-for
     EnderecoFormComponent,
     PedidosComponent,
     PedidosListComponent,
-    PedidoFormComponent
+    PedidoFormComponent,
+    EnderecoDialogComponent
   ],
   imports: [
     CommonModule,

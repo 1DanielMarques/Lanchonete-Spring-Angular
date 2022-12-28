@@ -1,3 +1,4 @@
+import { EnderecoDialogComponent } from './../../../components/endereco-dialog/endereco-dialog.component';
 import { ErrorDialogComponent } from './../../../../../shared/components/error-dialog/error-dialog.component';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -53,5 +54,9 @@ export class PedidosComponent {
   }
   onRemove(pedido: Pedido) {
     console.log('remove');
+  }
+
+  onEndereco() {
+   this.dialog.open(EnderecoDialogComponent);
   }
 }
