@@ -16,7 +16,7 @@ export class PedidosListComponent {
   @Output() edit = new EventEmitter(false);
   @Output() delete = new EventEmitter(false);
 
-  readonly displayedColumns = ['id', 'lanches', 'qtdLanches', 'bebidas', 'qtdBebidas', 'pagamento', 'taxa', 'total', 'action'];
+  readonly displayedColumns = ['id', 'lanches', 'qtdLanches', 'bebidas', 'qtdBebidas','endereco', 'pagamento', 'taxa', 'total', 'action'];
   panelOpenState = false;
 
   verificaVazio(items: string[]) {
@@ -34,6 +34,10 @@ export class PedidosListComponent {
   }
   onRemove(pedido: Pedido) {
     this.delete.emit(pedido);
+  }
+
+  openDialog(){
+
   }
 
 

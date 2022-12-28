@@ -80,6 +80,16 @@
     </mat-cell>
   </ng-container>
 
+  <!-- Endereco Column -->
+  <ng-container matColumnDef="endereco">
+    <mat-header-cell *matHeaderCellDef class="header-endereco" > Endereco </mat-header-cell>
+    <mat-cell *matCellDef="let pedido" class="cell-endereco">
+      <button mat-button (click)="openDialog()">Launch dialog</button>
+    </mat-cell>
+  </ng-container>
+
+
+
   <!-- Pagamento Column -->
   <ng-container matColumnDef="pagamento">
     <mat-header-cell *matHeaderCellDef class="smallColumn">
