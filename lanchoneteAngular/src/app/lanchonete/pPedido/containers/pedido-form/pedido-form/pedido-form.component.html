@@ -5,9 +5,55 @@
 
   <mat-card-content>
     <form class="min-width">
-      <mat-form-field class="full-width">
-        <input matInput placeholder="Test" />
-      </mat-form-field>
+      <div>
+        <mat-accordion multi>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title> Lanches </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <mat-list class="lanches-form-input">
+              <mat-list-item *ngFor="let lanche of lanches">
+                {{lanche.nome}}
+                <div matListItemMeta>
+                  <button mat-icon-button color="primary">
+                    <mat-icon>add</mat-icon>
+                  </button>
+                  <span class="qtd">10</span>
+                  <button mat-icon-button color="warn">
+                    <mat-icon>remove</mat-icon>
+                  </button>
+                </div>
+              </mat-list-item>
+            </mat-list>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+
+      <div class="bebidas-form">
+        <mat-accordion multi>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title> Bebidas </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <mat-list class="lanches-form-input">
+              <mat-list-item>
+                Item 2
+                <div matListItemMeta>
+                  <button mat-icon-button color="primary">
+                    <mat-icon>add</mat-icon>
+                  </button>
+                  <span class="qtd">10</span>
+                  <button mat-icon-button color="warn">
+                    <mat-icon>remove</mat-icon>
+                  </button>
+                </div>
+              </mat-list-item>
+            </mat-list>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
 
       <mat-form-field class="full-width">
         <input matInput placeholder="Test" />
