@@ -19,7 +19,7 @@ export class BebidasResolver implements Resolve<Bebida> {
     if (route.params && route.params['id']) {
       return this.service.findById(route.params['id']);
     }
-    return of({ id: '', nome: '', marca: '', litragem: '', sabor: '', preco: '' });
+    return of({ id: '', nome: '', marca: '', litragem: '', sabor: '', preco: '',qtd:0 });
 
   }
 }

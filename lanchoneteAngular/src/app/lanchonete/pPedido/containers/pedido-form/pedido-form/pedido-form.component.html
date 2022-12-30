@@ -12,16 +12,24 @@
               <mat-panel-title> Lanches </mat-panel-title>
             </mat-expansion-panel-header>
 
-            <mat-list class="lanches-form-input">
+            <mat-list class="text-align-start">
               <mat-list-item *ngFor="let lanche of lanches">
-                {{lanche.nome}}
+                {{ lanche.nome }}
                 <div matListItemMeta>
-                  <button mat-icon-button color="primary">
-                    <mat-icon>add</mat-icon>
-                  </button>
-                  <span class="qtd">10</span>
-                  <button mat-icon-button color="warn">
+                  <button
+                    mat-icon-button
+                    color="warn"
+                    (click)="onRemove(lanche)"
+                  >
                     <mat-icon>remove</mat-icon>
+                  </button>
+                  <span class="qtd">{{ lanche.qtd }}</span>
+                  <button
+                    mat-icon-button
+                    color="primary"
+                    (click)="onAdd(lanche)"
+                  >
+                    <mat-icon>add</mat-icon>
                   </button>
                 </div>
               </mat-list-item>
@@ -37,16 +45,24 @@
               <mat-panel-title> Bebidas </mat-panel-title>
             </mat-expansion-panel-header>
 
-            <mat-list class="lanches-form-input">
-              <mat-list-item>
-                Item 2
+            <mat-list class="text-align-start">
+              <mat-list-item *ngFor="let bebida of bebidas">
+                {{ bebida.nome }}
                 <div matListItemMeta>
-                  <button mat-icon-button color="primary">
-                    <mat-icon>add</mat-icon>
-                  </button>
-                  <span class="qtd">10</span>
-                  <button mat-icon-button color="warn">
+                  <button
+                    mat-icon-button
+                    color="warn"
+                    (click)="onRemove(bebida)"
+                  >
                     <mat-icon>remove</mat-icon>
+                  </button>
+                  <span class="qtd">{{ bebida.qtd }}</span>
+                  <button
+                    mat-icon-button
+                    color="primary"
+                    (click)="onAdd(bebida)"
+                  >
+                    <mat-icon>add</mat-icon>
                   </button>
                 </div>
               </mat-list-item>
@@ -54,10 +70,17 @@
           </mat-expansion-panel>
         </mat-accordion>
       </div>
-
-      <mat-form-field class="full-width">
-        <input matInput placeholder="Test" />
-      </mat-form-field>
+      <div class="text-align-start">
+        <mat-form-field class="endereco">
+          <input matInput placeholder="Rua" />
+        </mat-form-field>
+        <mat-form-field class="endereco">
+          <input matInput placeholder="Bairro" />
+        </mat-form-field>
+        <mat-form-field class="endereco-numero">
+          <input matInput placeholder="N°" />
+        </mat-form-field>
+      </div>
     </form>
   </mat-card-content>
 
