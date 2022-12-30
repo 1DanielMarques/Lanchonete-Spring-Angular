@@ -1,3 +1,4 @@
+import { PedidosResolver } from './guards/pedidos/pedidos.resolver';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BebidasResolver } from './guards/bebidas/bebidas.resolver';
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path: 'bebidas/edit/:id', component: BebidaFormComponent, resolve: { bebida: BebidasResolver } },
 
   { path: 'pedidos', component: PedidosComponent },
-  { path: 'pedidos/new', component: PedidoFormComponent },
+  { path: 'pedidos/new', component: PedidoFormComponent, resolve: { pedido: PedidosResolver } },
+  { path: 'pedidos/edit/:id', component: PedidoFormComponent, resolve: { pedido: PedidosResolver } }
 
 
 ];

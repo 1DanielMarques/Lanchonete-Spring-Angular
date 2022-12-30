@@ -51,9 +51,9 @@ export class PedidosComponent {
   }
 
   onEdit(pedido: Pedido) {
-    console.log('edit');
+    this.router.navigate(['edit', pedido.id], { relativeTo: this.route });
   }
-  
+
   onRemove(pedido: Pedido) {
 
     this.pedidoService.remove(pedido.id).subscribe(

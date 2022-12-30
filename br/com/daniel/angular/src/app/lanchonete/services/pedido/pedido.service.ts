@@ -20,6 +20,10 @@ export class PedidoService {
     );
   }
 
+  findById(id: string) {
+    return this.httpClient.get<Pedido>(`${this.API}/${id}`);
+  }
+
   save(pedido: Partial<Pedido>) {
     return this.create(pedido);
   }

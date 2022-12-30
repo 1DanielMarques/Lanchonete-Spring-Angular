@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { ErrorDialogComponent } from './../../../../../shared/components/error-dialog/error-dialog/error-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -22,6 +23,7 @@ import { LancheService } from './../../../../services/lanche/lanche.service';
 export class PedidoFormComponent implements OnInit {
 
   form = this.formBuilder.group({
+    id: [''],
     tipoPagamento: [''],
     rua: [''],
     bairro: [''],
@@ -41,11 +43,19 @@ export class PedidoFormComponent implements OnInit {
     endereco: this.endereco
   };
 
-  constructor(private formBuilder: NonNullableFormBuilder, private location: Location, private lancheService: LancheService, private bebidaService: BebidaService, private pedidoService: PedidoService, private snackBar: MatSnackBar, private dialog: MatDialog) {
+  constructor(private formBuilder: NonNullableFormBuilder, private location: Location, private lancheService: LancheService, private bebidaService: BebidaService, private pedidoService: PedidoService, private snackBar: MatSnackBar, private dialog: MatDialog, private route: ActivatedRoute) {
     this.onRefresh();
   }
   ngOnInit(): void {
+    const pedido = this.route.snapshot.data['pedido'];
+    this.form.setValue({
+      id: pedido.id,
+      tipoPagamento: pedido.tipoPagamento,
+      rua: pedido.endereco.rua,
+      bairro: pedido.endereco.bairro,
+      numero: pedido.endereco.numero
 
+    });
   }
 
   onRefresh() {
