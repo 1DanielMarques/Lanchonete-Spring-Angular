@@ -1,10 +1,13 @@
+import { ErrorDialogComponent } from './../../../../../shared/components/error-dialog/error-dialog/error-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { PedidoService } from 'src/app/lanchonete/services/pedido/pedido.service';
 import { Pedido } from 'src/app/lanchonete/model/pedido';
 import { Endereco } from './../../../../model/endereco';
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { NonNullableFormBuilder } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Observable, catchError, of } from 'rxjs';
 import { Lanche } from 'src/app/lanchonete/model/lanche';
 
 import { Bebida } from './../../../../model/bebida';
@@ -38,7 +41,7 @@ export class PedidoFormComponent implements OnInit {
     endereco: this.endereco
   };
 
-  constructor(private formBuilder: NonNullableFormBuilder, private location: Location, private lancheService: LancheService, private bebidaService: BebidaService, private pedidoService: PedidoService) {
+  constructor(private formBuilder: NonNullableFormBuilder, private location: Location, private lancheService: LancheService, private bebidaService: BebidaService, private pedidoService: PedidoService, private snackBar: MatSnackBar, private dialog: MatDialog) {
     this.onRefresh();
   }
   ngOnInit(): void {
@@ -46,9 +49,29 @@ export class PedidoFormComponent implements OnInit {
   }
 
   onRefresh() {
-    this.lanches$ = this.lancheService.findAll();
-    this.bebidas$ = this.bebidaService.findAll();
 
+    this.lanches$ = this.lancheService.findAll().
+      pipe(
+        catchError(() => {
+          this.onError('Erro ao carregar Lanches.');
+          return of([])
+        })
+      );
+
+    this.bebidas$ = this.bebidaService.findAll().
+      pipe(
+        catchError(() => {
+          this.onError('Erro ao carregar Bebidas.');
+          return of([])
+        })
+      );
+
+  }
+
+  onError(errorMsg: string) {
+    this.dialog.open(ErrorDialogComponent, {
+      data: errorMsg,
+    })
   }
 
   setData() {
@@ -61,9 +84,20 @@ export class PedidoFormComponent implements OnInit {
 
   onSubmit() {
     this.setData();
-    console.log(this.pedido);
-    this.pedidoService.save(this.pedido).subscribe(record => console.log(record));
+    this.pedidoService.save(this.pedido).subscribe(
+      () => this.onSuccessSubmit(),
+      () => this.onErrorSubmit());
+
+  }
+
+  onSuccessSubmit() {
     this.onCancel();
+    this.snackBar.open('Pedido salvo com sucesso!', '', { duration: 5000 });
+  }
+
+  onErrorSubmit() {
+    this.onCancel();
+    this.snackBar.open('Erro ao salvar Pedido', '', { duration: 5000 });
   }
 
   onAddLanche(lanche: Lanche) {

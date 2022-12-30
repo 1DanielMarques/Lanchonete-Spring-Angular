@@ -1,3 +1,4 @@
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -17,7 +18,7 @@ import { EnderecoDialogComponent } from '../../../components/endereco-dialog/end
 })
 export class PedidosComponent {
 
-  constructor(private lancheService: LancheService, private bebidaService: BebidaService, private pedidoService: PedidoService, private router: Router, private route: ActivatedRoute, public dialog: MatDialog) {
+  constructor(private lancheService: LancheService, private bebidaService: BebidaService, private pedidoService: PedidoService, private router: Router, private route: ActivatedRoute, public dialog: MatDialog, private snackBar: MatSnackBar) {
     this.refresh();
   }
 
@@ -48,15 +49,28 @@ export class PedidosComponent {
   onAdd() {
     this.router.navigate(['new'], { relativeTo: this.route });
   }
+
   onEdit(pedido: Pedido) {
     console.log('edit');
   }
+  
   onRemove(pedido: Pedido) {
-    console.log('remove');
+
+    this.pedidoService.remove(pedido.id).subscribe(
+      () => {
+        this.refresh();
+        this.snackBar.open('Pedido removido com sucesso!', '', {
+          duration: 5000, horizontalPosition: 'center',
+          verticalPosition: 'top',
+        });
+      },
+      () => {
+        this.onError('Erro ao tentar remover Pedido.');
+      }
+    );
   }
 
   onEndereco(endereco: Endereco) {
-
     this.dialog.open(EnderecoDialogComponent, {
       data:
         endereco

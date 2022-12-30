@@ -27,5 +27,8 @@ export class PedidoService {
     return this.httpClient.post<Pedido>(this.API, pedido);
   }
 
+  remove(id: string) {
+    return this.httpClient.delete(`${this.API}/${id}`);
+  }
 
 }
