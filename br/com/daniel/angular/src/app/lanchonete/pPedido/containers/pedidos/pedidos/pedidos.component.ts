@@ -52,6 +52,7 @@ export class PedidosComponent {
 
   onEdit(pedido: Pedido) {
     this.router.navigate(['edit', pedido.id], { relativeTo: this.route });
+
   }
 
   onRemove(pedido: Pedido) {

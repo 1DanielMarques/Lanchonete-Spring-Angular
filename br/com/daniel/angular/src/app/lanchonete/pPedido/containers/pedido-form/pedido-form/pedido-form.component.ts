@@ -48,6 +48,7 @@ export class PedidoFormComponent implements OnInit {
   }
   ngOnInit(): void {
     const pedido = this.route.snapshot.data['pedido'];
+    console.log(pedido);
     this.form.setValue({
       id: pedido.id,
       tipoPagamento: pedido.tipoPagamento,
@@ -85,6 +86,7 @@ export class PedidoFormComponent implements OnInit {
   }
 
   setData() {
+    this.pedido.id = this.form.value.id;
     this.endereco.rua = this.form.value.rua;
     this.endereco.bairro = this.form.value.bairro;
     this.endereco.numero = this.form.value.numero;

@@ -25,10 +25,17 @@ export class PedidoService {
   }
 
   save(pedido: Partial<Pedido>) {
+    if (pedido.id) {
+      return this.update(pedido);
+    }
     return this.create(pedido);
   }
   private create(pedido: Partial<Pedido>) {
     return this.httpClient.post<Pedido>(this.API, pedido);
+  }
+
+  private update(pedido: Partial<Pedido>) {
+    return this.httpClient.put<Pedido>(`${this.API}/${pedido.id}`, pedido);
   }
 
   remove(id: string) {
