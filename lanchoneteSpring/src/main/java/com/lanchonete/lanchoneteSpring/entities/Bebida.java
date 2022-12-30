@@ -20,6 +20,7 @@ public class Bebida implements Serializable {
     private String litragem;
     private String sabor;
     private double preco;
+    private int qtd;
 
     @JsonIgnore
     @ManyToMany(mappedBy = "bebidas")
@@ -36,6 +37,7 @@ public class Bebida implements Serializable {
         this.litragem = litragem;
         this.sabor = sabor;
         this.preco = preco;
+        this.qtd = 0;
 
     }
 
@@ -89,6 +91,14 @@ public class Bebida implements Serializable {
 
     public List<Pedido> getPedidoBebida() {
         return pedidoBebida;
+    }
+
+    public int getQtd() {
+        return qtd;
+    }
+
+    public void setQtd(int qtd) {
+        this.qtd = qtd;
     }
 
     @Override

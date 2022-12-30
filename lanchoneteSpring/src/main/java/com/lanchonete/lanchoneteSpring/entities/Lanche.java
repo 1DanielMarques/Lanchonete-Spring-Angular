@@ -21,6 +21,8 @@ public class Lanche implements Serializable {
     private double preco;
     private String descricao;
 
+    private int qtd;
+
     @JsonIgnore
     @ManyToMany(mappedBy = "lanches")
     private List<Pedido> pedidoLanche = new ArrayList<>();
@@ -34,7 +36,7 @@ public class Lanche implements Serializable {
         this.nome = nome;
         this.preco = preco;
         this.descricao = descricao;
-
+        this.qtd = 0;
 
     }
 
@@ -72,6 +74,14 @@ public class Lanche implements Serializable {
 
     public List<Pedido> getPedidoLanche() {
         return pedidoLanche;
+    }
+
+    public int getQtd() {
+        return qtd;
+    }
+
+    public void setQtd(int qtd) {
+        this.qtd = qtd;
     }
 
     @Override

@@ -1,6 +1,6 @@
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Location } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NonNullableFormBuilder } from '@angular/forms';
 import { Lanche } from 'src/app/lanchonete/model/lanche';
 
@@ -13,24 +13,29 @@ import { LancheService } from './../../../../services/lanche/lanche.service';
   templateUrl: './pedido-form.component.html',
   styleUrls: ['./pedido-form.component.scss']
 })
-export class PedidoFormComponent {
+export class PedidoFormComponent implements OnInit {
 
   form = this.formBuilder.group({
     id: ['']
   });
 
-  panelOpenState = false;
+  lanches$: Observable<Lanche[]> | null = null;
 
-  lanches$:Observable<Lanche[]> | null = this.lancheService.findAll();
-
-  bebidas$: Observable<Bebida[]> | null = this.bebidaService.findAll();
-
-  qtd: Number = 0;
+  bebidas$: Observable<Bebida[]> | null = null;
 
   constructor(private formBuilder: NonNullableFormBuilder, private location: Location, private lancheService: LancheService, private bebidaService: BebidaService) {
+    this.onRefresh();
+  }
+  ngOnInit(): void {
 
   }
 
+  onRefresh() {
+    this.lanches$ = this.lancheService.findAll();
+
+    this.bebidas$ = this.bebidaService.findAll();
+
+  }
 
   onSubmit() {
     this.onCancel();
@@ -41,6 +46,7 @@ export class PedidoFormComponent {
 
   onAdd(item: any) {
     item.qtd++;
+   
   }
   onRemove(item: any) {
     if (item.qtd > 0) {
