@@ -1,8 +1,12 @@
-import { Bebida } from './../../../../model/bebida';
-import { Lanche } from 'src/app/lanchonete/model/lanche';
+import { Observable } from 'rxjs';
+import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { NonNullableFormBuilder } from '@angular/forms';
-import { Location } from '@angular/common';
+import { Lanche } from 'src/app/lanchonete/model/lanche';
+
+import { Bebida } from './../../../../model/bebida';
+import { BebidaService } from './../../../../services/bebida/bebida.service';
+import { LancheService } from './../../../../services/lanche/lanche.service';
 
 @Component({
   selector: 'app-pedido-form',
@@ -17,17 +21,13 @@ export class PedidoFormComponent {
 
   panelOpenState = false;
 
-  lanches: Lanche[] = [
-    { id: '', nome: 'X-Frango', preco: '', descricao: '', qtd: 0 }, { id: '', nome: 'X-Bacon', preco: '', descricao: '', qtd: 0 }
-  ];
+  lanches$:Observable<Lanche[]> | null = this.lancheService.findAll();
 
-  bebidas: Bebida[] = [
-    { id: '', nome: 'Refrigerante', marca: '', litragem: '', sabor: '', preco: '',qtd:0 }, { id: '', nome: 'Suco', marca: '', litragem: '', sabor: '', preco: '',qtd:0 }
-  ]
+  bebidas$: Observable<Bebida[]> | null = this.bebidaService.findAll();
 
   qtd: Number = 0;
 
-  constructor(private formBuilder: NonNullableFormBuilder, private location: Location) {
+  constructor(private formBuilder: NonNullableFormBuilder, private location: Location, private lancheService: LancheService, private bebidaService: BebidaService) {
 
   }
 
