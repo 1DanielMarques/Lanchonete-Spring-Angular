@@ -8,7 +8,7 @@ import { Endereco } from './../../../../model/endereco';
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { NonNullableFormBuilder } from '@angular/forms';
-import { Observable, catchError, of } from 'rxjs';
+import { Observable, catchError, of, delay } from 'rxjs';
 import { Lanche } from 'src/app/lanchonete/model/lanche';
 
 import { Bebida } from './../../../../model/bebida';
@@ -29,6 +29,8 @@ export class PedidoFormComponent implements OnInit {
     bairro: [''],
     numero: ['']
 
+
+
   });
 
   lanches$: Observable<Lanche[]> | null = null;
@@ -43,18 +45,35 @@ export class PedidoFormComponent implements OnInit {
     endereco: this.endereco
   };
 
+  pedido_resolver = this.route.snapshot.data['pedido'];
+
+  show_qtd_lanche: number = 0;
+  show_qtd_bebida: number = 0;
+
   constructor(private formBuilder: NonNullableFormBuilder, private location: Location, private lancheService: LancheService, private bebidaService: BebidaService, private pedidoService: PedidoService, private snackBar: MatSnackBar, private dialog: MatDialog, private route: ActivatedRoute) {
+    this.pedido_resolver.lanches.forEach(() => {
+      if (this.pedido_resolver.id) {
+        this.show_qtd_lanche++;
+      }
+    });
+
+    this.pedido_resolver.bebidas.forEach(() => {
+      if (this.pedido_resolver.id) {
+        this.show_qtd_bebida++;
+      }
+    });
     this.onRefresh();
   }
+
   ngOnInit(): void {
-    const pedido = this.route.snapshot.data['pedido'];
-    console.log(pedido);
+
+
     this.form.setValue({
-      id: pedido.id,
-      tipoPagamento: pedido.tipoPagamento,
-      rua: pedido.endereco.rua,
-      bairro: pedido.endereco.bairro,
-      numero: pedido.endereco.numero
+      id: this.pedido_resolver.id,
+      tipoPagamento: this.pedido_resolver.tipoPagamento,
+      rua: this.pedido_resolver.endereco.rua,
+      bairro: this.pedido_resolver.endereco.bairro,
+      numero: this.pedido_resolver.endereco.numero,
 
     });
   }
@@ -97,7 +116,7 @@ export class PedidoFormComponent implements OnInit {
   onSubmit() {
     this.setData();
     this.pedidoService.save(this.pedido).subscribe(
-      () => this.onSuccessSubmit(),
+      () => { this.onSuccessSubmit(); console.log(this.pedido) },
       () => this.onErrorSubmit());
 
   }
@@ -114,6 +133,7 @@ export class PedidoFormComponent implements OnInit {
 
   onAddLanche(lanche: Lanche) {
     lanche.qtd++;
+    this.show_qtd_lanche++;
     this.pedido.lanches?.push(lanche);
 
   }
@@ -121,6 +141,7 @@ export class PedidoFormComponent implements OnInit {
   onRemoveLanche(lanche: Lanche) {
     if (lanche.qtd > 0) {
       lanche.qtd--;
+      this.show_qtd_lanche--;
       this.pedido.lanches?.splice(this.pedido.lanches?.indexOf(lanche, 0), 1);
     } else {
       lanche.qtd = 0;
@@ -129,12 +150,14 @@ export class PedidoFormComponent implements OnInit {
 
   onAddBebida(bebida: Bebida) {
     bebida.qtd++;
+    this.show_qtd_bebida++;
     this.pedido.bebidas?.push(bebida);
   }
 
   onRemoveBebida(bebida: Bebida) {
     if (bebida.qtd > 0) {
       bebida.qtd--;
+      this.show_qtd_bebida--;
       this.pedido.bebidas?.splice(this.pedido.bebidas?.indexOf(bebida, 0), 1);
     } else {
       bebida.qtd = 0;

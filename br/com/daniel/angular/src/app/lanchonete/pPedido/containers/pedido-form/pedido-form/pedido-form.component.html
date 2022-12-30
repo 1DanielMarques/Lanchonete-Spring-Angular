@@ -10,11 +10,16 @@
           <mat-expansion-panel>
             <mat-expansion-panel-header>
               <mat-panel-title> Lanches </mat-panel-title>
+              <mat-panel-description class="show-qtd">
+                Qtd. {{ show_qtd_lanche }}
+              </mat-panel-description>
             </mat-expansion-panel-header>
 
             <mat-list class="text-align-start">
               <mat-list-item *ngFor="let lanche of lanches$ | async">
-                {{ lanche.nome }} | {{lanche.descricao}} | R${{lanche.preco}}
+                {{ lanche.nome }} | {{ lanche.descricao }} | R${{
+                  lanche.preco
+                }}
                 <div matListItemMeta>
                   <button
                     mat-icon-button
@@ -43,6 +48,9 @@
           <mat-expansion-panel>
             <mat-expansion-panel-header>
               <mat-panel-title> Bebidas </mat-panel-title>
+              <mat-panel-description class="show-qtd">
+                Qtd. {{ show_qtd_bebida }}
+              </mat-panel-description>
             </mat-expansion-panel-header>
 
             <mat-list class="text-align-start">
@@ -56,7 +64,9 @@
                   >
                     <mat-icon>remove</mat-icon>
                   </button>
+
                   <span class="qtd">{{ bebida.qtd }}</span>
+
                   <button
                     mat-icon-button
                     color="primary"
