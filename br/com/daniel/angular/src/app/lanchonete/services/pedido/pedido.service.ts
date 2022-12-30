@@ -20,4 +20,12 @@ export class PedidoService {
     );
   }
 
+  save(pedido: Partial<Pedido>) {
+    return this.create(pedido);
+  }
+  private create(pedido: Partial<Pedido>) {
+    return this.httpClient.post<Pedido>(this.API, pedido);
+  }
+
+
 }

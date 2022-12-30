@@ -41,7 +41,7 @@ public class PedidoService {
 
         JSONObject obj = new JSONObject(json);
 
-        TipoPagamento tipoPagamento = TipoPagamento.valueOf(obj.getString("tipoPagamento"));
+        TipoPagamento tipoPagamento = TipoPagamento.valueOf(obj.getString("tipoPagamento").toUpperCase());
 
         String bairro = obj.getJSONObject("endereco").getString("bairro");
         String rua = obj.getJSONObject("endereco").getString("rua");

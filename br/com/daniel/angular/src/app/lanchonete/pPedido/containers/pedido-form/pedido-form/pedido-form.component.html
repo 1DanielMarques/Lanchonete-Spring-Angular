@@ -4,7 +4,7 @@
   </mat-card-header>
 
   <mat-card-content>
-    <form class="min-width">
+    <form [formGroup]="form" class="min-width">
       <div>
         <mat-accordion multi>
           <mat-expansion-panel>
@@ -14,12 +14,12 @@
 
             <mat-list class="text-align-start">
               <mat-list-item *ngFor="let lanche of lanches$ | async">
-                {{ lanche.nome }}
+                {{ lanche.nome }} | {{lanche.descricao}} | R${{lanche.preco}}
                 <div matListItemMeta>
                   <button
                     mat-icon-button
                     color="warn"
-                    (click)="onRemove(lanche)"
+                    (click)="onRemoveLanche(lanche)"
                   >
                     <mat-icon>remove</mat-icon>
                   </button>
@@ -27,7 +27,7 @@
                   <button
                     mat-icon-button
                     color="primary"
-                    (click)="onAdd(lanche)"
+                    (click)="onAddLanche(lanche)"
                   >
                     <mat-icon>add</mat-icon>
                   </button>
@@ -52,7 +52,7 @@
                   <button
                     mat-icon-button
                     color="warn"
-                    (click)="onRemove(bebida)"
+                    (click)="onRemoveBebida(bebida)"
                   >
                     <mat-icon>remove</mat-icon>
                   </button>
@@ -60,7 +60,7 @@
                   <button
                     mat-icon-button
                     color="primary"
-                    (click)="onAdd(bebida)"
+                    (click)="onAddBebida(bebida)"
                   >
                     <mat-icon>add</mat-icon>
                   </button>
@@ -72,19 +72,19 @@
       </div>
       <div class="text-align-start">
         <mat-form-field class="endereco">
-          <input matInput placeholder="Rua" />
+          <input matInput placeholder="Rua" formControlName="rua" />
         </mat-form-field>
         <mat-form-field class="endereco">
-          <input matInput placeholder="Bairro" />
+          <input matInput placeholder="Bairro" formControlName="bairro" />
         </mat-form-field>
         <mat-form-field class="endereco-numero">
-          <input matInput placeholder="N°" />
+          <input matInput placeholder="N°" formControlName="numero" />
         </mat-form-field>
       </div>
       <div class="text-align-start">
         <mat-form-field>
           <mat-label>Pagamento</mat-label>
-          <mat-select>
+          <mat-select formControlName="tipoPagamento">
             <mat-option value="dinheiro">Dinheiro</mat-option>
             <mat-option value="debito">Débito</mat-option>
             <mat-option value="credito">Crédito</mat-option>

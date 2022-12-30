@@ -1,5 +1,6 @@
-import { Bebida } from './bebida';
 import { Lanche } from './lanche';
+import { Endereco } from './endereco';
+import { Bebida } from './bebida';
 
 export interface Pedido {
 
@@ -10,7 +11,8 @@ export interface Pedido {
   qtdBebidas: string,
   tipoPagamento: string,
   taxa: string,
-  total: string
+  total: string;
+  endereco: Partial<Endereco>;
 
 
 
