@@ -59,11 +59,14 @@ export class PedidoFormComponent implements OnInit {
       this.taxa = this.pedido_resolver.taxa;
     }
 
+
     this.onRefresh();
 
     console.log(this.pedido_resolver);
 
   }
+
+
   onPagamento(pagamento: string) {
     this.taxa = this.pedidoService.calcTaxa(pagamento);
   }

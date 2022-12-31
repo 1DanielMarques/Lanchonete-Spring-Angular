@@ -12,6 +12,27 @@
 
 }
 
+.pagamento{
+  display: inline-block;
+}
+
+.text{
+  display: inline-block;
+  font-size: 18px;
+  font-style: normal;
+  padding: 0px 45px 0px 0px;
+}
+
+
+.pagamento-data{
+  width: 24%;
+  padding: 0px 806px 0px 0px;
+}
+
+.pagamento-select{
+  padding: 0px 8px 0px 0px;
+}
+
 .endereco{
   padding: 0px 10px 0px 0px;
   width: 600px;
@@ -20,7 +41,6 @@
 .endereco-numero{
   width: 100px;
 }
-
 
 
 

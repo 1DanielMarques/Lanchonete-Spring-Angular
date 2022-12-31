@@ -65,7 +65,7 @@
                     <mat-icon>remove</mat-icon>
                   </button>
 
-                  <span class="qtd" >{{ bebida.qtd }}</span>
+                  <span class="qtd">{{ bebida.qtd }}</span>
                   <button
                     mat-icon-button
                     color="primary"
@@ -90,16 +90,25 @@
           <input matInput placeholder="N°" formControlName="numero" />
         </mat-form-field>
       </div>
-      <div class="text-align-start">
+      <div class="pagamento pagamento-select">
         <mat-form-field>
           <mat-label>Pagamento</mat-label>
           <mat-select formControlName="tipoPagamento">
-            <mat-option value="DINHEIRO" (click)="onPagamento('DINHEIRO')">Dinheiro</mat-option>
-            <mat-option value="DEBITO" (click)="onPagamento('DEBITO')">Débito</mat-option>
-            <mat-option value="CREDITO" (click)="onPagamento('CREDITO')">Crédito</mat-option>
+            <mat-option value="DINHEIRO" (click)="onPagamento('DINHEIRO')"
+              >Dinheiro</mat-option
+            >
+            <mat-option value="DEBITO" (click)="onPagamento('DEBITO')"
+              >Débito</mat-option
+            >
+            <mat-option value="CREDITO" (click)="onPagamento('CREDITO')"
+              >Crédito</mat-option
+            >
           </mat-select>
         </mat-form-field>
-        Taxa: R$ {{taxa}}  Total: R$ {{total}}
+      </div>
+      <div class="pagamento pagamento-data">
+        <div class="text">Taxa: R$ {{ taxa }}</div>
+        <div class="text">Total: R$ {{ total }}</div>
       </div>
     </form>
   </mat-card-content>
@@ -117,5 +126,4 @@
       Cancelar
     </button>
   </mat-card-actions>
-
 </mat-card>
