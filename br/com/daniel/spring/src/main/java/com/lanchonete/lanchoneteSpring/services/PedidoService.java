@@ -81,6 +81,7 @@ public class PedidoService {
     }
 
     public List<Pedido> findAll() {
+        updateQtd();
         return repository.findAll();
     }
 
@@ -124,6 +125,22 @@ public class PedidoService {
             }
         }
         lancheService.delete(id);
+
+    }
+
+    private void updateQtd() {
+        for (Pedido pedido : repository.findAll()) {
+            int qtd = 0;
+            for (int i = 0; i < pedido.getLanches().size(); i++) {
+                qtd++;
+            }
+            pedido.setQtdLanches(qtd);
+            qtd = 0;
+            for (int i = 0; i < pedido.getBebidas().size(); i++) {
+                qtd++;
+            }
+            pedido.setQtdBebidas(qtd);
+        }
     }
 
     public Pedido update(Long id, String json) {
