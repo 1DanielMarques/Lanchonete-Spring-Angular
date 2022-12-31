@@ -65,8 +65,7 @@
                     <mat-icon>remove</mat-icon>
                   </button>
 
-                  <span class="qtd">{{ bebida.qtd }}</span>
-
+                  <span class="qtd" *ngIf="verificaIdBebida(bebida)">{{ bebida.qtd }}</span>
                   <button
                     mat-icon-button
                     color="primary"
@@ -118,4 +117,5 @@
       Cancelar
     </button>
   </mat-card-actions>
+
 </mat-card>

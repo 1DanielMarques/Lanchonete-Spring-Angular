@@ -8,7 +8,7 @@ import { Endereco } from './../../../../model/endereco';
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { NonNullableFormBuilder } from '@angular/forms';
-import { Observable, catchError, of, delay } from 'rxjs';
+import { Observable, catchError, of, delay, map } from 'rxjs';
 import { Lanche } from 'src/app/lanchonete/model/lanche';
 
 import { Bebida } from './../../../../model/bebida';
@@ -62,12 +62,18 @@ export class PedidoFormComponent implements OnInit {
         this.show_qtd_bebida++;
       }
     });
+
+    for (let i = 0; i < this.pedido_resolver.bebidas.length; i++) {
+      this.pedido_resolver.bebidas[i].qtd = 1;
+    }
+
+    this.qtdBebida();
     this.onRefresh();
+
+    console.log(this.pedido_resolver);
   }
 
   ngOnInit(): void {
-
-
     this.form.setValue({
       id: this.pedido_resolver.id,
       tipoPagamento: this.pedido_resolver.tipoPagamento,
@@ -78,8 +84,21 @@ export class PedidoFormComponent implements OnInit {
     });
   }
 
-  onRefresh() {
+  verificaIdBebida(bebida: Bebida) {
+    if (this.pedido_resolver.bebidas.length == this.show_qtd_bebida) {
+      for (let i = 0; i < this.pedido_resolver.bebidas.length; i++) {
+        if (bebida.id == this.pedido_resolver.bebidas[i].id) {
+          bebida.qtd = this.pedido_resolver.bebidas[i].qtd;
+        }
+      }
+      return true;
+    } else{
+     
+    }
+    return true;
+  }
 
+  onRefresh() {
     this.lanches$ = this.lancheService.findAll().
       pipe(
         catchError(() => {
@@ -95,7 +114,19 @@ export class PedidoFormComponent implements OnInit {
           return of([])
         })
       );
+  }
 
+
+  qtdBebida() {
+    for (let i = 0; i < this.pedido_resolver.bebidas.length; i++) {
+      for (let j = 0; j < this.pedido_resolver.bebidas.length; j++) {
+        if (i != j) {
+          if (this.pedido_resolver.bebidas[i].id == this.pedido_resolver.bebidas[j].id) {
+            this.pedido_resolver.bebidas[i].qtd++;
+          }
+        }
+      }
+    }
   }
 
   onError(errorMsg: string) {
@@ -155,7 +186,7 @@ export class PedidoFormComponent implements OnInit {
   }
 
   onRemoveBebida(bebida: Bebida) {
-    if (bebida.qtd > 0) {
+    if (bebida.qtd > 0 && this.show_qtd_bebida > 0) {
       bebida.qtd--;
       this.show_qtd_bebida--;
       this.pedido.bebidas?.splice(this.pedido.bebidas?.indexOf(bebida, 0), 1);
