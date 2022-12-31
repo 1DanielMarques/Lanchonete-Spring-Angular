@@ -71,7 +71,6 @@ export class LanchesComponent implements OnInit {
       () => {
         if (this.pedidoService.findLanche(lanche.id)) {
           this.onErrorHasPedido('Este Lanche tem um ou mais pedidos associados a ele.', 'Deseja excluir mesmo assim?', lanche);
-
         } else {
           this.onError('Erro ao tentar remover Lanche');
         }
@@ -82,13 +81,14 @@ export class LanchesComponent implements OnInit {
 
   onErrorHasPedido(errorMsg: string, confirm: string, lanche: Lanche) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      data: [errorMsg, confirm, lanche.id]
+      data: [errorMsg, confirm, lanche.id, 'lanche']
     });
-    dialogRef.afterClosed().subscribe(() => {
-     this.refresh();
-     this.snackBar.open('Lanche removido com sucesso!', '', { duration: 5000, verticalPosition: 'top', horizontalPosition: 'center' });
+    dialogRef.afterClosed().subscribe((confirm: boolean) => {
+      if (confirm) {
+        this.refresh();
+        this.snackBar.open('Lanche removido com sucesso!', '', { duration: 5000, verticalPosition: 'top', horizontalPosition: 'center' });
+      }
     });
-
   }
 
 }

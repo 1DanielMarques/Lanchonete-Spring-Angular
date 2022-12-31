@@ -31,7 +31,13 @@ export class PedidoService {
 
   deleteLanche(id: string) {
     return this.httpClient.delete(`${this.API}/${'lanche'}/${id}`);
-   
+  }
+
+  findBebida(id: string) {
+    return this.httpClient.get<boolean>(`${this.API}/${'bebida'}/${id}`);
+  }
+  deleteBebida(id: string) {
+    return this.httpClient.delete(`${this.API}/${'bebida'}/${id}`);
   }
 
   save(pedido: Partial<Pedido>) {

@@ -85,12 +85,22 @@ public class PedidoService {
         return repository.findAll();
     }
 
-    public boolean findLanche(Long id) {
-        Lanche lanche = lancheService.findById(id);
-        for (Pedido p : findAll()) {
-            if (p.getLanches().contains(lanche)) {
-                return true;
-            }
+    public boolean findItem(Long id, String item) {
+        switch (item) {
+            case "lanche":
+                Lanche lanche = lancheService.findById(id);
+                for (Pedido p : findAll()) {
+                    if (p.getLanches().contains(lanche)) {
+                        return true;
+                    }
+                }
+            case "bebida":
+                Bebida bebida = bebidaService.findById(id);
+                for (Pedido p : findAll()) {
+                    if (p.getBebidas().contains(bebida)) {
+                        return true;
+                    }
+                }
         }
         return false;
     }
@@ -113,18 +123,36 @@ public class PedidoService {
         }
     }
 
-    public void deleteLanche(Long id) {
-        Lanche lanche = lancheService.findById(id);
-        for (Pedido pedido : findAll()) {
-            if (pedido.getLanches().contains(lanche)) {
-                for (int i = 0; i < pedido.getLanches().size(); i++) {
+    public void deleteItem(Long id, String item) {
+        switch (item) {
+            case "lanche":
+                Lanche lanche = lancheService.findById(id);
+                for (Pedido pedido : findAll()) {
                     if (pedido.getLanches().contains(lanche)) {
-                        pedido.getLanches().remove(lanche);
+                        for (int i = 0; i < pedido.getLanches().size(); i++) {
+                            if (pedido.getLanches().contains(lanche)) {
+                                pedido.getLanches().remove(lanche);
+                            }
+                        }
                     }
                 }
-            }
+                lancheService.delete(id);
+                break;
+            case "bebida":
+                Bebida bebida = bebidaService.findById(id);
+                for (Pedido pedido : findAll()) {
+                    if (pedido.getBebidas().contains(bebida)) {
+                        for (int i = 0; i < pedido.getBebidas().size(); i++) {
+                            if (pedido.getBebidas().contains(bebida)) {
+                                pedido.getBebidas().remove(bebida);
+                            }
+                        }
+                    }
+                }
+                bebidaService.delete(id);
+                break;
         }
-        lancheService.delete(id);
+
 
     }
 

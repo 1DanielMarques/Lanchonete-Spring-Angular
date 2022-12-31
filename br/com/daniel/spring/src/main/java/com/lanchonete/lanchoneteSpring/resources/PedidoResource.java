@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.websocket.server.PathParam;
 import java.net.URI;
 import java.util.List;
 
@@ -29,11 +30,12 @@ public class PedidoResource {
         return ResponseEntity.ok().body(obj);
     }
 
-    @GetMapping(value = "/lanche/{id}")
-    public ResponseEntity<Boolean> findLanche(@PathVariable Long id){
-       boolean hasLanche = service.findLanche(id);
-        return  ResponseEntity.ok().body(hasLanche);
+    @GetMapping(value = "/{item}/{id}")
+    public ResponseEntity<Boolean> findItem(@PathVariable("id") Long id, @PathVariable("item") String item){
+       boolean hasItem = service.findItem(id,item);
+        return  ResponseEntity.ok().body(hasItem);
     }
+
     @PostMapping
     public ResponseEntity<Pedido> insert(@RequestBody String json) {
         Pedido obj = service.insert(json);
@@ -46,9 +48,9 @@ public class PedidoResource {
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping(value = "/lanche/{id}")
-    public ResponseEntity<Void> deleteLanche(@PathVariable Long id){
-        service.deleteLanche(id);
+    @DeleteMapping(value = "/{item}/{id}")
+    public ResponseEntity<Void> deleteItem(@PathVariable("id") Long id, @PathVariable("item") String item){
+        service.deleteItem(id,item);
         return ResponseEntity.noContent().build();
     }
 

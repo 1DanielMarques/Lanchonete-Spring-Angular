@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PedidoService } from 'src/app/lanchonete/services/pedido/pedido.service';
 
 @Component({
@@ -8,11 +8,17 @@ import { PedidoService } from 'src/app/lanchonete/services/pedido/pedido.service
   styleUrls: ['./confirm-dialog.component.scss']
 })
 export class ConfirmDialogComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: string[], private pedidoService: PedidoService) { }
+  constructor(public dialogRef: MatDialogRef<ConfirmDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: string[], private pedidoService: PedidoService) { }
 
-  onSim(id: string) {
-   this.pedidoService.deleteLanche(id).subscribe();
+  onSim(id: string, tipo: string, confirm: boolean) {
+    if (id && tipo =='lanche') {
+      this.pedidoService.deleteLanche(id).subscribe();
+    } else if (id && tipo == 'bebida') {
+      this.pedidoService.deleteBebida(id).subscribe();
+    }
+    this.dialogRef.close(confirm);
   }
-  
+
+
 
 }
