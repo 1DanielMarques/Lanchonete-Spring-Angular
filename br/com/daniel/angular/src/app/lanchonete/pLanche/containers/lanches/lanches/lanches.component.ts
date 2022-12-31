@@ -1,11 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Observable, catchError, of } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { catchError, Observable, of } from 'rxjs';
 import { Lanche } from 'src/app/lanchonete/model/lanche';
 import { LancheService } from 'src/app/lanchonete/services/lanche/lanche.service';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog/error-dialog.component';
+
+import {
+  ConfirmDialogComponent,
+} from './../../../../../shared/components/confirm-dialog/confirm-dialog/confirm-dialog.component';
+import { PedidoService } from './../../../../services/pedido/pedido.service';
 
 @Component({
   selector: 'app-lanches',
@@ -21,7 +26,8 @@ export class LanchesComponent implements OnInit {
     private router: Router,
     public dialog: MatDialog,
     private route: ActivatedRoute,
-    private snackBar: MatSnackBar,) {
+    private snackBar: MatSnackBar,
+    private pedidoService: PedidoService) {
     this.refresh();
   }
 
@@ -62,9 +68,27 @@ export class LanchesComponent implements OnInit {
         this.refresh();
         return this.snackBar.open('Lanche removido com sucesso!', '', { duration: 5000, verticalPosition: 'top', horizontalPosition: 'center' });
       },
-      () => this.onError('Erro ao tentar remover Lanche')
+      () => {
+        if (this.pedidoService.findLanche(lanche.id)) {
+          this.onErrorHasPedido('Este Lanche tem um ou mais pedidos associados a ele.', 'Deseja excluir mesmo assim?', lanche);
 
+        } else {
+          this.onError('Erro ao tentar remover Lanche');
+        }
+
+      }
     );
+  }
+
+  onErrorHasPedido(errorMsg: string, confirm: string, lanche: Lanche) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: [errorMsg, confirm, lanche.id]
+    });
+    dialogRef.afterClosed().subscribe(() => {
+     this.refresh();
+     this.snackBar.open('Lanche removido com sucesso!', '', { duration: 5000, verticalPosition: 'top', horizontalPosition: 'center' });
+    });
+
   }
 
 }

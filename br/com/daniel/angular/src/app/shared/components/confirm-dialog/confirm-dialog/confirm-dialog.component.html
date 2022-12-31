@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Erro</h1>
+<div mat-dialog-content>
+  {{ data[0] }} <br />
+  <strong class="text-center"> {{ data[1] }}</strong>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Não</button>
+  <button mat-raised-button mat-dialog-close (click)="onSim(data[2])" color="warn">
+    Sim
+  </button>
+</div>

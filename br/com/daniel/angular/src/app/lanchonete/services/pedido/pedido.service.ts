@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { first, tap } from 'rxjs';
+
 import { Pedido } from '../../model/pedido';
 
 @Injectable({
@@ -22,6 +23,15 @@ export class PedidoService {
 
   findById(id: string) {
     return this.httpClient.get<Pedido>(`${this.API}/${id}`);
+  }
+
+  findLanche(id: string) {
+    return this.httpClient.get<boolean>(`${this.API}/${'lanche'}/${id}`);
+  }
+
+  deleteLanche(id: string) {
+    return this.httpClient.delete(`${this.API}/${'lanche'}/${id}`);
+   
   }
 
   save(pedido: Partial<Pedido>) {

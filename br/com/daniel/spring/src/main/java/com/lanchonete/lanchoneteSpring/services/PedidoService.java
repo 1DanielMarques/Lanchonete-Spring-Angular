@@ -23,18 +23,19 @@ import java.util.Optional;
 @Service
 public class PedidoService {
 
-    @Autowired
+
     IPedidoRepository repository;
-
-    @Autowired
     LancheService lancheService;
-
-    @Autowired
     BebidaService bebidaService;
-
-    @Autowired
     EnderecoService enderecoService;
 
+
+    public PedidoService(IPedidoRepository repository, LancheService lancheService, BebidaService bebidaService, EnderecoService enderecoService) {
+        this.repository = repository;
+        this.lancheService = lancheService;
+        this.bebidaService = bebidaService;
+        this.enderecoService = enderecoService;
+    }
 
     public Pedido insert(String jsonRequest) {
         String json = jsonRequest;
@@ -83,6 +84,16 @@ public class PedidoService {
         return repository.findAll();
     }
 
+    public boolean findLanche(Long id) {
+        Lanche lanche = lancheService.findById(id);
+        for (Pedido p : findAll()) {
+            if (p.getLanches().contains(lanche)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public Pedido findById(Long id) {
         Optional<Pedido> obj = repository.findById(id);
         return obj.orElseThrow(() -> new ResourceNotFoundException(id));
@@ -99,6 +110,20 @@ public class PedidoService {
                 DataIntegrityViolationException e) {
             throw new DatabaseException(e.getMessage());
         }
+    }
+
+    public void deleteLanche(Long id) {
+        Lanche lanche = lancheService.findById(id);
+        for (Pedido pedido : findAll()) {
+            if (pedido.getLanches().contains(lanche)) {
+                for (int i = 0; i < pedido.getLanches().size(); i++) {
+                    if (pedido.getLanches().contains(lanche)) {
+                        pedido.getLanches().remove(lanche);
+                    }
+                }
+            }
+        }
+        lancheService.delete(id);
     }
 
     public Pedido update(Long id, String json) {

@@ -49,14 +49,14 @@ public class Pedido implements Serializable {
 
     }
 
-    public Pedido(Long id,List<Lanche> lanches, List<Bebida> bebidas, TipoPagamento tipoPagamento, Endereco endereco) {
+    public Pedido(Long id, List<Lanche> lanches, List<Bebida> bebidas, TipoPagamento tipoPagamento, Endereco endereco) {
         this.id = id;
         this.endereco = endereco;
-        for(Lanche l : lanches){
-            qtdLanches +=1;
+        for (Lanche l : lanches) {
+            qtdLanches += 1;
         }
-        for(Bebida b : bebidas){
-            qtdBebidas +=1;
+        for (Bebida b : bebidas) {
+            qtdBebidas += 1;
         }
         this.lanches = lanches;
         this.bebidas = bebidas;
