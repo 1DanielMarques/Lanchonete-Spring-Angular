@@ -49,7 +49,8 @@ export class PedidoFormComponent implements OnInit {
   show_qtd_bebida: number = 0;
 
   taxa: number = 0;
-  total: number = 0;
+  total: string = '';
+  totalNumber: number = 0;
 
   constructor(private formBuilder: NonNullableFormBuilder, private location: Location, private lancheService: LancheService, private bebidaService: BebidaService, private pedidoService: PedidoService, private snackBar: MatSnackBar, private dialog: MatDialog, private route: ActivatedRoute) {
 
@@ -139,7 +140,8 @@ export class PedidoFormComponent implements OnInit {
     lanche.qtd++;
     this.show_qtd_lanche++;
     this.pedido.lanches?.push(lanche);
-    this.total += +lanche.preco;
+    this.totalNumber += +lanche.preco;
+    this.total = this.totalNumber.toFixed(2);
 
   }
 
@@ -148,7 +150,9 @@ export class PedidoFormComponent implements OnInit {
       lanche.qtd--;
       this.show_qtd_lanche--;
       this.pedido.lanches?.splice(this.pedido.lanches?.indexOf(lanche, 0), 1);
-      this.total -= +lanche.preco;
+      this.totalNumber -= +lanche.preco;
+      this.total = this.totalNumber.toFixed(2);
+
     } else {
       lanche.qtd = 0;
     }
@@ -158,7 +162,9 @@ export class PedidoFormComponent implements OnInit {
     bebida.qtd++;
     this.show_qtd_bebida++;
     this.pedido.bebidas?.push(bebida);
-    this.total += +bebida.preco;
+    this.totalNumber += +bebida.preco;
+    this.total = this.totalNumber.toFixed(2);
+
   }
 
   onRemoveBebida(bebida: Bebida) {
@@ -166,7 +172,8 @@ export class PedidoFormComponent implements OnInit {
       bebida.qtd--;
       this.show_qtd_bebida--;
       this.pedido.bebidas?.splice(this.pedido.bebidas?.indexOf(bebida, 0), 1);
-      this.total -= +bebida.preco;
+      this.totalNumber -= +bebida.preco;
+      this.total = this.totalNumber.toFixed(2);
     } else {
       bebida.qtd = 0;
     }
