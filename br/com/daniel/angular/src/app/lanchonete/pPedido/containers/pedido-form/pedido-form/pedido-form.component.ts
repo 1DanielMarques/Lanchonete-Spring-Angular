@@ -54,14 +54,18 @@ export class PedidoFormComponent implements OnInit {
   constructor(private formBuilder: NonNullableFormBuilder, private location: Location, private lancheService: LancheService, private bebidaService: BebidaService, private pedidoService: PedidoService, private snackBar: MatSnackBar, private dialog: MatDialog, private route: ActivatedRoute) {
 
 
-    this.taxa = this.pedido_resolver.taxa;
     if (this.pedido_resolver.id) {
       this.total = this.pedido_resolver.total;
+      this.taxa = this.pedido_resolver.taxa;
     }
 
     this.onRefresh();
+
     console.log(this.pedido_resolver);
 
+  }
+  onPagamento(pagamento: string) {
+    this.taxa = this.pedidoService.calcTaxa(pagamento);
   }
 
   ngOnInit(): void {
@@ -73,6 +77,7 @@ export class PedidoFormComponent implements OnInit {
       numero: this.pedido_resolver.endereco.numero,
     });
   }
+
 
 
   onRefresh() {

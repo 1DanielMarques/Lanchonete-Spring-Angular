@@ -42,4 +42,18 @@ export class PedidoService {
     return this.httpClient.delete(`${this.API}/${id}`);
   }
 
+  calcTaxa(pagamento: string) {
+    switch (pagamento) {
+      case "DINHEIRO":
+        return 0;
+      case "DEBITO":
+        return 1.25;
+      case "CREDITO":
+        return 2.75;
+      default:
+        return 10;
+
+    }
+  }
+
 }
