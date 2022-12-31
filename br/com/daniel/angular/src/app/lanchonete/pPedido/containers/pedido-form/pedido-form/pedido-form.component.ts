@@ -51,23 +51,7 @@ export class PedidoFormComponent implements OnInit {
   show_qtd_bebida: number = 0;
 
   constructor(private formBuilder: NonNullableFormBuilder, private location: Location, private lancheService: LancheService, private bebidaService: BebidaService, private pedidoService: PedidoService, private snackBar: MatSnackBar, private dialog: MatDialog, private route: ActivatedRoute) {
-    this.pedido_resolver.lanches.forEach(() => {
-      if (this.pedido_resolver.id) {
-        this.show_qtd_lanche++;
-      }
-    });
 
-    this.pedido_resolver.bebidas.forEach(() => {
-      if (this.pedido_resolver.id) {
-        this.show_qtd_bebida++;
-      }
-    });
-
-    for (let i = 0; i < this.pedido_resolver.bebidas.length; i++) {
-      this.pedido_resolver.bebidas[i].qtd = 1;
-    }
-
-    this.qtdBebida();
     this.onRefresh();
 
     console.log(this.pedido_resolver);
@@ -82,20 +66,6 @@ export class PedidoFormComponent implements OnInit {
       numero: this.pedido_resolver.endereco.numero,
 
     });
-  }
-
-  verificaIdBebida(bebida: Bebida) {
-    if (this.pedido_resolver.bebidas.length == this.show_qtd_bebida) {
-      for (let i = 0; i < this.pedido_resolver.bebidas.length; i++) {
-        if (bebida.id == this.pedido_resolver.bebidas[i].id) {
-          bebida.qtd = this.pedido_resolver.bebidas[i].qtd;
-        }
-      }
-      return true;
-    } else{
-     
-    }
-    return true;
   }
 
   onRefresh() {
@@ -114,19 +84,6 @@ export class PedidoFormComponent implements OnInit {
           return of([])
         })
       );
-  }
-
-
-  qtdBebida() {
-    for (let i = 0; i < this.pedido_resolver.bebidas.length; i++) {
-      for (let j = 0; j < this.pedido_resolver.bebidas.length; j++) {
-        if (i != j) {
-          if (this.pedido_resolver.bebidas[i].id == this.pedido_resolver.bebidas[j].id) {
-            this.pedido_resolver.bebidas[i].qtd++;
-          }
-        }
-      }
-    }
   }
 
   onError(errorMsg: string) {
