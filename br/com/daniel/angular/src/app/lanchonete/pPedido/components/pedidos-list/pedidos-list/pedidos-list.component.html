@@ -13,7 +13,7 @@
       Lanches
     </mat-header-cell>
     <mat-cell *matCellDef="let pedido" class="pedido-column-lanche">
-      <mat-accordion *ngIf="verificaVazio(pedido.lanches); else emptyData">
+      <mat-accordion *ngIf="verificaVazioLanche(pedido.lanches); else emptyDataLanche">
         <mat-expansion-panel
           (opened)="panelOpenState = true"
           (closed)="panelOpenState = false"
@@ -50,12 +50,12 @@
       Bebidas
     </mat-header-cell>
     <mat-cell *matCellDef="let pedido" class="pedido-column-bebida">
-      <mat-accordion *ngIf="verificaVazio(pedido.bebidas); else emptyData">
+      <mat-accordion *ngIf="verificaVazioBebida(pedido.bebidas); else emptyDataBebida">
         <mat-expansion-panel
           (opened)="panelOpenState = true"
           (closed)="panelOpenState = false"
         >
-          <mat-expansion-panel-header>
+          <mat-expansion-panel-header class="mat-expansion-panel-header">
             <mat-panel-title> Dados </mat-panel-title>
           </mat-expansion-panel-header>
           <mat-list>
@@ -138,7 +138,7 @@
   </ng-container>
 
   <!-- Template-->
-  <ng-template #emptyData>
+  <ng-template #emptyDataLanche>
     <mat-accordion>
       <mat-expansion-panel
         (opened)="panelOpenState = true"
@@ -150,6 +150,28 @@
 
         <button
           class="mat-expansion-panel-body-lanches"
+          mat-icon-button
+          color="warn"
+          aria-label="Example icon button with a menu icon"
+        >
+          <mat-icon>block</mat-icon>
+        </button>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </ng-template>
+  <!-- Template-->
+  <ng-template #emptyDataBebida>
+    <mat-accordion>
+      <mat-expansion-panel
+        (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false"
+      >
+        <mat-expansion-panel-header class="mat-expansion-panel-header">
+          <mat-panel-title> Dados </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <button
+          class="mat-expansion-panel-body-bebidas"
           mat-icon-button
           color="warn"
           aria-label="Example icon button with a menu icon"
