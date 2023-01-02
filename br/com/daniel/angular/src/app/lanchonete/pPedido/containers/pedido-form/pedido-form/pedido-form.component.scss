@@ -1,22 +1,45 @@
-
-.text-align-start{
+.text-align-start {
   text-align: start;
+
 }
 
-.show-qtd{
+mat-list-item{
+  padding: 0px 0px 0px 0px;
+}
+
+.show-qtd {
   padding: 0px 0px 0px 1150px;
 }
-.qtd{
+
+.qtd {
   font-size: 18px;
   font-weight: bolder;
 
 }
+//Colunas Lanche
 
-.pagamento{
+.colunas-lanche {
+  padding: 0px 0px 0px 20px;
+}
+//--------------
+//Colunas Bebida
 
+.colunas-bebida{
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  display: inline-block;
 }
 
-.text{
+.colunas-bebida-preco{
+  display: inline-block;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+}
+
+//---------
+
+
+.text {
   display: inline-block;
   text-align: start;
   font-size: 18px;
@@ -25,28 +48,28 @@
 }
 
 
-.pagamento-data{
+.pagamento-data {
   width: 33%;
   padding: 0px 0px 0px 0px;
 }
 
-.pagamento-select{
+.pagamento-select {
 
   text-align: start;
 }
 
-.endereco{
+.endereco {
   padding: 0px 10px 0px 0px;
   width: 600px;
 }
 
-.endereco-numero{
+.endereco-numero {
   width: 100px;
 }
 
 
 
-.bebidas-form{
+.bebidas-form {
   padding: 10px 0px 10px 0px;
 
 }

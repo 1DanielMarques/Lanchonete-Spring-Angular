@@ -17,9 +17,13 @@
 
             <mat-list class="text-align-start">
               <mat-list-item *ngFor="let lanche of lanches$ | async">
-                {{ lanche.nome }} | {{ lanche.descricao }} | R${{
-                  lanche.preco
-                }}
+                <table>
+                  <tr>
+                    <td>{{ lanche.nome }}</td>
+                    <td class="colunas-lanche">{{ lanche.descricao }}</td>
+                    <td class="colunas-lanche">R$ {{ lanche.preco }}</td>
+                  </tr>
+                </table>
                 <div matListItemMeta>
                   <button
                     mat-icon-button
@@ -54,8 +58,33 @@
             </mat-expansion-panel-header>
 
             <mat-list class="text-align-start">
+              <tr>
+                <th>Bebida</th>
+                <th>Marca</th>
+                <th>Litragem</th>
+                <th>Sabor</th>
+                <th>Preço</th>
+              </tr>
               <mat-list-item *ngFor="let bebida of bebidas$ | async">
-                {{ bebida.nome }}
+                <table>
+                  <tr>
+                    <div class="colunas-bebida">
+                      <td>{{ bebida.nome }}</td>
+                    </div>
+                    <div class="colunas-bebida">
+                      <td>{{ bebida.marca }}</td>
+                    </div>
+                    <div class="colunas-bebida">
+                      <td>{{ bebida.litragem }}</td>
+                    </div>
+                    <div class="colunas-bebida">
+                      <td>{{ bebida.sabor }}</td>
+                    </div>
+                    <div class="colunas-bebida-preco">
+                      <td>R$ {{ bebida.preco }}</td>
+                    </div>
+                  </tr>
+                </table>
                 <div matListItemMeta>
                   <button
                     mat-icon-button

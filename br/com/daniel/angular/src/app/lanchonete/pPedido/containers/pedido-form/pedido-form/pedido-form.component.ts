@@ -57,7 +57,7 @@ export class PedidoFormComponent implements OnInit {
 
     if (this.pedido_resolver.id) {
       this.taxa = this.pedido_resolver.taxa;
-    }else{
+    } else {
       this.taxaAux = +this.taxa;
       this.taxa = this.taxaAux.toFixed(2);
 
@@ -65,11 +65,11 @@ export class PedidoFormComponent implements OnInit {
     this.totalAux = +this.total;
     this.total = this.totalAux.toFixed(2);
 
-
     this.onRefresh();
     console.log(this.pedido_resolver);
   }
 
+  precoAux: number = 0;
   ngOnInit(): void {
     this.form.setValue({
       id: this.pedido_resolver.id,
@@ -78,6 +78,8 @@ export class PedidoFormComponent implements OnInit {
       bairro: this.pedido_resolver.endereco.bairro,
       numero: this.pedido_resolver.endereco.numero,
     });
+
+
 
   }
 
