@@ -127,6 +127,7 @@ public class PedidoService {
                             }
                         }
                     }
+                    pedido.calcTotal();;
                 }
                 lancheService.delete(id);
                 break;
@@ -141,6 +142,7 @@ public class PedidoService {
                             }
                         }
                     }
+                    pedido.calcTotal();
                 }
                 bebidaService.delete(id);
                 break;
@@ -165,29 +167,29 @@ public class PedidoService {
     }
 
     public Pedido update(Long id, String json) {
-        Pedido p1 = findById(id);
+        Pedido pedido = findById(id);
         try {
-            p1 = updateData(p1, json);
-            return repository.save(p1);
+            pedido = updateData(pedido, json);
+            return repository.save(pedido);
         } catch (EntityNotFoundException e) {
             throw new ResourceNotFoundException(id);
         }
     }
 
-    private Pedido updateData(Pedido p1, String jsonRequest) {
+    private Pedido updateData(Pedido pedido, String jsonRequest) {
         String json = jsonRequest;
 
         JSONObject obj = new JSONObject(json);
 
         TipoPagamento tipoPagamento = TipoPagamento.valueOf(obj.getString("tipoPagamento"));
-        p1.setTipoPagamento(tipoPagamento);
+        pedido.setTipoPagamento(tipoPagamento);
 
         String bairro = obj.getJSONObject("endereco").getString("bairro");
         String rua = obj.getJSONObject("endereco").getString("rua");
         int numero = obj.getJSONObject("endereco").getInt("numero");
-        p1.getEndereco().setBairro(bairro);
-        p1.getEndereco().setRua(rua);
-        p1.getEndereco().setNumero(numero);
+        pedido.getEndereco().setBairro(bairro);
+        pedido.getEndereco().setRua(rua);
+        pedido.getEndereco().setNumero(numero);
 
         JSONArray lanches = obj.getJSONArray("lanches");
         List<Lanche> lancheList = new ArrayList<>();
@@ -197,8 +199,8 @@ public class PedidoService {
             lancheList.add(lancheService.findById(id));
             qtdLanches++;
         }
-        p1.setQtdLanches(qtdLanches);
-        p1.setLanches(lancheList);
+        pedido.setQtdLanches(qtdLanches);
+        pedido.setLanches(lancheList);
 
         JSONArray bebidas = obj.getJSONArray("bebidas");
         List<Bebida> bebidaList = new ArrayList<>();
@@ -208,11 +210,12 @@ public class PedidoService {
             bebidaList.add(bebidaService.findById(id));
             qtdBebidas++;
         }
-        p1.setQtdBebidas(qtdBebidas);
-        p1.setBebidas(bebidaList);
+        pedido.setQtdBebidas(qtdBebidas);
+        pedido.setBebidas(bebidaList);
+        pedido.calcTaxa();
+        pedido.calcTotal();
 
-
-        return p1;
+        return pedido;
     }
 
 }

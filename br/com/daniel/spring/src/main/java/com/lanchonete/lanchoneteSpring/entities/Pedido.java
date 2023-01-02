@@ -112,7 +112,8 @@ public class Pedido implements Serializable {
         this.total = total;
     }
 
-    private void calcTotal() {
+    public void calcTotal() {
+        total = 0;
         for (Lanche l : getLanches()) {
             total += l.getPreco();
         }
@@ -130,7 +131,7 @@ public class Pedido implements Serializable {
         this.taxa = taxa;
     }
 
-    private void calcTaxa() {
+    public void calcTaxa() {
         switch (getTipoPagamento().getCodigo()) {
             case 1:
                 setTaxa(0);
