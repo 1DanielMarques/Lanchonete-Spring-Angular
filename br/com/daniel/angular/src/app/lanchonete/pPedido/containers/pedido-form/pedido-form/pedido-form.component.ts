@@ -48,28 +48,26 @@ export class PedidoFormComponent implements OnInit {
   show_qtd_lanche: number = 0;
   show_qtd_bebida: number = 0;
 
-  taxa: number = 0;
-  total: string = '';
-  totalNumber: number = 0;
+  taxa: string = '0';
+  total: string = '0';
+  totalAux: number = 0;
+  taxaAux: number = 0;
 
   constructor(private formBuilder: NonNullableFormBuilder, private location: Location, private lancheService: LancheService, private bebidaService: BebidaService, private pedidoService: PedidoService, private snackBar: MatSnackBar, private dialog: MatDialog, private route: ActivatedRoute) {
 
-
     if (this.pedido_resolver.id) {
-      this.total = '0';
       this.taxa = this.pedido_resolver.taxa;
+    }else{
+      this.taxaAux = +this.taxa;
+      this.taxa = this.taxaAux.toFixed(2);
+
     }
+    this.totalAux = +this.total;
+    this.total = this.totalAux.toFixed(2);
 
 
     this.onRefresh();
-
     console.log(this.pedido_resolver);
-
-  }
-
-
-  onPagamento(pagamento: string) {
-    this.taxa = this.pedidoService.calcTaxa(pagamento);
   }
 
   ngOnInit(): void {
@@ -80,9 +78,13 @@ export class PedidoFormComponent implements OnInit {
       bairro: this.pedido_resolver.endereco.bairro,
       numero: this.pedido_resolver.endereco.numero,
     });
+
   }
 
-
+  onPagamento(pagamento: string) {
+    this.taxaAux = this.pedidoService.calcTaxa(pagamento);
+    this.taxa = this.taxaAux.toFixed(2);
+  }
 
   onRefresh() {
     this.lanches$ = this.lancheService.findAll().
@@ -140,8 +142,8 @@ export class PedidoFormComponent implements OnInit {
     lanche.qtd++;
     this.show_qtd_lanche++;
     this.pedido.lanches?.push(lanche);
-    this.totalNumber += +lanche.preco;
-    this.total = this.totalNumber.toFixed(2);
+    this.totalAux += +lanche.preco;
+    this.total = this.totalAux.toFixed(2);
 
   }
 
@@ -150,8 +152,8 @@ export class PedidoFormComponent implements OnInit {
       lanche.qtd--;
       this.show_qtd_lanche--;
       this.pedido.lanches?.splice(this.pedido.lanches?.indexOf(lanche, 0), 1);
-      this.totalNumber -= +lanche.preco;
-      this.total = this.totalNumber.toFixed(2);
+      this.totalAux -= +lanche.preco;
+      this.total = this.totalAux.toFixed(2);
 
     } else {
       lanche.qtd = 0;
@@ -162,8 +164,8 @@ export class PedidoFormComponent implements OnInit {
     bebida.qtd++;
     this.show_qtd_bebida++;
     this.pedido.bebidas?.push(bebida);
-    this.totalNumber += +bebida.preco;
-    this.total = this.totalNumber.toFixed(2);
+    this.totalAux += +bebida.preco;
+    this.total = this.totalAux.toFixed(2);
 
   }
 
@@ -172,8 +174,8 @@ export class PedidoFormComponent implements OnInit {
       bebida.qtd--;
       this.show_qtd_bebida--;
       this.pedido.bebidas?.splice(this.pedido.bebidas?.indexOf(bebida, 0), 1);
-      this.totalNumber -= +bebida.preco;
-      this.total = this.totalNumber.toFixed(2);
+      this.totalAux -= +bebida.preco;
+      this.total = this.totalAux.toFixed(2);
     } else {
       bebida.qtd = 0;
     }
