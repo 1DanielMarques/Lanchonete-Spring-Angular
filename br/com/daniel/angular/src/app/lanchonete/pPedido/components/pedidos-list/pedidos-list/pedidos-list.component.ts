@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { Endereco } from 'src/app/lanchonete/model/endereco';
 import { Pedido } from 'src/app/lanchonete/model/pedido';
 
@@ -7,18 +7,27 @@ import { Pedido } from 'src/app/lanchonete/model/pedido';
   templateUrl: './pedidos-list.component.html',
   styleUrls: ['./pedidos-list.component.scss']
 })
-export class PedidosListComponent {
+export class PedidosListComponent implements OnInit{
   constructor() {
-
+    this.pedidos.forEach(pedido => {
+      this.totalAux = +pedido.total;
+      pedido.total = this.totalAux.toFixed(2);
+    });
   }
-
+  ngOnInit(): void {
+    this.pedidos.forEach(pedido => {
+      this.totalAux = +pedido.total;
+      pedido.total = this.totalAux.toFixed(2);
+    });
+  }
+  totalAux: number = 0;
   @Input() pedidos: Pedido[] = [];
   @Output() add = new EventEmitter(false);
   @Output() edit = new EventEmitter(false);
   @Output() delete = new EventEmitter(false);
   @Output() dialog = new EventEmitter(false);
 
-  readonly displayedColumns = ['id', 'lanches', 'qtdLanches', 'bebidas', 'qtdBebidas','endereco', 'pagamento', 'taxa', 'total', 'action'];
+  readonly displayedColumns = ['id', 'lanches', 'qtdLanches', 'bebidas', 'qtdBebidas', 'endereco', 'pagamento', 'taxa', 'total', 'action'];
   panelOpenState = false;
 
   verificaVazioLanche(items: string[]) {
@@ -45,8 +54,8 @@ export class PedidosListComponent {
     this.delete.emit(pedido);
   }
 
-  onEndereco(endereco:Endereco){
-      this.dialog.emit(endereco);
+  onEndereco(endereco: Endereco) {
+    this.dialog.emit(endereco);
   }
 
 

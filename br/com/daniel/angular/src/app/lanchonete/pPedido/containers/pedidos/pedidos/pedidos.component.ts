@@ -21,7 +21,6 @@ export class PedidosComponent {
   constructor(private lancheService: LancheService, private bebidaService: BebidaService, private pedidoService: PedidoService, private router: Router, private route: ActivatedRoute, public dialog: MatDialog, private snackBar: MatSnackBar) {
     this.refresh();
   }
-
   pedidos$: Observable<Pedido[]> | null = null;
 
   refresh() {

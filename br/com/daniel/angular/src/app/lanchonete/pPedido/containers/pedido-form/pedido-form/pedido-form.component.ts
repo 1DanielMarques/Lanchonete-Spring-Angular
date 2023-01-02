@@ -56,7 +56,7 @@ export class PedidoFormComponent implements OnInit {
 
 
     if (this.pedido_resolver.id) {
-      this.total = this.pedido_resolver.total;
+      this.total = '0';
       this.taxa = this.pedido_resolver.taxa;
     }
 
