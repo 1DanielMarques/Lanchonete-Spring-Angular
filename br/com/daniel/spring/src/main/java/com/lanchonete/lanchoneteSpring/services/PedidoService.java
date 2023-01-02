@@ -65,20 +65,11 @@ public class PedidoService {
         }
 
         Pedido p = new Pedido(null, lancheList, bebidaList, tipoPagamento, endereco);
-
+        p.setTaxa(p.getTaxa());
+        p.setTotal(p.getTotal());
         return repository.save(p);
     }
 
-    public Pedido insert(Pedido obj) {
-        return repository.save(obj);
-    }
-
-    public List<Pedido> insertAll(List<Pedido> obj) {
-        for (Pedido p : obj) {
-            insert(p);
-        }
-        return obj;
-    }
 
     public List<Pedido> findAll() {
         updateQtd();

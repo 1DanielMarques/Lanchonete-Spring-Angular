@@ -1,7 +1,6 @@
 package com.lanchonete.lanchoneteSpring.entities;
 
 import com.lanchonete.lanchoneteSpring.entities.enums.TipoPagamento;
-import com.lanchonete.lanchoneteSpring.services.CalculoTotalImpl;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -35,7 +34,6 @@ public class Pedido implements Serializable {
 
     private double taxa;
 
-
     private int qtdLanches;
     private int qtdBebidas;
 
@@ -61,6 +59,8 @@ public class Pedido implements Serializable {
         this.lanches = lanches;
         this.bebidas = bebidas;
         setTipoPagamento(tipoPagamento);
+        calcTaxa();
+        calcTotal();
     }
 
     public Long getId() {
@@ -105,8 +105,6 @@ public class Pedido implements Serializable {
     }
 
     public double getTotal() {
-        CalculoTotalImpl calc = new CalculoTotalImpl();
-        this.total = calc.calculoTotal(this);
         return total;
     }
 
@@ -114,14 +112,36 @@ public class Pedido implements Serializable {
         this.total = total;
     }
 
+    private void calcTotal() {
+        for (Lanche l : getLanches()) {
+            total += l.getPreco();
+        }
+        for (Bebida b : getBebidas()) {
+            total += b.getPreco();
+        }
+        total += getTaxa();
+    }
+
     public double getTaxa() {
-        CalculoTotalImpl calc = new CalculoTotalImpl();
-        calc.calculoTaxa(this);
         return taxa;
     }
 
     public void setTaxa(double taxa) {
         this.taxa = taxa;
+    }
+
+    private void calcTaxa() {
+        switch (getTipoPagamento().getCodigo()) {
+            case 1:
+                setTaxa(0);
+                break;
+            case 2:
+                setTaxa(1.25);
+                break;
+            case 3:
+                setTaxa(2.75);
+                break;
+        }
     }
 
     public TipoPagamento getTipoPagamento() {
