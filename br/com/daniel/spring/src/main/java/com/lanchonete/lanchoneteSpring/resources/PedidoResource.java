@@ -31,9 +31,9 @@ public class PedidoResource {
     }
 
     @GetMapping(value = "/{item}/{id}")
-    public ResponseEntity<Boolean> findItem(@PathVariable("id") Long id, @PathVariable("item") String item){
-       boolean hasItem = service.findItem(id,item);
-        return  ResponseEntity.ok().body(hasItem);
+    public ResponseEntity<Boolean> findItem(@PathVariable("id") Long id, @PathVariable("item") String item) {
+        boolean hasItem = service.findItem(id, item);
+        return ResponseEntity.ok().body(hasItem);
     }
 
     @PostMapping
@@ -42,6 +42,7 @@ public class PedidoResource {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).body(obj);
     }
+
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         service.delete(id);
@@ -49,8 +50,8 @@ public class PedidoResource {
     }
 
     @DeleteMapping(value = "/{item}/{id}")
-    public ResponseEntity<Void> deleteItem(@PathVariable("id") Long id, @PathVariable("item") String item){
-        service.deleteItem(id,item);
+    public ResponseEntity<Void> deleteItem(@PathVariable("id") Long id, @PathVariable("item") String item) {
+        service.deleteItem(id, item);
         return ResponseEntity.noContent().build();
     }
 

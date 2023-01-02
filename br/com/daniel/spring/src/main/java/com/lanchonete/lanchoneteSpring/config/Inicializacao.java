@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
-@Configuration
+//@Configuration
 public class Inicializacao implements CommandLineRunner {
 
 

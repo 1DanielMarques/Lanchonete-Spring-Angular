@@ -129,7 +129,8 @@ public class PedidoService {
                 Lanche lanche = lancheService.findById(id);
                 for (Pedido pedido : findAll()) {
                     if (pedido.getLanches().contains(lanche)) {
-                        for (int i = 0; i < pedido.getLanches().size(); i++) {
+                        int size = pedido.getLanches().size();
+                        for (int i = 0; i < size; i++) {
                             if (pedido.getLanches().contains(lanche)) {
                                 pedido.getLanches().remove(lanche);
                             }
@@ -142,7 +143,8 @@ public class PedidoService {
                 Bebida bebida = bebidaService.findById(id);
                 for (Pedido pedido : findAll()) {
                     if (pedido.getBebidas().contains(bebida)) {
-                        for (int i = 0; i < pedido.getBebidas().size(); i++) {
+                        int size = pedido.getBebidas().size();
+                        for (int i = 0; i < size; i++) {
                             if (pedido.getBebidas().contains(bebida)) {
                                 pedido.getBebidas().remove(bebida);
                             }
@@ -152,8 +154,6 @@ public class PedidoService {
                 bebidaService.delete(id);
                 break;
         }
-
-
     }
 
     private void updateQtd() {
@@ -168,7 +168,9 @@ public class PedidoService {
                 qtd++;
             }
             pedido.setQtdBebidas(qtd);
+            repository.save(pedido);
         }
+
     }
 
     public Pedido update(Long id, String json) {
