@@ -1,8 +1,9 @@
-import { PedidosResolver } from './guards/pedidos/pedidos.resolver';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { BebidasResolver } from './guards/bebidas/bebidas.resolver';
 import { LanchesResolver } from './guards/lanches/lanches.resolver';
+import { PedidosResolver } from './guards/pedidos/pedidos.resolver';
 import { HomeComponent } from './home/home.component';
 import { BebidaFormComponent } from './pBebida/containers/bebida-form/bebida-form/bebida-form.component';
 import { BebidasComponent } from './pBebida/containers/bebidas/bebidas/bebidas.component';

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['enderecos'], { relativeTo: this.route });
   }
 
-  onPedidos(){
+  onPedidos() {
     this.router.navigate(['pedidos'], { relativeTo: this.route });
   }
 

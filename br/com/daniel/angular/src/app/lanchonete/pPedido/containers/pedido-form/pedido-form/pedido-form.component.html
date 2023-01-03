@@ -28,7 +28,12 @@
                     <td class="colunas-lanche-descricao">
                       {{ lanche.descricao }}
                     </td>
-                    <td class="colunas-lanche-preco" *ngIf="verificaDecimal(lanche)">R$ {{ lanche.preco }}</td>
+                    <td
+                      class="colunas-lanche-preco"
+                      *ngIf="verificaDecimal(lanche)"
+                    >
+                      R$ {{ lanche.preco }}
+                    </td>
                   </tr>
                 </table>
                 <div matListItemMeta>
@@ -81,7 +86,12 @@
                       {{ bebida.litragem }}
                     </td>
                     <td class="colunas-bebida-sabor">{{ bebida.sabor }}</td>
-                    <td class="colunas-bebida-preco" *ngIf="verificaDecimal(bebida)">R$ {{ bebida.preco }}</td>
+                    <td
+                      class="colunas-bebida-preco"
+                      *ngIf="verificaDecimal(bebida)"
+                    >
+                      R$ {{ bebida.preco }}
+                    </td>
                   </tr>
                 </table>
                 <div matListItemMeta>

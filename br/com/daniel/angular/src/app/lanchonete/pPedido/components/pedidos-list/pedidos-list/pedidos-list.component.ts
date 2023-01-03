@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Endereco } from 'src/app/lanchonete/model/endereco';
 import { Pedido } from 'src/app/lanchonete/model/pedido';
 
@@ -7,7 +7,7 @@ import { Pedido } from 'src/app/lanchonete/model/pedido';
   templateUrl: './pedidos-list.component.html',
   styleUrls: ['./pedidos-list.component.scss']
 })
-export class PedidosListComponent implements OnInit{
+export class PedidosListComponent implements OnInit {
   constructor() {
     this.pedidos.forEach(pedido => {
       this.totalAux = +pedido.total;

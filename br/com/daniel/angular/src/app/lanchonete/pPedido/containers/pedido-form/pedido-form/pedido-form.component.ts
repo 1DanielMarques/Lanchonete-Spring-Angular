@@ -1,17 +1,17 @@
-import { ActivatedRoute } from '@angular/router';
-import { ErrorDialogComponent } from './../../../../../shared/components/error-dialog/error-dialog/error-dialog.component';
-import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { PedidoService } from 'src/app/lanchonete/services/pedido/pedido.service';
-import { Pedido } from 'src/app/lanchonete/model/pedido';
-import { Endereco } from './../../../../model/endereco';
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { NonNullableFormBuilder } from '@angular/forms';
-import { Observable, catchError, of, delay, map } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
+import { catchError, Observable, of } from 'rxjs';
 import { Lanche } from 'src/app/lanchonete/model/lanche';
+import { Pedido } from 'src/app/lanchonete/model/pedido';
+import { PedidoService } from 'src/app/lanchonete/services/pedido/pedido.service';
 
+import { ErrorDialogComponent } from './../../../../../shared/components/error-dialog/error-dialog/error-dialog.component';
 import { Bebida } from './../../../../model/bebida';
+import { Endereco } from './../../../../model/endereco';
 import { BebidaService } from './../../../../services/bebida/bebida.service';
 import { LancheService } from './../../../../services/lanche/lanche.service';
 
@@ -62,15 +62,12 @@ export class PedidoFormComponent implements OnInit {
     } else {
       this.taxaAux = +this.taxa;
       this.taxa = this.taxaAux.toFixed(2);
-
     }
     this.totalAux = +this.total;
     this.total = this.totalAux.toFixed(2);
-
     this.onRefresh();
     console.log(this.pedido_resolver);
   }
-
 
 
   ngOnInit(): void {
@@ -83,7 +80,6 @@ export class PedidoFormComponent implements OnInit {
     });
 
   }
-
 
   verificaDecimal(lanche: any) {
     let num: number = +lanche.preco;

@@ -1,14 +1,15 @@
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Observable, catchError, of } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
+import { catchError, Observable, of } from 'rxjs';
 import { Endereco } from 'src/app/lanchonete/model/endereco';
 import { Pedido } from 'src/app/lanchonete/model/pedido';
 import { BebidaService } from 'src/app/lanchonete/services/bebida/bebida.service';
 import { LancheService } from 'src/app/lanchonete/services/lanche/lanche.service';
 import { PedidoService } from 'src/app/lanchonete/services/pedido/pedido.service';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog/error-dialog.component';
+
 import { EnderecoDialogComponent } from '../../../components/endereco-dialog/endereco-dialog/endereco-dialog.component';
 
 @Component({

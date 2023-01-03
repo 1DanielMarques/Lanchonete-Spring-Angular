@@ -7,5 +7,4 @@ export interface Bebida {
   preco: string;
   qtd: number;
 
-
 }

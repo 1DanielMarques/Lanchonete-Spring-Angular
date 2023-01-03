@@ -1,13 +1,13 @@
-import { PedidoService } from 'src/app/lanchonete/services/pedido/pedido.service';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Observable, catchError, of } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { catchError, Observable, of } from 'rxjs';
 import { Bebida } from 'src/app/lanchonete/model/bebida';
 import { BebidaService } from 'src/app/lanchonete/services/bebida/bebida.service';
-import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog/error-dialog.component';
+import { PedidoService } from 'src/app/lanchonete/services/pedido/pedido.service';
 import { ConfirmDialogComponent } from 'src/app/shared/components/confirm-dialog/confirm-dialog/confirm-dialog.component';
+import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog/error-dialog.component';
 
 @Component({
   selector: 'app-bebidas',
@@ -66,7 +66,6 @@ export class BebidasComponent {
       }
     );
   }
-
 
   onErrorHasPedido(errorMsg: string, confirm: string, bebida: Bebida) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {

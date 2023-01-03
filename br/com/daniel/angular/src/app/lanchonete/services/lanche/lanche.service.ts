@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { first, tap } from 'rxjs';
+
 import { Lanche } from '../../model/lanche';
 
 @Injectable({
@@ -16,7 +17,7 @@ export class LancheService {
     return this.httpClient.get<Lanche[]>(this.API).
       pipe(
         first(),
-       // delay(5000),
+        // delay(5000),
         tap(l => console.log(l))
       );
   }
@@ -36,7 +37,7 @@ export class LancheService {
     return this.httpClient.put<Lanche>(`${this.API}/${lanche.id}`, lanche);
   }
 
-   remove(id: string) {
+  remove(id: string) {
     return this.httpClient.delete(`${this.API}/${id}`);
   }
 

@@ -1,6 +1,6 @@
-import { Lanche } from './lanche';
-import { Endereco } from './endereco';
 import { Bebida } from './bebida';
+import { Endereco } from './endereco';
+import { Lanche } from './lanche';
 
 export interface Pedido {
 
@@ -13,7 +13,5 @@ export interface Pedido {
   taxa: string,
   total: string;
   endereco: Partial<Endereco>;
-
-
 
 }
