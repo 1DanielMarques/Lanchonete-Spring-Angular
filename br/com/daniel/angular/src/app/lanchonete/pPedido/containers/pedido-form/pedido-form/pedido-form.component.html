@@ -17,10 +17,12 @@
 
             <mat-list class="text-align-start">
               <mat-list-item *ngFor="let lanche of lanches$ | async">
-                <table>
+                <table class="width-100">
                   <tr>
                     <td class="colunas-lanche-nome">{{ lanche.nome }}</td>
-                    <td class="colunas-lanche-descricao">{{ lanche.descricao }}</td>
+                    <td class="colunas-lanche-descricao">
+                      {{ lanche.descricao }}
+                    </td>
                     <td class="colunas-lanche-preco">R$ {{ lanche.preco }}</td>
                   </tr>
                 </table>
@@ -58,31 +60,23 @@
             </mat-expansion-panel-header>
 
             <mat-list class="text-align-start">
-              <tr>
-                <th>Bebida</th>
-                <th>Marca</th>
-                <th>Litragem</th>
-                <th>Sabor</th>
-                <th>Preço</th>
+              <tr class="width-100">
+                <th class="bebida-nome">Bebida</th>
+                <th class="bebida-marca">Marca</th>
+                <th class="bebida-litragem">Litragem</th>
+                <th class="bebida-sabor">Sabor</th>
+                <th class="bebida-preco">Preço</th>
               </tr>
               <mat-list-item *ngFor="let bebida of bebidas$ | async">
-                <table>
+                <table class="width-100">
                   <tr>
-                    <div class="colunas-bebida">
-                      <td>{{ bebida.nome }}</td>
-                    </div>
-                    <div class="colunas-bebida">
-                      <td>{{ bebida.marca }}</td>
-                    </div>
-                    <div class="colunas-bebida">
-                      <td>{{ bebida.litragem }}</td>
-                    </div>
-                    <div class="colunas-bebida">
-                      <td>{{ bebida.sabor }}</td>
-                    </div>
-                    <div class="colunas-bebida-preco">
-                      <td>R$ {{ bebida.preco }}</td>
-                    </div>
+                    <td class="colunas-bebida-nome">{{ bebida.nome }}</td>
+                    <td class="colunas-bebida-marca">{{ bebida.marca }}</td>
+                    <td class="colunas-bebida-litragem">
+                      {{ bebida.litragem }}
+                    </td>
+                    <td class="colunas-bebida-sabor">{{ bebida.sabor }}</td>
+                    <td class="colunas-bebida-preco">R$ {{ bebida.preco }}</td>
                   </tr>
                 </table>
                 <div matListItemMeta>
