@@ -57,6 +57,7 @@ export class PedidoFormComponent implements OnInit {
 
     if (this.pedido_resolver.id) {
       this.taxa = this.pedido_resolver.taxa;
+      this.total = this.taxa;
     } else {
       this.taxaAux = +this.taxa;
       this.taxa = this.taxaAux.toFixed(2);
@@ -84,8 +85,11 @@ export class PedidoFormComponent implements OnInit {
   }
 
   onPagamento(pagamento: string) {
-    this.taxaAux = this.pedidoService.calcTaxa(pagamento);
-    this.taxa = this.taxaAux.toFixed(2);
+    this.taxaAux = +this.taxa;
+    this.totalAux = (+this.total) - this.taxaAux;
+    this.taxa = this.pedidoService.calcTaxa(pagamento).toFixed(2);
+    this.totalAux = this.totalAux + (+this.taxa);
+    this.total = this.totalAux.toFixed(2);
   }
 
   onRefresh() {
