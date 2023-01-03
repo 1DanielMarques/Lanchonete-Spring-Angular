@@ -19,9 +19,9 @@
               <mat-list-item *ngFor="let lanche of lanches$ | async">
                 <table>
                   <tr>
-                    <td>{{ lanche.nome }}</td>
-                    <td class="colunas-lanche">{{ lanche.descricao }}</td>
-                    <td class="colunas-lanche">R$ {{ lanche.preco }}</td>
+                    <td class="colunas-lanche-nome">{{ lanche.nome }}</td>
+                    <td class="colunas-lanche-descricao">{{ lanche.descricao }}</td>
+                    <td class="colunas-lanche-preco">R$ {{ lanche.preco }}</td>
                   </tr>
                 </table>
                 <div matListItemMeta>

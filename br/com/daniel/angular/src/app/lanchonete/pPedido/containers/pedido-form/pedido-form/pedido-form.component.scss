@@ -3,7 +3,7 @@
 
 }
 
-mat-list-item{
+mat-list-item {
   padding: 0px 0px 0px 0px;
 }
 
@@ -16,21 +16,31 @@ mat-list-item{
   font-weight: bolder;
 
 }
+
 //Colunas Lanche
 
-.colunas-lanche {
-  padding: 0px 0px 0px 20px;
+.colunas-lanche-nome {
+  width: 20%;
 }
+
+.colunas-lanche-descricao {
+  width: 74%;
+}
+
+.colunas-lanche-preco {
+ 
+}
+
 //--------------
 //Colunas Bebida
 
-.colunas-bebida{
+.colunas-bebida {
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
   display: inline-block;
 }
 
-.colunas-bebida-preco{
+.colunas-bebida-preco {
   display: inline-block;
   margin: 0px 0px 0px 0px;
   padding: 0px 0px 0px 0px;
