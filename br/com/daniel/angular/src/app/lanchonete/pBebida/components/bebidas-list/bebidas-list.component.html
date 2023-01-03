@@ -24,9 +24,9 @@
   </ng-container>
 
   <!-- Preco Column -->
-  <ng-container matColumnDef="preco">
+  <ng-container matColumnDef="preco" *ngIf="verificaDecimal(bebidas)">
     <mat-header-cell *matHeaderCellDef>Preço</mat-header-cell>
-    <mat-cell *matCellDef="let bebida">{{ bebida.preco }}</mat-cell>
+    <mat-cell *matCellDef="let bebida">R$ {{ bebida.preco }}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="action">

@@ -31,5 +31,16 @@ export class LanchesListComponent {
     this.remove.emit(lanche);
   }
 
+  verificaDecimal(lanches: Lanche[]) {
+    let num: number = 0;
+    lanches.forEach(lanche => {
+      num = +lanche.preco;
+      if (+lanche.preco % 1 == 0) {
+        lanche.preco = num.toFixed(2);
+      }
+    });
+    return true;
+  }
+
 
 }

@@ -52,6 +52,7 @@ export class PedidoFormComponent implements OnInit {
   total: string = '0';
   totalAux: number = 0;
   taxaAux: number = 0;
+  precoAux: number = 0;
 
   constructor(private formBuilder: NonNullableFormBuilder, private location: Location, private lancheService: LancheService, private bebidaService: BebidaService, private pedidoService: PedidoService, private snackBar: MatSnackBar, private dialog: MatDialog, private route: ActivatedRoute) {
 
@@ -70,7 +71,8 @@ export class PedidoFormComponent implements OnInit {
     console.log(this.pedido_resolver);
   }
 
-  precoAux: number = 0;
+
+
   ngOnInit(): void {
     this.form.setValue({
       id: this.pedido_resolver.id,
@@ -80,8 +82,15 @@ export class PedidoFormComponent implements OnInit {
       numero: this.pedido_resolver.endereco.numero,
     });
 
+  }
 
 
+  verificaDecimal(lanche: any) {
+    let num: number = +lanche.preco;
+    if (num % 1 == 0) {
+      lanche.preco = num.toFixed(2);
+    }
+    return true;
   }
 
   onPagamento(pagamento: string) {

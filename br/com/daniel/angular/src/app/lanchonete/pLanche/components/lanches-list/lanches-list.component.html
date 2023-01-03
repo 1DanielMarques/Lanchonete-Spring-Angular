@@ -12,9 +12,9 @@
   </ng-container>
 
   <!-- Preco Column -->
-  <ng-container matColumnDef="preco">
+  <ng-container matColumnDef="preco" *ngIf="verificaDecimal(lanches)">
     <mat-header-cell *matHeaderCellDef>Preço</mat-header-cell>
-    <mat-cell *matCellDef="let lanche">R${{ lanche.preco }}</mat-cell>
+    <mat-cell *matCellDef="let lanche">R$ {{ lanche.preco }}</mat-cell>
   </ng-container>
 
   <!-- Actions Column -->
