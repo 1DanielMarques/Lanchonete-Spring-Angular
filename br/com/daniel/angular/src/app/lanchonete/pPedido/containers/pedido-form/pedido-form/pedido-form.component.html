@@ -16,6 +16,11 @@
             </mat-expansion-panel-header>
 
             <mat-list class="text-align-start">
+              <tr class="width-100">
+                <th class="lanche-nome">Lanche</th>
+                <th class="lanche-descricao">Descrição</th>
+                <th class="lanche-preco">Preço</th>
+              </tr>
               <mat-list-item *ngFor="let lanche of lanches$ | async">
                 <table class="width-100">
                   <tr>

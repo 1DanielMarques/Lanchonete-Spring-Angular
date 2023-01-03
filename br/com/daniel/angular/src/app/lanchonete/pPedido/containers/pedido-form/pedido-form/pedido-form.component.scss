@@ -27,7 +27,19 @@ mat-list-item {
   width: 74%;
 }
 
-.colunas-lanche-preco {}
+.lanche-nome {
+  padding: 0px 172px 0px 4px;
+  text-align: start;
+}
+
+.lanche-descricao {
+  padding: 0px 48em 0px 0px;
+  text-align: start;
+}
+
+.lanche-preco {
+
+}
 
 //--------------
 
@@ -43,9 +55,12 @@ mat-list-item {
 .colunas-bebida-sabor {
   width: 20%
 }
+.colunas-bebida-litragem{
+  width: 14%;
+}
 
 .colunas-bebida-preco {
-  width: 6%
+
 }
 
 .bebida-nome {
@@ -57,16 +72,14 @@ mat-list-item {
 }
 
 .bebida-litragem {
-  padding: 0px 120px 0px 75px;
+  padding: 0px 7em 0px 75px;
 }
 
 .bebida-sabor {
-  padding: 0px 188px 0px 0px;
+  padding: 0px 11.5em 0px 0px;
 }
 
-.bebida-preco {
-  padding: 0px 200px 0px 0px;
-}
+
 
 //---------
 .width-100 {
