@@ -4,6 +4,7 @@ html,
 body {
   height: 100%;
 }
+
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -14,6 +15,7 @@ body {
   flex-direction: column;
   min-width: 300px;
 }
+
 /*Listagem */
 .home {
   max-width: 90%;
@@ -36,10 +38,10 @@ mat-table {
 .action-column-header {
   flex: 0 0 100px;
 }
+
 .action-column {
   flex: 0 0 125px;
 }
-
 
 
 /*Form */
@@ -73,5 +75,12 @@ mat-card {
   width: 80px;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

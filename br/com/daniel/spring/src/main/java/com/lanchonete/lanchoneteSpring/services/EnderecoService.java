@@ -4,7 +4,6 @@ import com.lanchonete.lanchoneteSpring.entities.Endereco;
 import com.lanchonete.lanchoneteSpring.repositories.IEnderecoRepository;
 import com.lanchonete.lanchoneteSpring.services.exceptions.DatabaseException;
 import com.lanchonete.lanchoneteSpring.services.exceptions.ResourceNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
@@ -16,8 +15,11 @@ import java.util.Optional;
 @Service
 public class EnderecoService {
 
-    @Autowired
-    IEnderecoRepository repository;
+    private IEnderecoRepository repository;
+
+    public EnderecoService(IEnderecoRepository repository) {
+        this.repository = repository;
+    }
 
     public Endereco insert(Endereco obj) {
         return repository.save(obj);

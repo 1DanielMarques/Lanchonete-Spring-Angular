@@ -17,69 +17,65 @@ mat-list-item {
 
 }
 
-//Colunas Lanche
+// Lanche
 
-.colunas-lanche-nome {
+#coluna-lanche-nome {
   width: 20%;
 }
 
-.colunas-lanche-descricao {
+#coluna-lanche-descricao {
   width: 74%;
 }
 
-.lanche-nome {
+#lanche-nome {
   padding: 0px 172px 0px 4px;
   text-align: start;
 }
 
-.lanche-descricao {
+#lanche-descricao {
   padding: 0px 48em 0px 0px;
   text-align: start;
 }
 
-.lanche-preco {
-
-}
-
 //--------------
 
-//Colunas Bebida
-.colunas-bebida-nome {
+// Bebida
+.bebidas-form {
+  padding: 10px 0px 10px 0px;
+
+}
+
+#coluna-bebida-nome {
   width: 30%
 }
 
-.colunas-bebida-marca {
+#coluna-bebida-marca {
   width: 30%
 }
 
-.colunas-bebida-sabor {
+#coluna-bebida-sabor {
   width: 20%
 }
-.colunas-bebida-litragem{
+
+#coluna-bebida-litragem {
   width: 14%;
 }
 
-.colunas-bebida-preco {
-
-}
-
-.bebida-nome {
+#bebida-nome {
   padding: 0px 205px 0px 3px;
 }
 
-.bebida-marca {
+#bebida-marca {
   padding: 0px 200px 0px 88px;
 }
 
-.bebida-litragem {
+#bebida-litragem {
   padding: 0px 7em 0px 75px;
 }
 
-.bebida-sabor {
+#bebida-sabor {
   padding: 0px 11.5em 0px 0px;
 }
-
-
 
 //---------
 .width-100 {
@@ -112,11 +108,4 @@ mat-list-item {
 
 .endereco-numero {
   width: 100px;
-}
-
-
-
-.bebidas-form {
-  padding: 10px 0px 10px 0px;
-
 }

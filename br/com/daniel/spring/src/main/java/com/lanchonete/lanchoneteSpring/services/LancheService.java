@@ -4,7 +4,6 @@ import com.lanchonete.lanchoneteSpring.entities.Lanche;
 import com.lanchonete.lanchoneteSpring.repositories.ILancheRepository;
 import com.lanchonete.lanchoneteSpring.services.exceptions.DatabaseException;
 import com.lanchonete.lanchoneteSpring.services.exceptions.ResourceNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
@@ -16,8 +15,11 @@ import java.util.Optional;
 @Service
 public class LancheService {
 
-    @Autowired
-    ILancheRepository repository;
+    private ILancheRepository repository;
+
+    public LancheService(ILancheRepository repository) {
+        this.repository = repository;
+    }
 
     public Lanche insert(Lanche obj) {
         return repository.save(obj);

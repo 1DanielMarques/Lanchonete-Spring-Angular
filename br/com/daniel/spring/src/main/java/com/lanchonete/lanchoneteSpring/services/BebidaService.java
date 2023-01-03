@@ -4,7 +4,6 @@ import com.lanchonete.lanchoneteSpring.entities.Bebida;
 import com.lanchonete.lanchoneteSpring.repositories.IBebidaRepository;
 import com.lanchonete.lanchoneteSpring.services.exceptions.DatabaseException;
 import com.lanchonete.lanchoneteSpring.services.exceptions.ResourceNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
@@ -16,8 +15,11 @@ import java.util.Optional;
 @Service
 public class BebidaService {
 
-    @Autowired
-    IBebidaRepository repository;
+    private IBebidaRepository repository;
+
+    public BebidaService(IBebidaRepository repository) {
+        this.repository = repository;
+    }
 
     public Bebida insert(Bebida obj) {
         return repository.save(obj);

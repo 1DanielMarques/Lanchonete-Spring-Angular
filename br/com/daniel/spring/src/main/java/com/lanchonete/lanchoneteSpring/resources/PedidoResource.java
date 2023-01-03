@@ -2,12 +2,10 @@ package com.lanchonete.lanchoneteSpring.resources;
 
 import com.lanchonete.lanchoneteSpring.entities.Pedido;
 import com.lanchonete.lanchoneteSpring.services.PedidoService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.websocket.server.PathParam;
 import java.net.URI;
 import java.util.List;
 
@@ -15,8 +13,12 @@ import java.util.List;
 @RequestMapping(value = "/api/pedidos")
 public class PedidoResource {
 
-    @Autowired
-    PedidoService service;
+
+    private PedidoService service;
+
+    public PedidoResource(PedidoService service) {
+        this.service = service;
+    }
 
     @GetMapping
     public ResponseEntity<List<Pedido>> findAll() {

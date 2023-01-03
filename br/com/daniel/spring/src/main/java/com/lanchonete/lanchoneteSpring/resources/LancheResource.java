@@ -2,8 +2,6 @@ package com.lanchonete.lanchoneteSpring.resources;
 
 import com.lanchonete.lanchoneteSpring.entities.Lanche;
 import com.lanchonete.lanchoneteSpring.services.LancheService;
-import com.lanchonete.lanchoneteSpring.services.PedidoService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -15,11 +13,12 @@ import java.util.List;
 @RequestMapping(value = "/api/lanches")
 public class LancheResource {
 
-    @Autowired
-    LancheService service;
 
-    @Autowired
-    PedidoService pedidoService;
+   private LancheService service;
+    public LancheResource(LancheService service) {
+        this.service = service;
+
+    }
 
     @GetMapping
     public ResponseEntity<List<Lanche>> findAll() {

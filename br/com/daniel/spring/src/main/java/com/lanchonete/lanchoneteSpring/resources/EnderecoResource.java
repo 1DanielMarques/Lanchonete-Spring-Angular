@@ -2,7 +2,6 @@ package com.lanchonete.lanchoneteSpring.resources;
 
 import com.lanchonete.lanchoneteSpring.entities.Endereco;
 import com.lanchonete.lanchoneteSpring.services.EnderecoService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -13,9 +12,11 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/api/enderecos")
 public class EnderecoResource {
+   private EnderecoService service;
 
-    @Autowired
-    EnderecoService service;
+    public EnderecoResource(EnderecoService service) {
+        this.service = service;
+    }
 
     @GetMapping
     public ResponseEntity<List<Endereco>> findAll() {

@@ -3,7 +3,6 @@ package com.lanchonete.lanchoneteSpring.resources;
 import com.lanchonete.lanchoneteSpring.entities.Bebida;
 import com.lanchonete.lanchoneteSpring.services.BebidaService;
 import com.lanchonete.lanchoneteSpring.services.PedidoService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -15,11 +14,13 @@ import java.util.List;
 @RequestMapping(value = "/api/bebidas")
 public class BebidaResource {
 
-    @Autowired
-    BebidaService service;
+    private BebidaService service;
+    private PedidoService pedidoService;
 
-    @Autowired
-    PedidoService pedidoService;
+    public BebidaResource(BebidaService service, PedidoService pedidoService) {
+        this.service = service;
+        this.pedidoService = pedidoService;
+    }
 
     @GetMapping
     public ResponseEntity<List<Bebida>> findAll() {
@@ -58,5 +59,5 @@ public class BebidaResource {
         obj = service.update(id, obj);
         return ResponseEntity.ok().body(obj);
     }
-    
+
 }

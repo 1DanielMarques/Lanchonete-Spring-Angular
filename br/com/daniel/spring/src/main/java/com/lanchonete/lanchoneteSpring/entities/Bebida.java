@@ -1,14 +1,17 @@
 package com.lanchonete.lanchoneteSpring.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Table(name = "tb_bebida")
+@Data
+@NoArgsConstructor
 public class Bebida implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -26,10 +29,6 @@ public class Bebida implements Serializable {
     @ManyToMany(mappedBy = "bebidas")
     private List<Pedido> pedidoBebida;
 
-    public Bebida() {
-
-    }
-
     public Bebida(Long id, String nome, String marca, String litragem, String sabor, double preco) {
         this.id = id;
         this.nome = nome;
@@ -41,76 +40,4 @@ public class Bebida implements Serializable {
 
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getMarca() {
-        return marca;
-    }
-
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }
-
-    public String getLitragem() {
-        return litragem;
-    }
-
-    public void setLitragem(String litragem) {
-        this.litragem = litragem;
-    }
-
-    public String getSabor() {
-        return sabor;
-    }
-
-    public void setSabor(String sabor) {
-        this.sabor = sabor;
-    }
-
-    public double getPreco() {
-        return preco;
-    }
-
-    public void setPreco(double preco) {
-        this.preco = preco;
-    }
-
-    public List<Pedido> getPedidoBebida() {
-        return pedidoBebida;
-    }
-
-    public int getQtd() {
-        return qtd;
-    }
-
-    public void setQtd(int qtd) {
-        this.qtd = qtd;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Bebida bebida = (Bebida) o;
-        return id.equals(bebida.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
 }

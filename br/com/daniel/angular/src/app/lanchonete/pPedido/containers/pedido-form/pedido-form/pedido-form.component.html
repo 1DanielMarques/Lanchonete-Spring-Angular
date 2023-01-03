@@ -17,19 +17,18 @@
 
             <mat-list class="text-align-start">
               <tr class="width-100">
-                <th class="lanche-nome">Lanche</th>
-                <th class="lanche-descricao">Descrição</th>
-                <th class="lanche-preco">Preço</th>
+                <th id="lanche-nome">Lanche</th>
+                <th id="lanche-descricao">Descrição</th>
+                <th>Preço</th>
               </tr>
               <mat-list-item *ngFor="let lanche of lanches$ | async">
                 <table class="width-100">
                   <tr>
-                    <td class="colunas-lanche-nome">{{ lanche.nome }}</td>
-                    <td class="colunas-lanche-descricao">
+                    <td id="coluna-lanche-nome">{{ lanche.nome }}</td>
+                    <td id="coluna-lanche-descricao">
                       {{ lanche.descricao }}
                     </td>
                     <td
-                      class="colunas-lanche-preco"
                       *ngIf="verificaDecimal(lanche)"
                     >
                       R$ {{ lanche.preco }}
@@ -71,25 +70,22 @@
 
             <mat-list class="text-align-start">
               <tr class="width-100">
-                <th class="bebida-nome">Bebida</th>
-                <th class="bebida-marca">Marca</th>
-                <th class="bebida-litragem">Litragem</th>
-                <th class="bebida-sabor">Sabor</th>
-                <th class="bebida-preco">Preço</th>
+                <th id="bebida-nome">Bebida</th>
+                <th id="bebida-marca">Marca</th>
+                <th id="bebida-litragem">Litragem</th>
+                <th id="bebida-sabor">Sabor</th>
+                <th>Preço</th>
               </tr>
               <mat-list-item *ngFor="let bebida of bebidas$ | async">
                 <table class="width-100">
                   <tr>
-                    <td class="colunas-bebida-nome">{{ bebida.nome }}</td>
-                    <td class="colunas-bebida-marca">{{ bebida.marca }}</td>
-                    <td class="colunas-bebida-litragem">
+                    <td id="coluna-bebida-nome">{{ bebida.nome }}</td>
+                    <td id="coluna-bebida-marca">{{ bebida.marca }}</td>
+                    <td id="coluna-bebida-litragem">
                       {{ bebida.litragem }}
                     </td>
-                    <td class="colunas-bebida-sabor">{{ bebida.sabor }}</td>
-                    <td
-                      class="colunas-bebida-preco"
-                      *ngIf="verificaDecimal(bebida)"
-                    >
+                    <td id="coluna-bebida-sabor">{{ bebida.sabor }}</td>
+                    <td *ngIf="verificaDecimal(bebida)">
                       R$ {{ bebida.preco }}
                     </td>
                   </tr>

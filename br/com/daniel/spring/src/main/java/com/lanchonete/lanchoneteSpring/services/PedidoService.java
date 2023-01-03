@@ -10,7 +10,6 @@ import com.lanchonete.lanchoneteSpring.services.exceptions.DatabaseException;
 import com.lanchonete.lanchoneteSpring.services.exceptions.ResourceNotFoundException;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
@@ -23,11 +22,10 @@ import java.util.Optional;
 @Service
 public class PedidoService {
 
-
-    IPedidoRepository repository;
-    LancheService lancheService;
-    BebidaService bebidaService;
-    EnderecoService enderecoService;
+    private IPedidoRepository repository;
+    private LancheService lancheService;
+    private BebidaService bebidaService;
+    private EnderecoService enderecoService;
 
 
     public PedidoService(IPedidoRepository repository, LancheService lancheService, BebidaService bebidaService, EnderecoService enderecoService) {
@@ -68,6 +66,17 @@ public class PedidoService {
         p.setTaxa(p.getTaxa());
         p.setTotal(p.getTotal());
         return repository.save(p);
+    }
+
+    public Pedido insert(Pedido obj) {
+        return repository.save(obj);
+    }
+
+    public List<Pedido> insertAll(List<Pedido> obj) {
+        for (Pedido p : obj) {
+            insert(p);
+        }
+        return obj;
     }
 
 
@@ -127,7 +136,8 @@ public class PedidoService {
                             }
                         }
                     }
-                    pedido.calcTotal();;
+                    pedido.calcTotal();
+                    ;
                 }
                 lancheService.delete(id);
                 break;
