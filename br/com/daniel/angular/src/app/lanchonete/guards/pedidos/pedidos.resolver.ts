@@ -26,8 +26,8 @@ export class PedidosResolver implements Resolve<Pedido> {
         bebidas: [{ id: '', nome: '', marca: '', litragem: '', sabor: '', preco: '', qtd: 0 }],
         qtdBebidas: '',
         tipoPagamento: '',
-        taxa: '',
-        total: '',
+        taxa: '0',
+        total: '0',
         endereco: { id: '', rua: '', bairro: '', numero: '' }
 
       });

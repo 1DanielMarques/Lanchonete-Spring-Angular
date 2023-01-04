@@ -52,14 +52,16 @@ public class PedidoService {
         List<Lanche> lancheList = new ArrayList<>();
         for (int i = 0; i < lanches.length(); i++) {
             Long id = lanches.getJSONObject(i).getLong("id");
-            lancheList.add(lancheService.findById(id));
+            Lanche lanche = lancheService.findById(id);
+            lancheList.add(lanche);
         }
 
         JSONArray bebidas = obj.getJSONArray("bebidas");
         List<Bebida> bebidaList = new ArrayList<>();
         for (int i = 0; i < bebidas.length(); i++) {
             Long id = bebidas.getJSONObject(i).getLong("id");
-            bebidaList.add(bebidaService.findById(id));
+            Bebida bebida = bebidaService.findById(id);
+            bebidaList.add(bebida);
         }
 
         Pedido p = new Pedido(null, lancheList, bebidaList, tipoPagamento, endereco);
@@ -81,7 +83,7 @@ public class PedidoService {
 
 
     public List<Pedido> findAll() {
-        updateQtd();
+       // updateQtd();
         return repository.findAll();
     }
 
@@ -106,8 +108,8 @@ public class PedidoService {
     }
 
     public Pedido findById(Long id) {
-        Optional<Pedido> obj = repository.findById(id);
-        return obj.orElseThrow(() -> new ResourceNotFoundException(id));
+        Optional<Pedido> pedido = repository.findById(id);
+        return pedido.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     public void delete(Long id) {

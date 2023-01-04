@@ -22,6 +22,10 @@ export class LancheService {
       );
   }
 
+  findLanchesPedido(id:string){
+    return this.httpClient.get<Lanche[]>(`${this.API}/${'pedido'}/${id}`);
+  }
+
   save(lanche: Partial<Lanche>) {
     if (lanche.id) {
       return this.update(lanche);

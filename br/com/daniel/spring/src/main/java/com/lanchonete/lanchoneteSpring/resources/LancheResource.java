@@ -26,6 +26,12 @@ public class LancheResource {
         return ResponseEntity.ok().body(list);
     }
 
+    @GetMapping(value = "/pedido/{id}")
+    public ResponseEntity<List<Lanche>> findAll(@PathVariable("id") Long id){
+        List<Lanche> list = service.findLanchesPedido(id);
+        return ResponseEntity.ok().body(list);
+    }
+
     @GetMapping(value = "/{id}")
     public ResponseEntity<Lanche> findById(@PathVariable Long id) {
         Lanche obj = service.findById(id);
@@ -34,13 +40,6 @@ public class LancheResource {
 
     @PostMapping
     public ResponseEntity<Lanche> insert(@RequestBody Lanche obj) {
-        obj = service.insert(obj);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-        return ResponseEntity.created(uri).body(obj);
-    }
-
-    @PostMapping(value = "/order/{id}")
-    public ResponseEntity<Lanche> insert(@RequestBody Lanche obj, @PathVariable Long id) {
         obj = service.insert(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).body(obj);

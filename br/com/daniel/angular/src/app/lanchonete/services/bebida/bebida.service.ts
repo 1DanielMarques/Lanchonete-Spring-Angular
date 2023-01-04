@@ -23,6 +23,10 @@ export class BebidaService {
       );
   }
 
+  findBebidasPedido(id: string) {
+    return this.httpClient.get<Bebida[]>(`${this.API}/${'pedido'}/${id}`);
+  }
+
   save(bebida: Partial<Bebida>) {
     if (bebida.id) {
       return this.update(bebida);

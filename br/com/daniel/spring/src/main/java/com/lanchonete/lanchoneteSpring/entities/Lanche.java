@@ -26,6 +26,8 @@ public class Lanche implements Serializable {
 
     private int qtd;
 
+    //private int qtdPedido;
+
     @JsonIgnore
     @ManyToMany(mappedBy = "lanches")
     private List<Pedido> pedidoLanche = new ArrayList<>();
@@ -36,6 +38,7 @@ public class Lanche implements Serializable {
         this.preco = preco;
         this.descricao = descricao;
         this.qtd = 0;
+        //this.qtdPedido = 0;
     }
 
 }

@@ -23,14 +23,20 @@
           <mat-expansion-panel-header class="mat-expansion-panel-header">
             <mat-panel-title> Dados </mat-panel-title>
           </mat-expansion-panel-header>
-
           <mat-list>
             <mat-list-item
               *ngFor="let lanche of pedido.lanches"
               class="mat-expansion-panel-body-lanches"
             >
-              <mat-divider></mat-divider>
-              {{ lanche.nome }} | R${{ lanche.preco }}
+              <div class="mat-list-lanche-nome">
+                {{ lanche.nome }}
+              </div>
+              <div
+                class="mat-list-lanche-preco"
+                *ngIf="verificaDecimal(lanche)"
+              >
+                R$ {{ lanche.preco }}
+              </div>
             </mat-list-item>
           </mat-list>
         </mat-expansion-panel>
@@ -66,10 +72,14 @@
             <mat-list-item
               *ngFor="let bebida of pedido.bebidas"
               class="mat-expansion-panel-body-bebidas"
-              >{{ bebida.marca }} | {{ bebida.litragem }} | R${{
-                bebida.preco
-              }}</mat-list-item
             >
+            <div class="mat-list-bebida">
+              {{ bebida.marca }} | {{ bebida.litragem }} |
+            </div>
+              <div class="mat-list-bebida-preco" *ngIf="verificaDecimal(bebida)">
+              R$ {{ bebida.preco }}
+            </div>
+            </mat-list-item>
           </mat-list>
         </mat-expansion-panel>
       </mat-accordion>

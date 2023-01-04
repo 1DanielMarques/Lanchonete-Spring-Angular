@@ -58,14 +58,29 @@ export class PedidoFormComponent implements OnInit {
 
     if (this.pedido_resolver.id) {
       this.taxa = this.pedido_resolver.taxa;
-      this.total = this.taxa;
+      this.totalAux = this.pedido_resolver.total;
+      this.total = this.totalAux.toFixed(2);
+      this.show_qtd_lanche = this.pedido_resolver.qtdLanches;
+      this.show_qtd_bebida = this.pedido_resolver.qtdBebidas;
+
+      this.pedido_resolver.lanches.forEach((lanche: Lanche) => {
+        this.pedido.lanches?.push(lanche);
+      });
+
+      this.pedido_resolver.bebidas.forEach((bebida: Bebida) => {
+        this.pedido.bebidas?.push(bebida);
+      });
+
     } else {
       this.taxaAux = +this.taxa;
       this.taxa = this.taxaAux.toFixed(2);
+      this.totalAux = +this.total;
+      this.total = this.totalAux.toFixed(2);
     }
-    this.totalAux = +this.total;
-    this.total = this.totalAux.toFixed(2);
+
+
     this.onRefresh();
+
     console.log(this.pedido_resolver);
   }
 
@@ -81,11 +96,9 @@ export class PedidoFormComponent implements OnInit {
 
   }
 
-  verificaDecimal(lanche: any) {
-    let num: number = +lanche.preco;
-    if (num % 1 == 0) {
-      lanche.preco = num.toFixed(2);
-    }
+  verificaDecimal(item: any) {
+    let num: number = +item.preco;
+      item.preco = num.toFixed(2);
     return true;
   }
 
@@ -98,21 +111,30 @@ export class PedidoFormComponent implements OnInit {
   }
 
   onRefresh() {
-    this.lanches$ = this.lancheService.findAll().
-      pipe(
-        catchError(() => {
-          this.onError('Erro ao carregar Lanches.');
-          return of([])
-        })
-      );
+    if (this.pedido_resolver.id) {
+      this.lanches$ = this.lancheService.findLanchesPedido(this.pedido_resolver.id);
+    } else {
+      this.lanches$ = this.lancheService.findAll().
+        pipe(
+          catchError(() => {
+            this.onError('Erro ao carregar Lanches.');
+            return of([])
+          })
+        );
+    }
 
-    this.bebidas$ = this.bebidaService.findAll().
-      pipe(
-        catchError(() => {
-          this.onError('Erro ao carregar Bebidas.');
-          return of([])
-        })
-      );
+    if (this.pedido_resolver.id) {
+      this.bebidas$ = this.bebidaService.findBebidasPedido(this.pedido_resolver.id);
+    } else {
+      this.bebidas$ = this.bebidaService.findAll().
+        pipe(
+          catchError(() => {
+            this.onError('Erro ao carregar Bebidas.');
+            return of([])
+          })
+        );
+    }
+
   }
 
   onError(errorMsg: string) {
@@ -127,7 +149,6 @@ export class PedidoFormComponent implements OnInit {
     this.endereco.bairro = this.form.value.bairro;
     this.endereco.numero = this.form.value.numero;
     this.pedido.tipoPagamento = this.form.value.tipoPagamento;
-
 
   }
 

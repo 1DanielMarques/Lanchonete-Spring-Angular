@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Endereco } from 'src/app/lanchonete/model/endereco';
+import { Lanche } from 'src/app/lanchonete/model/lanche';
 import { Pedido } from 'src/app/lanchonete/model/pedido';
 
 @Component({
@@ -57,6 +58,14 @@ export class PedidosListComponent implements OnInit {
   onEndereco(endereco: Endereco) {
     this.dialog.emit(endereco);
   }
+
+  verificaDecimal(item: any) {
+    let num: number = 0;
+    num = +item.preco;
+    item.preco = num.toFixed(2);
+    return true;
+  }
+
 
 
 }
