@@ -1,3 +1,4 @@
+import { ConfirmDialogComponent } from 'src/app/shared/components/confirm-dialog/confirm-dialog/confirm-dialog.component';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -56,19 +57,29 @@ export class PedidosComponent {
   }
 
   onRemove(pedido: Pedido) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: ['Tem certeza que deseja excluir esse Pedido?', 'pedido']
+    });
 
-    this.pedidoService.remove(pedido.id).subscribe(
-      () => {
-        this.refresh();
-        this.snackBar.open('Pedido removido com sucesso!', '', {
-          duration: 5000, horizontalPosition: 'center',
-          verticalPosition: 'top',
-        });
-      },
-      () => {
-        this.onError('Erro ao tentar remover Pedido.');
+    dialogRef.afterClosed().subscribe(confirm => {
+      if (confirm) {
+        this.pedidoService.remove(pedido.id).subscribe(
+          () => {
+            this.refresh();
+            this.snackBar.open('Pedido removido com sucesso!', '', {
+              duration: 5000, horizontalPosition: 'center',
+              verticalPosition: 'top',
+            });
+          },
+          () => {
+            this.onError('Erro ao tentar remover Pedido.');
+          }
+        );
       }
-    );
+    });
+
+
+
   }
 
   onEndereco(endereco: Endereco) {
@@ -79,4 +90,5 @@ export class PedidosComponent {
     });
   }
 }
+
 
