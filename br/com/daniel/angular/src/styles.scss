@@ -9,6 +9,9 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+.remove-mat-expansion-panel-padding .mat-expansion-panel-body{
+  padding: 0px 0px 0px 10px !important;
+}
 
 .column-flex {
   display: flex;

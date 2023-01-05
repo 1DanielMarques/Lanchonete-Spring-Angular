@@ -19,6 +19,7 @@
         <mat-expansion-panel
           (opened)="panelOpenState = true"
           (closed)="panelOpenState = false"
+          class="remove-mat-expansion-panel-padding"
         >
           <mat-expansion-panel-header class="mat-expansion-panel-header">
             <mat-panel-title> Dados </mat-panel-title>
@@ -26,7 +27,6 @@
           <mat-list>
             <mat-list-item
               *ngFor="let lanche of pedido.lanches"
-              class="mat-expansion-panel-body-lanches"
             >
               <div class="mat-list-lanche-nome">
                 {{ lanche.nome }}
@@ -64,6 +64,7 @@
         <mat-expansion-panel
           (opened)="panelOpenState = true"
           (closed)="panelOpenState = false"
+          class="remove-mat-expansion-panel-padding"
         >
           <mat-expansion-panel-header class="mat-expansion-panel-header">
             <mat-panel-title> Dados </mat-panel-title>
@@ -73,12 +74,17 @@
               *ngFor="let bebida of pedido.bebidas"
               class="mat-expansion-panel-body-bebidas"
             >
-            <div class="mat-list-bebida">
-              {{ bebida.marca }} | {{ bebida.litragem }} |
-            </div>
-              <div class="mat-list-bebida-preco" *ngIf="verificaDecimal(bebida)">
-              R$ {{ bebida.preco }}
-            </div>
+              <div class="mat-list-bebida-marca">
+                {{ bebida.marca }}
+              </div>
+              <div class="mat-list-bebida-litragem">{{ bebida.litragem }}</div>
+
+              <div
+                class="mat-list-bebida-preco"
+                *ngIf="verificaDecimal(bebida)"
+              >
+                R$ {{ bebida.preco }}
+              </div>
             </mat-list-item>
           </mat-list>
         </mat-expansion-panel>
@@ -159,41 +165,57 @@
       <mat-expansion-panel
         (opened)="panelOpenState = true"
         (closed)="panelOpenState = false"
+        class="remove-mat-expansion-panel-padding"
       >
         <mat-expansion-panel-header class="mat-expansion-panel-header">
           <mat-panel-title> Dados </mat-panel-title>
         </mat-expansion-panel-header>
+        <mat-list>
+          <mat-list-item
 
-        <button
-          class="mat-expansion-panel-body-lanches"
+            class="mat-expansion-panel-body"
+          >
+          <button
+          class="mat-expansion-panel-body"
           mat-icon-button
           color="warn"
           aria-label="Example icon button with a menu icon"
         >
           <mat-icon>block</mat-icon>
         </button>
+          </mat-list-item>
+        </mat-list>
       </mat-expansion-panel>
     </mat-accordion>
   </ng-template>
+
   <!-- Template-->
   <ng-template #emptyDataBebida>
     <mat-accordion>
       <mat-expansion-panel
         (opened)="panelOpenState = true"
         (closed)="panelOpenState = false"
+        class="remove-mat-expansion-panel-padding"
       >
         <mat-expansion-panel-header class="mat-expansion-panel-header">
           <mat-panel-title> Dados </mat-panel-title>
         </mat-expansion-panel-header>
-
-        <button
-          class="mat-expansion-panel-body-bebidas"
+        <mat-list>
+          <mat-list-item
+            class="mat-expansion-panel-body"
+          >
+          <button
+          class="mat-expansion-panel-body"
           mat-icon-button
           color="warn"
           aria-label="Example icon button with a menu icon"
         >
           <mat-icon>block</mat-icon>
         </button>
+          </mat-list-item>
+        </mat-list>
+
+
       </mat-expansion-panel>
     </mat-accordion>
   </ng-template>

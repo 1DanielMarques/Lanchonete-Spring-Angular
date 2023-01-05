@@ -21,29 +21,34 @@
   height: 50px;
 }
 
+.mat-expansion-panel-body {
+  width: 95%;
+}
+
 //Lanches
 .mat-list-lanche-nome{
-display: inline-block;
-width: 50%;
+  display: inline-block;
+  width: 72%;
+
+
 }
 
 .mat-list-lanche-preco{
   display: inline-block;
-  width: 50%;
+  width: 24%;
 }
 
 
 .pedido-column-lanche {
-  flex: 0 0 260px;
+  flex: 0 0 295px;
   padding: 0px 0px 0px 10px;
 }
 
-.mat-expansion-panel-body-lanches {
-  padding: 0px 0px 0px 0px;
-  width: 200px;
-}
+
 .mdc-list-item.mdc-list-item--with-one-line{
   height: 35px;
+  width: 270px;
+  padding: 0px 0px 0px 0px;
 }
 
 .qtd {
@@ -52,23 +57,24 @@ width: 50%;
 }
 
 //Bebidas
-.mat-expansion-panel-body-bebidas {
-  padding: 0px 0px 0px 10px;
-  width: 220px;
+
+.mat-list-bebida-marca{
+  display: inline-block;
+  width: 53%;
 }
 
-.mat-list-bebida{
+.mat-list-bebida-litragem{
   display: inline-block;
-  width: 50%;
+  width: 18%;
 }
 
 .mat-list-bebida-preco{
   display: inline-block;
-  width: 50%;
+  width: 24%;
 }
 
 .pedido-column-bebida {
-  padding-left: 2em;
+  padding-left: 10px;
   flex: 0 0 300px;
 }
 /* */
