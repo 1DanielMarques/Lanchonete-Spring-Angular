@@ -25,6 +25,7 @@ export class PedidoService {
     return this.httpClient.get<Pedido>(`${this.API}/${id}`);
   }
 
+
   findLanche(id: string) {
     return this.httpClient.get<boolean>(`${this.API}/${'lanche'}/${id}`);
   }

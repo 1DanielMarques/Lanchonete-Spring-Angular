@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { catchError, Observable, of } from 'rxjs';
+import { catchError, Observable, of, lastValueFrom, firstValueFrom } from 'rxjs';
 import { Lanche } from 'src/app/lanchonete/model/lanche';
 import { LancheService } from 'src/app/lanchonete/services/lanche/lanche.service';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog/error-dialog.component';
@@ -62,31 +62,41 @@ export class LanchesComponent implements OnInit {
     this.router.navigate(['edit', lanche.id], { relativeTo: this.route });
   }
 
-  onRemove(lanche: Lanche) {
-    this.service.remove(lanche.id).subscribe(
-      () => {
-        this.refresh();
-        return this.snackBar.open('Lanche removido com sucesso!', '', { duration: 5000, verticalPosition: 'top', horizontalPosition: 'center' });
-      },
-      () => {
-        if (this.pedidoService.findLanche(lanche.id)) {
-          this.onErrorHasPedido('Este Lanche tem um ou mais pedidos associados a ele.', 'Deseja excluir mesmo assim?', lanche);
-        } else {
-          this.onError('Erro ao tentar remover Lanche');
+  async onRemove(lanche: Lanche) {
+    if (await firstValueFrom(this.pedidoService.findLanche(lanche.id))) {
+      this.onErrorHasPedido('Este Lanche tem um ou mais pedidos associados a ele.', 'Deseja excluir mesmo assim?', lanche);
+    } else {
+      const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+        data: ['Tem certeza que deseja excluir esse Lanche?', 'lanche']
+      });
+      dialogRef.afterClosed().subscribe((confirm: boolean) => {
+        if (confirm) {
+          this.service.remove(lanche.id).subscribe(() => {
+            this.refresh();
+            return this.snackBar.open('Lanche removido com sucesso!', '', { duration: 5000, verticalPosition: 'top', horizontalPosition: 'center' });
+          },
+            () => this.onError('Erro ao tentar remover Lanche')
+          );
         }
-
-      }
-    );
+      });
+    }
   }
+
 
   onErrorHasPedido(errorMsg: string, confirm: string, lanche: Lanche) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      data: [errorMsg, confirm, lanche.id, 'lanche']
+      data: [errorMsg, confirm]
     });
     dialogRef.afterClosed().subscribe((confirm: boolean) => {
       if (confirm) {
-        this.refresh();
-        this.snackBar.open('Lanche removido com sucesso!', '', { duration: 5000, verticalPosition: 'top', horizontalPosition: 'center' });
+        this.pedidoService.deleteLanche(lanche.id).subscribe(() => {
+          this.refresh();
+          this.snackBar.open('Lanche removido com sucesso!', '', { duration: 5000, verticalPosition: 'top', horizontalPosition: 'center' });
+        },
+          () =>
+            this.onError('Erro ao tentar remover Lanche')
+
+        );
       }
     });
   }

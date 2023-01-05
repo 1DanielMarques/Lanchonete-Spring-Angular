@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { catchError, Observable, of } from 'rxjs';
+import { catchError, firstValueFrom, Observable, of } from 'rxjs';
 import { Bebida } from 'src/app/lanchonete/model/bebida';
 import { BebidaService } from 'src/app/lanchonete/services/bebida/bebida.service';
 import { PedidoService } from 'src/app/lanchonete/services/pedido/pedido.service';
@@ -50,33 +50,42 @@ export class BebidasComponent {
     this.router.navigate(['edit', bebida.id], { relativeTo: this.route });
   }
 
-  onRemove(bebida: Bebida) {
-    this.service.remove(bebida.id).subscribe(
-      () => {
-        this.refresh();
-        this.snackBar.open('Bebida removida com sucesso!', '', { duration: 5000, verticalPosition: 'top', horizontalPosition: 'center' });
-      },
-      () => {
-        if (this.pedidoService.findBebida(bebida.id)) {
-          this.onErrorHasPedido('Esta Bebida tem um ou mais pedidos associados a ela.', 'Deseja excluir mesmo assim?', bebida);
-        } else {
-          this.onError('Erro ao tentar remover Bebida!');
+  async onRemove(bebida: Bebida) {
+    if (await firstValueFrom(this.pedidoService.findBebida(bebida.id))) {
+      this.onErrorHasPedido('Esta Bebida tem um ou mais pedidos associados a ela.', 'Deseja excluir mesmo assim?', bebida);
+    } else {
+      const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+        data: ['Tem certeza que deseja excluir essa Bebida?', 'bebida']
+      });
+      dialogRef.afterClosed().subscribe((confirm: boolean) => {
+        if (confirm) {
+          this.service.remove(bebida.id).subscribe(() => {
+            this.refresh();
+            return this.snackBar.open('Bebida removida com sucesso!', '', { duration: 5000, verticalPosition: 'top', horizontalPosition: 'center' });
+          },
+            () => this.onError('Erro ao tentar remover Bebida!')
+          );
         }
-
-      }
-    );
+      });
+    }
   }
 
   onErrorHasPedido(errorMsg: string, confirm: string, bebida: Bebida) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      data: [errorMsg, confirm, bebida.id, 'bebida']
+      data: [errorMsg, confirm]
     });
     dialogRef.afterClosed().subscribe((confirm: boolean) => {
       if (confirm) {
-        this.refresh();
-        this.snackBar.open('Bebida removida com sucesso!', '', { duration: 5000, verticalPosition: 'top', horizontalPosition: 'center' });
+        this.pedidoService.deleteBebida(bebida.id).subscribe(() => {
+
+          this.refresh();
+          this.snackBar.open('Bebida removida com sucesso!', '', { duration: 5000, verticalPosition: 'top', horizontalPosition: 'center' });
+        },
+          () => this.onError('Erro ao tentar remover Bebida!')
+        );
       }
     });
   }
-
 }
+
+

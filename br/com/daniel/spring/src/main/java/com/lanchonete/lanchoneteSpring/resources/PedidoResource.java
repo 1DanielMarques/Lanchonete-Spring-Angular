@@ -23,6 +23,7 @@ public class PedidoResource {
     @GetMapping
     public ResponseEntity<List<Pedido>> findAll() {
         List<Pedido> list = service.findAll();
+        service.updateQtd();
         return ResponseEntity.ok().body(list);
     }
 

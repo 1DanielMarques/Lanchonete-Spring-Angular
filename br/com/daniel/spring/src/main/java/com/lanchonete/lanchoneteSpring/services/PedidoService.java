@@ -83,7 +83,6 @@ public class PedidoService {
 
 
     public List<Pedido> findAll() {
-       // updateQtd();
         return repository.findAll();
     }
 
@@ -161,8 +160,8 @@ public class PedidoService {
         }
     }
 
-    private void updateQtd() {
-        for (Pedido pedido : repository.findAll()) {
+    public void updateQtd() {
+        for (Pedido pedido : findAll()) {
             int qtd = 0;
             for (int i = 0; i < pedido.getLanches().size(); i++) {
                 qtd++;

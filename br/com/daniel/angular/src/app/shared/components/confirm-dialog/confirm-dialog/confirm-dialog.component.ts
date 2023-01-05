@@ -10,13 +10,17 @@ import { PedidoService } from 'src/app/lanchonete/services/pedido/pedido.service
 export class ConfirmDialogComponent {
   constructor(public dialogRef: MatDialogRef<ConfirmDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: string[], private pedidoService: PedidoService) { }
 
-  onSim(id: string, tipo: string, confirm: boolean) {
-    if (id && tipo == 'lanche') {
-      this.pedidoService.deleteLanche(id).subscribe();
-    } else if (id && tipo == 'bebida') {
-      this.pedidoService.deleteBebida(id).subscribe();
-    }
+  onConfirm(confirm: boolean) {
     this.dialogRef.close(confirm);
+  }
+
+  verificaDados(data: string[]) {
+    if(data[1] === 'lanche' || data[1] === 'bebida'){
+      return false;
+    }else{
+      return true;
+    }
+
   }
 
 }
