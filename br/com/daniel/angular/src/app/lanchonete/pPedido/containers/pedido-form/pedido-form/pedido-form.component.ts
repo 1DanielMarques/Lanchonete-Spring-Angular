@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { NonNullableFormBuilder } from '@angular/forms';
+import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
@@ -24,10 +24,10 @@ export class PedidoFormComponent implements OnInit {
 
   form = this.formBuilder.group({
     id: [''],
-    tipoPagamento: [''],
-    rua: [''],
-    bairro: [''],
-    numero: ['']
+    tipoPagamento: ['', [Validators.required]],
+    rua: ['', [Validators.required]],
+    bairro: ['', [Validators.required]],
+    numero: ['', [Validators.required]]
 
   });
 
@@ -98,7 +98,7 @@ export class PedidoFormComponent implements OnInit {
 
   verificaDecimal(item: any) {
     let num: number = +item.preco;
-      item.preco = num.toFixed(2);
+    item.preco = num.toFixed(2);
     return true;
   }
 
@@ -153,11 +153,14 @@ export class PedidoFormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.setData();
-    this.pedidoService.save(this.pedido).subscribe(
-      () => { this.onSuccessSubmit(); console.log(this.pedido) },
-      () => this.onErrorSubmit());
-
+    if (this.form.valid) {
+      this.setData();
+      this.pedidoService.save(this.pedido).subscribe(
+        () => { this.onSuccessSubmit(); console.log(this.pedido) },
+        () => this.onErrorSubmit());
+    } else {
+      this.snackBar.open('Formulário inválido', '', { duration: 5000 });
+    }
   }
 
   onSuccessSubmit() {
@@ -215,6 +218,14 @@ export class PedidoFormComponent implements OnInit {
 
   onCancel() {
     this.location.back();
+  }
+
+  getErrorMessage(formField: string) {
+    const field = this.form.get(formField);
+    if (field?.hasError('required')) {
+      return 'Campo obrigatório.';
+    }
+    return 'Campo inválido.'
   }
 
 }

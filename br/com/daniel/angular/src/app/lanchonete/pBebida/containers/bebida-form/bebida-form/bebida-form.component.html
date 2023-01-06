@@ -4,22 +4,27 @@
     <form [formGroup]="form" class="min-width">
       <mat-form-field class="full-width">
         <input matInput placeholder="Bebida" formControlName="nome" />
+        <mat-error *ngIf="form.get('nome')?.invalid ">{{getErrorMessage('nome')}}</mat-error>
       </mat-form-field>
 
       <mat-form-field class="full-width">
         <input matInput placeholder="Marca" formControlName="marca" />
+        <mat-error *ngIf="form.get('marca')?.invalid ">{{getErrorMessage('marca')}}</mat-error>
       </mat-form-field>
 
       <mat-form-field class="full-width">
         <input matInput placeholder="Litragem" formControlName="litragem" />
+        <mat-error *ngIf="form.get('litragem')?.invalid ">{{getErrorMessage('litragem')}}</mat-error>
       </mat-form-field>
 
       <mat-form-field class="full-width">
         <input matInput placeholder="Sabor" formControlName="sabor" />
+        <mat-error *ngIf="form.get('sabor')?.invalid ">{{getErrorMessage('sabor')}}</mat-error>
       </mat-form-field>
 
       <mat-form-field class="full-width">
         <input matInput placeholder="Preco" formControlName="preco" />
+        <mat-error *ngIf="form.get('preco')?.invalid ">{{getErrorMessage('preco')}}</mat-error>
       </mat-form-field>
     </form>
   </mat-card-content>

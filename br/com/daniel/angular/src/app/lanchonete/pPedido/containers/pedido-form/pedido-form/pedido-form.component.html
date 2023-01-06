@@ -28,9 +28,7 @@
                     <td id="coluna-lanche-descricao">
                       {{ lanche.descricao }}
                     </td>
-                    <td
-                      *ngIf="verificaDecimal(lanche)"
-                    >
+                    <td *ngIf="verificaDecimal(lanche)">
                       R$ {{ lanche.preco }}
                     </td>
                   </tr>
@@ -116,12 +114,21 @@
       <div class="text-align-start">
         <mat-form-field class="endereco">
           <input matInput placeholder="Rua" formControlName="rua" />
+          <mat-error *ngIf="form.get('rua')?.invalid">{{
+            getErrorMessage("rua")
+          }}</mat-error>
         </mat-form-field>
         <mat-form-field class="endereco">
           <input matInput placeholder="Bairro" formControlName="bairro" />
+          <mat-error *ngIf="form.get('bairro')?.invalid">{{
+            getErrorMessage("bairro")
+          }}</mat-error>
         </mat-form-field>
         <mat-form-field class="endereco-numero">
           <input matInput placeholder="N°" formControlName="numero" />
+          <mat-error *ngIf="form.get('numero')?.invalid">{{
+            getErrorMessage("numero")
+          }}</mat-error>
         </mat-form-field>
       </div>
       <div class="pagamento pagamento-select">
@@ -138,6 +145,9 @@
               >Crédito</mat-option
             >
           </mat-select>
+          <mat-error *ngIf="form.get('tipoPagamento')?.invalid">{{
+            getErrorMessage("tipoPagamento")
+          }}</mat-error>
         </mat-form-field>
       </div>
       <div class="pagamento pagamento-data">

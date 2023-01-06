@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { NonNullableFormBuilder } from '@angular/forms';
+import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Lanche } from 'src/app/lanchonete/model/lanche';
@@ -15,10 +15,12 @@ export class LancheFormComponent implements OnInit {
 
   form = this.formBuilder.group({
     id: [''],
-    nome: [''],
-    preco: [''],
-    descricao: ['']
+    nome: ['', [Validators.required]],
+    preco: ['', [Validators.required]],
+    descricao: ['', [Validators.required]]
   });
+
+
 
   constructor(private formBuilder: NonNullableFormBuilder,
     private service: LancheService,
@@ -38,11 +40,15 @@ export class LancheFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.form.value);
-    this.service.save(this.form.value)
-      .subscribe(
-        () => this.onSuccess(),
-        () => this.onError());
+    if (this.form.valid) {
+      this.service.save(this.form.value)
+        .subscribe(
+          () => this.onSuccess(),
+          () => this.onError());
+    }else{
+      this.snackBar.open('Formulário inválido', '', { duration: 5000 });
+    }
+
   }
 
   private onError() {
@@ -58,5 +64,12 @@ export class LancheFormComponent implements OnInit {
     this.location.back();
   }
 
+  getErrorMessage(formField: string) {
+    const field = this.form.get(formField);
+    if (field?.hasError('required')) {
+      return 'Campo obrigatório.';
+    }
+    return 'Campo inválido.';
+  }
 }
 

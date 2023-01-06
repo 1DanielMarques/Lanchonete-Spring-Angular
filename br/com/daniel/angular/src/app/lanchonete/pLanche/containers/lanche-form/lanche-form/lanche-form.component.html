@@ -4,14 +4,17 @@
     <form [formGroup]="form" class="min-width">
       <mat-form-field class="full-width">
         <input matInput placeholder="Lanche" formControlName="nome" />
+        <mat-error *ngIf="form.get('nome')?.invalid ">{{getErrorMessage('nome')}}</mat-error>
       </mat-form-field>
 
       <mat-form-field class="full-width">
         <input matInput placeholder="Preço" formControlName="preco" />
+        <mat-error *ngIf="form.get('preco')?.invalid ">{{getErrorMessage('preco')}}</mat-error>
       </mat-form-field>
 
       <mat-form-field class="full-width">
         <input matInput placeholder="Descrição" formControlName="descricao" />
+        <mat-error *ngIf="form.get('descricao')?.invalid ">{{getErrorMessage('descricao')}}</mat-error>
       </mat-form-field>
     </form>
   </mat-card-content>
