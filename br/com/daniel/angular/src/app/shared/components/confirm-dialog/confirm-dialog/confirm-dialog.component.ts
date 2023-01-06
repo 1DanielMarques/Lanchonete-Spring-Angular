@@ -15,9 +15,13 @@ export class ConfirmDialogComponent {
   }
 
   verificaDados(data: string[]) {
-    if(data[1] === 'lanche' || data[1] === 'bebida' || data[1] ==='pedido'){
+    if (data[1] == 'lanche') {
       return false;
-    }else{
+    } else if (data[1] == 'bebida') {
+      return false;
+    } else if (data[1] == 'pedido') {
+      return false;
+    } else {
       return true;
     }
 

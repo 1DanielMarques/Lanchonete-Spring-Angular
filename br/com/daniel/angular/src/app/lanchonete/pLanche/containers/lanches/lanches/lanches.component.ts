@@ -64,6 +64,7 @@ export class LanchesComponent implements OnInit {
 
   async onRemove(lanche: Lanche) {
     if (await firstValueFrom(this.pedidoService.findLanche(lanche.id))) {
+      console.log(firstValueFrom(this.pedidoService.findLanche(lanche.id)));
       this.onErrorHasPedido('Este Lanche tem um ou mais pedidos associados a ele.', 'Deseja excluir mesmo assim?', lanche);
     } else {
       const dialogRef = this.dialog.open(ConfirmDialogComponent, {
@@ -93,12 +94,9 @@ export class LanchesComponent implements OnInit {
           this.refresh();
           this.snackBar.open('Lanche removido com sucesso!', '', { duration: 5000, verticalPosition: 'top', horizontalPosition: 'center' });
         },
-          () =>
-            this.onError('Erro ao tentar remover Lanche')
-
+          () => this.onError('Erro ao tentar remover Lanche')
         );
       }
     });
   }
-
 }

@@ -77,7 +77,6 @@ export class BebidasComponent {
     dialogRef.afterClosed().subscribe((confirm: boolean) => {
       if (confirm) {
         this.pedidoService.deleteBebida(bebida.id).subscribe(() => {
-
           this.refresh();
           this.snackBar.open('Bebida removida com sucesso!', '', { duration: 5000, verticalPosition: 'top', horizontalPosition: 'center' });
         },

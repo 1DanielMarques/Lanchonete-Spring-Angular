@@ -95,6 +95,7 @@ public class PedidoService {
                         return true;
                     }
                 }
+                break;
             case "bebida":
                 Bebida bebida = bebidaService.findById(id);
                 for (Pedido p : findAll()) {
@@ -102,6 +103,7 @@ public class PedidoService {
                         return true;
                     }
                 }
+                break;
         }
         return false;
     }

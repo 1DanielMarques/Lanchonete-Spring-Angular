@@ -4,6 +4,5 @@ export interface Lanche {
   preco: string;
   descricao: string;
   qtd: number;
-//  qtdPedido: number;
 
 }
