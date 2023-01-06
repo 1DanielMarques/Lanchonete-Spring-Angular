@@ -15,9 +15,9 @@ export class LancheFormComponent implements OnInit {
 
   form = this.formBuilder.group({
     id: [''],
-    nome: ['', [Validators.required]],
-    preco: ['', [Validators.required]],
-    descricao: ['', [Validators.required]]
+    nome: ['', [Validators.required, Validators.maxLength(50)]],
+    preco: ['', [Validators.required, Validators.max(99.99)]],
+    descricao: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(150)]]
   });
 
 
@@ -45,7 +45,7 @@ export class LancheFormComponent implements OnInit {
         .subscribe(
           () => this.onSuccess(),
           () => this.onError());
-    }else{
+    } else {
       this.snackBar.open('Formulário inválido', '', { duration: 5000 });
     }
 
@@ -69,6 +69,22 @@ export class LancheFormComponent implements OnInit {
     if (field?.hasError('required')) {
       return 'Campo obrigatório.';
     }
+
+    if (field?.hasError('minlength')) {
+      const requiredLength: number = field.errors ? field.errors['minlength']['requiredLength'] : 5;
+      return `Mínimo de ${requiredLength} caracteres.`;
+    }
+
+    if (field?.hasError('maxlength')) {
+      const requiredLength: number = field.errors ? field.errors['maxlength']['requiredLength'] : 150;
+      return `Máximo de ${requiredLength} caracteres.`;
+    }
+
+    if (field?.hasError('max')) {
+      const requiredLength: number = field.errors ? field.errors['max']['requiredLength'] : 5;
+      return `Valor máximo excedido`;
+    }
+
     return 'Campo inválido.';
   }
 }

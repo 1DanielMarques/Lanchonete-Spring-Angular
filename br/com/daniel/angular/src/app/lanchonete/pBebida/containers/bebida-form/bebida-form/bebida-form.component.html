@@ -3,28 +3,53 @@
   <mat-card-content>
     <form [formGroup]="form" class="min-width">
       <mat-form-field class="full-width">
-        <input matInput placeholder="Bebida" formControlName="nome" />
-        <mat-error *ngIf="form.get('nome')?.invalid ">{{getErrorMessage('nome')}}</mat-error>
+        <input matInput placeholder="Bebida" formControlName="nome" #nome />
+        <mat-hint align="end">{{ nome.value.length || 0 }}/50</mat-hint>
+        <mat-error *ngIf="form.get('nome')?.invalid">{{
+          getErrorMessage("nome")
+        }}</mat-error>
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <input matInput placeholder="Marca" formControlName="marca" />
-        <mat-error *ngIf="form.get('marca')?.invalid ">{{getErrorMessage('marca')}}</mat-error>
+        <input matInput placeholder="Marca" formControlName="marca" #marca />
+        <mat-hint align="end">{{ marca.value.length || 0 }}/50</mat-hint>
+        <mat-error *ngIf="form.get('marca')?.invalid">{{
+          getErrorMessage("marca")
+        }}</mat-error>
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <input matInput placeholder="Litragem" formControlName="litragem" />
-        <mat-error *ngIf="form.get('litragem')?.invalid ">{{getErrorMessage('litragem')}}</mat-error>
+        <input
+          matInput
+          placeholder="Litragem"
+          formControlName="litragem"
+          #litragem
+        />
+        <mat-hint align="end">{{ litragem.value.length || 0 }}/5</mat-hint>
+        <mat-error *ngIf="form.get('litragem')?.invalid">{{
+          getErrorMessage("litragem")
+        }}</mat-error>
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <input matInput placeholder="Sabor" formControlName="sabor" />
-        <mat-error *ngIf="form.get('sabor')?.invalid ">{{getErrorMessage('sabor')}}</mat-error>
+        <input matInput placeholder="Sabor" formControlName="sabor" #sabor />
+        <mat-hint align="end">{{ sabor.value.length || 0 }}/50</mat-hint>
+        <mat-error *ngIf="form.get('sabor')?.invalid">{{
+          getErrorMessage("sabor")
+        }}</mat-error>
       </mat-form-field>
-
       <mat-form-field class="full-width">
-        <input matInput placeholder="Preco" formControlName="preco" />
-        <mat-error *ngIf="form.get('preco')?.invalid ">{{getErrorMessage('preco')}}</mat-error>
+        <input
+          type="number"
+          matInput
+          placeholder="Preco"
+          formControlName="preco"
+          #preco
+        />
+        <mat-hint align="end">{{ preco.value.length || 0 }}/5</mat-hint>
+        <mat-error *ngIf="form.get('preco')?.invalid">{{
+          getErrorMessage("preco")
+        }}</mat-error>
       </mat-form-field>
     </form>
   </mat-card-content>

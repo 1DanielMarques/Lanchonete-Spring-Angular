@@ -25,9 +25,9 @@ export class PedidoFormComponent implements OnInit {
   form = this.formBuilder.group({
     id: [''],
     tipoPagamento: ['', [Validators.required]],
-    rua: ['', [Validators.required]],
-    bairro: ['', [Validators.required]],
-    numero: ['', [Validators.required]]
+    rua: ['', [Validators.required, Validators.maxLength(50)]],
+    bairro: ['', [Validators.required, Validators.maxLength(50)]],
+    numero: ['', [Validators.required, Validators.maxLength(5)]]
 
   });
 
@@ -225,6 +225,12 @@ export class PedidoFormComponent implements OnInit {
     if (field?.hasError('required')) {
       return 'Campo obrigatório.';
     }
+
+    if (field?.hasError('maxlength')) {
+      const requiredLength = field.errors ? field.errors['maxlength']['requiredLength'] : 30;
+      return `Máximo de ${requiredLength} caracteres.`;
+    }
+
     return 'Campo inválido.'
   }
 

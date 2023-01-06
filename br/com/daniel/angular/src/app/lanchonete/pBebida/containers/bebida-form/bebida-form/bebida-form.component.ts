@@ -14,11 +14,11 @@ export class BebidaFormComponent implements OnInit {
 
   form = this.formBuilder.group({
     id: [''],
-    nome: ['', [Validators.required]],
-    marca: ['', [Validators.required]],
-    litragem: ['', [Validators.required]],
-    sabor: ['', [Validators.required]],
-    preco: ['', [Validators.required]]
+    nome: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+    marca: ['', [Validators.required, Validators.maxLength(50)]],
+    litragem: ['', [Validators.required, Validators.maxLength(5)]],
+    sabor: ['', [Validators.maxLength(50)]],
+    preco: ['', [Validators.required, Validators.max(99.99)]]
   });
 
   constructor(private formBuilder: NonNullableFormBuilder, private service: BebidaService, private location: Location, private snackBar: MatSnackBar, private route: ActivatedRoute) {
@@ -65,8 +65,25 @@ export class BebidaFormComponent implements OnInit {
     if (field?.hasError('required')) {
       return 'Campo obrigatório.';
     }
+
+    if (field?.hasError('minlength')) {
+      const requiredLength: number = field.errors ? field.errors['minlength']['requiredLength'] : 3;
+      return `Mínimo de ${requiredLength} caracteres.`;
+    }
+
+    if (field?.hasError('maxlength')) {
+      const requiredLength: number = field.errors ? field.errors['maxlength']['requiredLength'] : 50;
+      return `Máximo de ${requiredLength} caracteres.`;
+    }
+
+    if (field?.hasError('max')) {
+      const requiredLength: number = field.errors ? field.errors['max']['requiredLength'] : 5;
+      return `Valor máximo excedido`;
+    }
     return 'Campo inválido.';
   }
+
+
 
 }
 
