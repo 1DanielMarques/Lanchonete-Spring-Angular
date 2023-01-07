@@ -4,6 +4,8 @@ import com.lanchonete.lanchoneteSpring.entities.enums.TipoPagamento;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,8 +34,10 @@ public class Pedido implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "bebida_id"))
     private List<Bebida> bebidas = new ArrayList<>();
 
-    private Integer tipoPagamento;
 
+    @NotNull
+    @Column(length = 10, nullable = false)
+    private Integer tipoPagamento;
     private double taxa;
 
     private int qtdLanches;
@@ -41,6 +45,7 @@ public class Pedido implements Serializable {
 
     private double total;
 
+    @NotNull
     @OneToOne
     @JoinColumn(name = "endereco_id")
     private Endereco endereco;

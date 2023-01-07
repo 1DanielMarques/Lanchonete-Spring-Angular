@@ -3,12 +3,17 @@ package com.lanchonete.lanchoneteSpring.resources;
 import com.lanchonete.lanchoneteSpring.entities.Pedido;
 import com.lanchonete.lanchoneteSpring.services.PedidoService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.net.URI;
 import java.util.List;
 
+@Validated
 @RestController
 @RequestMapping(value = "/api/pedidos")
 public class PedidoResource {
@@ -28,38 +33,38 @@ public class PedidoResource {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Pedido> findById(@PathVariable Long id) {
+    public ResponseEntity<Pedido> findById(@PathVariable @NotNull @Positive Long id) {
         Pedido obj = service.findById(id);
         return ResponseEntity.ok().body(obj);
     }
 
     @GetMapping(value = "/{item}/{id}")
-    public ResponseEntity<Boolean> findItem(@PathVariable("id") Long id, @PathVariable("item") String item) {
+    public ResponseEntity<Boolean> findItem(@PathVariable("id") @NotNull @Positive Long id, @PathVariable("item") @NotBlank @NotNull String item) {
         boolean hasItem = service.findItem(id, item);
         return ResponseEntity.ok().body(hasItem);
     }
 
     @PostMapping
-    public ResponseEntity<Pedido> insert(@RequestBody String json) {
+    public ResponseEntity<Pedido> insert(@RequestBody @NotBlank @NotNull String json) {
         Pedido obj = service.insert(json);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).body(obj);
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
+    public ResponseEntity<Void> delete(@PathVariable @NotNull @Positive Long id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping(value = "/{item}/{id}")
-    public ResponseEntity<Void> deleteItem(@PathVariable("id") Long id, @PathVariable("item") String item) {
+    public ResponseEntity<Void> deleteItem(@PathVariable("id") @NotNull @Positive Long id, @PathVariable("item") @NotBlank @NotNull String item) {
         service.deleteItem(id, item);
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Pedido> update(@PathVariable long id, @RequestBody String json) {
+    public ResponseEntity<Pedido> update(@PathVariable @NotNull @Positive Long id, @RequestBody @NotBlank @NotNull String json) {
         Pedido obj = service.update(id, json);
         return ResponseEntity.ok().body(obj);
     }

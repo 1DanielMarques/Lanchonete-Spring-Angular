@@ -3,8 +3,11 @@ package com.lanchonete.lanchoneteSpring.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +23,21 @@ public class Lanche implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank
+    @NotNull
+    @Length(max = 50)
+    @Column(length = 50, nullable = false)
     private String nome;
+
+    @NotNull
+    @Column(nullable = false)
     private double preco;
+
+    @NotBlank
+    @NotNull
+    @Length(min = 5, max = 150)
+    @Column(length = 150, nullable = false)
     private String descricao;
 
     private int qtd;
