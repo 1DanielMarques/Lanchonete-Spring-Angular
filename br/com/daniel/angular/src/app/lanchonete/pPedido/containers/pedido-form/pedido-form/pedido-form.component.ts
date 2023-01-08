@@ -153,10 +153,14 @@ export class PedidoFormComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log(this.pedido);
     if (this.form.valid) {
       this.setData();
       this.pedidoService.save(this.pedido).subscribe(
-        () => { this.onSuccessSubmit(); console.log(this.pedido) },
+        () => {
+          this.onSuccessSubmit();
+         // console.log(this.pedido)
+        },
         () => this.onErrorSubmit());
     } else {
       this.snackBar.open('Formulário inválido', '', { duration: 5000 });
@@ -176,7 +180,9 @@ export class PedidoFormComponent implements OnInit {
   onAddLanche(lanche: Lanche) {
     lanche.qtd++;
     this.show_qtd_lanche++;
+    console.log(this.pedido.lanches);
     this.pedido.lanches?.push(lanche);
+    console.log(this.pedido.lanches);
     this.totalAux += +lanche.preco;
     this.total = this.totalAux.toFixed(2);
 
@@ -186,10 +192,11 @@ export class PedidoFormComponent implements OnInit {
     if (lanche.qtd > 0) {
       lanche.qtd--;
       this.show_qtd_lanche--;
-      this.pedido.lanches?.splice(this.pedido.lanches?.indexOf(lanche, 0), 1);
+      console.log(this.pedido.lanches);
+      this.pedido.lanches = this.pedido.lanches?.splice(+lanche.id, 1);
+      console.log(this.pedido.lanches);
       this.totalAux -= +lanche.preco;
       this.total = this.totalAux.toFixed(2);
-
     } else {
       lanche.qtd = 0;
     }
@@ -208,7 +215,7 @@ export class PedidoFormComponent implements OnInit {
     if (bebida.qtd > 0 && this.show_qtd_bebida > 0) {
       bebida.qtd--;
       this.show_qtd_bebida--;
-      this.pedido.bebidas?.splice(this.pedido.bebidas?.indexOf(bebida, 0), 1);
+      this.pedido.bebidas = this.pedido.bebidas?.splice(+bebida.id, 1);
       this.totalAux -= +bebida.preco;
       this.total = this.totalAux.toFixed(2);
     } else {

@@ -32,7 +32,6 @@ public class LancheResource {
         return ResponseEntity.ok().body(list);
     }
 
-    //Remover
     @GetMapping(value = "/pedido/{id}")
     public ResponseEntity<List<Lanche>> findAll(@PathVariable("id") Long id) {
         List<Lanche> list = service.findLanchesPedido(id);
