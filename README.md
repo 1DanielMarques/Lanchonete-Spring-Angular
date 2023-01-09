@@ -1,5 +1,5 @@
 # Lanchonete-Spring-Angular 🚀
-**Lanchonete-Spring-Angular** é um projeto full-stack com o Front-End desenvolvido em Angular e o Back-End com Spring.
+**Lanchonete-Spring-Angular** é um projeto full-stack que desenvolvi com o objetivo de praticar o que aprendi no back-end utilizando Spring e para aprender a como utilizar o Angular para fazer o front-end e integrar os dois.
 
 ## Testes<br>
 * Classes/Interfaces do projeto:<br>
