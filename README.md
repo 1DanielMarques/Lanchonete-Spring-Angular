@@ -4,9 +4,9 @@
 ## Telas:
 <img src="https://user-images.githubusercontent.com/100451032/211382715-b8142660-afdb-4f45-b44e-0d74c259c285.png"/>
 
-<img width="550" height="180"  src="https://user-images.githubusercontent.com/100451032/211382883-7aa8bb5e-0f7f-480e-807a-601a6ea67686.png"/> <img width="550" src="https://user-images.githubusercontent.com/100451032/211382912-f6285081-8534-4f94-8db1-890691884b17.png"/> 
-
-<img width="200" src="https://user-images.githubusercontent.com/100451032/211382994-90be2380-7e53-406b-91b1-eafbc1ec9b3c.png"/>
+<img src="https://user-images.githubusercontent.com/100451032/211382883-7aa8bb5e-0f7f-480e-807a-601a6ea67686.png"/>
+<img src="https://user-images.githubusercontent.com/100451032/211382912-f6285081-8534-4f94-8db1-890691884b17.png"/> 
+<img src="https://user-images.githubusercontent.com/100451032/211382994-90be2380-7e53-406b-91b1-eafbc1ec9b3c.png"/>
 
 
 
