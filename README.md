@@ -20,7 +20,7 @@ Corpo da requisição no formato JSON:<br>
  * Desenvolver API REST com Spring Boot
  * Mapeamento objeto-relacional
  * Validações dos dados da requisição no back-end
- * Criar projeto Angular, componentes, interfaces, services
+ * Desenvolver front-end com Angular
  * Trabalhar com HTML, CSS e Typescript
  * Receber e enviar dados para a API
 
