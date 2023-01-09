@@ -33,7 +33,7 @@
 <img width="100%" src="https://user-images.githubusercontent.com/100451032/211387391-be101888-601a-4a57-8668-b5ff65dc7d50.png"/>
 <hr>
 
-                           Ao selecionar a opção de Editar, os campos são preenchidos automaticamente
+                       Ao selecionar a opção de Editar, os campos são preenchidos automaticamente
 
 ## Tecnologias usadas
 * [Java](https://www.oracle.com/java/technologies/downloads/#jdk18-windows) - Linguagem de programação <img align="center" alt="Java-Logo" height="45" width="55" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original-wordmark.svg"/>
