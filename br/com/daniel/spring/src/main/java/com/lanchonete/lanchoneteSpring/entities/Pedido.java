@@ -1,10 +1,10 @@
 package com.lanchonete.lanchoneteSpring.entities;
 
 import com.lanchonete.lanchoneteSpring.entities.enums.TipoPagamento;
-import lombok.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -38,11 +38,17 @@ public class Pedido implements Serializable {
     @NotNull
     @Column(length = 10, nullable = false)
     private Integer tipoPagamento;
+
+    @Column(length = 5)
     private double taxa;
 
+    @Column(length = 10)
     private int qtdLanches;
+
+    @Column(length = 10)
     private int qtdBebidas;
 
+    @Column(length = 10)
     private double total;
 
     @NotNull

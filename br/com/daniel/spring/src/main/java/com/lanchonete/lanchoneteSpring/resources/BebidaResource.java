@@ -1,7 +1,6 @@
 package com.lanchonete.lanchoneteSpring.resources;
 
 import com.lanchonete.lanchoneteSpring.entities.Bebida;
-import com.lanchonete.lanchoneteSpring.entities.Lanche;
 import com.lanchonete.lanchoneteSpring.services.BebidaService;
 import com.lanchonete.lanchoneteSpring.services.PedidoService;
 import org.springframework.http.ResponseEntity;
@@ -30,27 +29,27 @@ public class BebidaResource {
 
     @GetMapping
     public ResponseEntity<List<Bebida>> findAll() {
-        List<Bebida> list = service.findAll();
-        return ResponseEntity.ok().body(list);
+        List<Bebida> bebidaList = service.findAll();
+        return ResponseEntity.ok().body(bebidaList);
     }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Bebida> findById(@PathVariable @NotNull @Positive Long id) {
-        Bebida obj = service.findById(id);
-        return ResponseEntity.ok().body(obj);
+        Bebida bebida = service.findById(id);
+        return ResponseEntity.ok().body(bebida);
     }
 
     @GetMapping(value = "/pedido/{id}")
-    public ResponseEntity<List<Bebida>> findAll(@PathVariable("id") Long id){
-        List<Bebida> list = service.findBebidasPedido(id);
-        return ResponseEntity.ok().body(list);
+    public ResponseEntity<List<Bebida>> findAll(@PathVariable("id") Long id) {
+        List<Bebida> bebidaList = service.findBebidasPedido(id);
+        return ResponseEntity.ok().body(bebidaList);
     }
 
     @PostMapping
-    public ResponseEntity<Bebida> insert(@RequestBody @Valid Bebida obj) {
-        obj = service.insert(obj);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-        return ResponseEntity.created(uri).body(obj);
+    public ResponseEntity<Bebida> insert(@RequestBody @Valid Bebida bebida) {
+        bebida = service.insert(bebida);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(bebida.getId()).toUri();
+        return ResponseEntity.created(uri).body(bebida);
     }
 
     @DeleteMapping(value = "/{id}")
@@ -60,9 +59,9 @@ public class BebidaResource {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Bebida> update(@PathVariable @NotNull @Positive Long id, @RequestBody @Valid Bebida obj) {
-        obj = service.update(id, obj);
-        return ResponseEntity.ok().body(obj);
+    public ResponseEntity<Bebida> update(@PathVariable @NotNull @Positive Long id, @RequestBody @Valid Bebida bebida) {
+        bebida = service.update(id, bebida);
+        return ResponseEntity.ok().body(bebida);
     }
 
 }

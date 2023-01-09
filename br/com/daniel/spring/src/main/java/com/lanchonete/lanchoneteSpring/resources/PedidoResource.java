@@ -18,7 +18,6 @@ import java.util.List;
 @RequestMapping(value = "/api/pedidos")
 public class PedidoResource {
 
-
     private PedidoService service;
 
     public PedidoResource(PedidoService service) {
@@ -27,15 +26,15 @@ public class PedidoResource {
 
     @GetMapping
     public ResponseEntity<List<Pedido>> findAll() {
-        List<Pedido> list = service.findAll();
+        List<Pedido> pedidoList = service.findAll();
         service.updateQtd();
-        return ResponseEntity.ok().body(list);
+        return ResponseEntity.ok().body(pedidoList);
     }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Pedido> findById(@PathVariable @NotNull @Positive Long id) {
-        Pedido obj = service.findById(id);
-        return ResponseEntity.ok().body(obj);
+        Pedido pedido = service.findById(id);
+        return ResponseEntity.ok().body(pedido);
     }
 
     @GetMapping(value = "/{item}/{id}")
@@ -46,9 +45,9 @@ public class PedidoResource {
 
     @PostMapping
     public ResponseEntity<Pedido> insert(@RequestBody @NotBlank @NotNull String json) {
-        Pedido obj = service.insert(json);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-        return ResponseEntity.created(uri).body(obj);
+        Pedido pedido = service.insert(json);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(pedido.getId()).toUri();
+        return ResponseEntity.created(uri).body(pedido);
     }
 
     @DeleteMapping(value = "/{id}")
@@ -65,8 +64,8 @@ public class PedidoResource {
 
     @PutMapping(value = "/{id}")
     public ResponseEntity<Pedido> update(@PathVariable @NotNull @Positive Long id, @RequestBody @NotBlank @NotNull String json) {
-        Pedido obj = service.update(id, json);
-        return ResponseEntity.ok().body(obj);
+        Pedido pedido = service.update(id, json);
+        return ResponseEntity.ok().body(pedido);
     }
 
 }

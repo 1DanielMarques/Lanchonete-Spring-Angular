@@ -27,7 +27,7 @@ export class PedidoFormComponent implements OnInit {
     tipoPagamento: ['', [Validators.required]],
     rua: ['', [Validators.required, Validators.maxLength(50)]],
     bairro: ['', [Validators.required, Validators.maxLength(50)]],
-    numero: ['', [Validators.required, Validators.maxLength(5)]]
+    numero: ['', [Validators.required]]
 
   });
 

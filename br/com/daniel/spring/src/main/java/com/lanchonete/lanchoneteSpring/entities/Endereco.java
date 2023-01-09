@@ -1,10 +1,12 @@
 package com.lanchonete.lanchoneteSpring.entities;
 
 import lombok.*;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.Objects;
 
 @Entity
 @Table(name = "tb_endereco")
@@ -19,14 +21,27 @@ public class Endereco implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
     private Long id;
+
+    @NotBlank
+    @NotNull
     @Getter
     @Setter
+    @Length(max = 50)
+    @Column(length = 50, nullable = false)
     private String bairro;
+
+    @NotBlank
+    @NotNull
     @Getter
     @Setter
+    @Length(max = 50)
+    @Column(length = 50, nullable = false)
     private String rua;
+
+    @NotNull
     @Getter
     @Setter
+    @Column(nullable = false)
     private int numero;
 
     @OneToOne(mappedBy = "endereco")

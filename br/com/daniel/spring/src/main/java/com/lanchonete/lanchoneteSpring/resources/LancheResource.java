@@ -28,27 +28,27 @@ public class LancheResource {
 
     @GetMapping
     public ResponseEntity<List<Lanche>> findAll() {
-        List<Lanche> list = service.findAll();
-        return ResponseEntity.ok().body(list);
+        List<Lanche> lancheList = service.findAll();
+        return ResponseEntity.ok().body(lancheList);
     }
 
     @GetMapping(value = "/pedido/{id}")
     public ResponseEntity<List<Lanche>> findAll(@PathVariable("id") Long id) {
-        List<Lanche> list = service.findLanchesPedido(id);
-        return ResponseEntity.ok().body(list);
+        List<Lanche> lancheList = service.findLanchesPedido(id);
+        return ResponseEntity.ok().body(lancheList);
     }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Lanche> findById(@PathVariable @NotNull @Positive Long id) {
-        Lanche obj = service.findById(id);
-        return ResponseEntity.ok().body(obj);
+        Lanche lanche = service.findById(id);
+        return ResponseEntity.ok().body(lanche);
     }
 
     @PostMapping
-    public ResponseEntity<Lanche> insert(@RequestBody @Valid Lanche obj) {
-        obj = service.insert(obj);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-        return ResponseEntity.created(uri).body(obj);
+    public ResponseEntity<Lanche> insert(@RequestBody @Valid Lanche lanche) {
+        lanche = service.insert(lanche);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(lanche.getId()).toUri();
+        return ResponseEntity.created(uri).body(lanche);
     }
 
     @DeleteMapping(value = "/{id}")
@@ -58,9 +58,9 @@ public class LancheResource {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Lanche> update(@PathVariable @NotNull @Positive Long id, @RequestBody @Valid Lanche obj) {
-        obj = service.update(id, obj);
-        return ResponseEntity.ok().body(obj);
+    public ResponseEntity<Lanche> update(@PathVariable @NotNull @Positive Long id, @RequestBody @Valid Lanche lanche) {
+        lanche = service.update(id, lanche);
+        return ResponseEntity.ok().body(lanche);
     }
 
 }

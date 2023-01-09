@@ -2,7 +2,7 @@ package com.lanchonete.lanchoneteSpring.services;
 
 import com.lanchonete.lanchoneteSpring.entities.Lanche;
 import com.lanchonete.lanchoneteSpring.entities.Pedido;
-import com.lanchonete.lanchoneteSpring.repositories.ILancheRepository;
+import com.lanchonete.lanchoneteSpring.repositories.LancheRepository;
 import com.lanchonete.lanchoneteSpring.services.exceptions.DatabaseException;
 import com.lanchonete.lanchoneteSpring.services.exceptions.ResourceNotFoundException;
 import org.springframework.context.annotation.Lazy;
@@ -13,18 +13,17 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class LancheService {
 
-    private ILancheRepository repository;
+    private LancheRepository repository;
 
     private PedidoService pedidoService;
 
-    public LancheService(ILancheRepository repository, @Lazy PedidoService pedidoService) {
+    public LancheService(LancheRepository repository, @Lazy PedidoService pedidoService) {
         this.repository = repository;
         this.pedidoService = pedidoService;
     }
@@ -34,11 +33,11 @@ public class LancheService {
         return repository.save(lanche);
     }
 
-    public List<Lanche> insertAll(List<Lanche> obj) {
-        for (Lanche l : obj) {
+    public List<Lanche> insertAll(List<Lanche> lancheList) {
+        for (Lanche l : lancheList) {
             insert(l);
         }
-        return obj;
+        return lancheList;
     }
 
     public List<Lanche> findAll() {
@@ -75,14 +74,14 @@ public class LancheService {
     }
 
     public Lanche findById(Long id) {
-        Optional<Lanche> obj = repository.findById(id);
-        return obj.orElseThrow(() -> new ResourceNotFoundException(id));
+        Optional<Lanche> lanche = repository.findById(id);
+        return lanche.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     public void delete(Long id) {
-        Lanche obj = findById(id);
+        Lanche lanche = findById(id);
         try {
-            repository.delete(obj);
+            repository.delete(lanche);
         } catch (
                 EmptyResultDataAccessException e) {
             throw new ResourceNotFoundException(id);
@@ -92,26 +91,26 @@ public class LancheService {
         }
     }
 
-    public Lanche update(Long id, Lanche obj) {
-        Lanche l1 = findById(id);
+    public Lanche update(Long id, Lanche lancheNovo) {
+        Lanche lanche = findById(id);
         try {
-            l1 = updateData(l1, obj);
-            return repository.save(l1);
+            lanche = updateData(lanche, lancheNovo);
+            return repository.save(lanche);
         } catch (EntityNotFoundException e) {
             throw new ResourceNotFoundException(id);
         }
     }
 
-    private Lanche updateData(Lanche l1, Lanche l2) {
-        l1.setNome(l2.getNome());
-        l1.setPreco(l2.getPreco());
-        format(l1);
-        l1.setDescricao(l2.getDescricao());
+    private Lanche updateData(Lanche lanche, Lanche lancheNovo) {
+        lanche.setNome(lancheNovo.getNome());
+        lanche.setPreco(lancheNovo.getPreco());
+        format(lanche);
+        lanche.setDescricao(lancheNovo.getDescricao());
 
         for (Pedido pedido : pedidoService.findAll()) {
             pedido.calcTotal();
         }
-        return l1;
+        return lanche;
     }
 
     private void format(Lanche lanche) {

@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/api/enderecos")
 public class EnderecoResource {
-   private EnderecoService service;
+    private EnderecoService service;
 
     public EnderecoResource(EnderecoService service) {
         this.service = service;
@@ -20,21 +20,21 @@ public class EnderecoResource {
 
     @GetMapping
     public ResponseEntity<List<Endereco>> findAll() {
-        List<Endereco> list = service.findAll();
-        return ResponseEntity.ok().body(list);
+        List<Endereco> enderecoList = service.findAll();
+        return ResponseEntity.ok().body(enderecoList);
     }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Endereco> findById(@PathVariable Long id) {
-        Endereco obj = service.findById(id);
-        return ResponseEntity.ok().body(obj);
+        Endereco endereco = service.findById(id);
+        return ResponseEntity.ok().body(endereco);
     }
 
     @PostMapping
-    public ResponseEntity<Endereco> insert(@RequestBody Endereco obj) {
-        obj = service.insert(obj);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-        return ResponseEntity.created(uri).body(obj);
+    public ResponseEntity<Endereco> insert(@RequestBody Endereco endereco) {
+        endereco = service.insert(endereco);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(endereco.getId()).toUri();
+        return ResponseEntity.created(uri).body(endereco);
     }
 
     @DeleteMapping(value = "/{id}")
@@ -44,9 +44,9 @@ public class EnderecoResource {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Endereco> update(@PathVariable long id, @RequestBody Endereco obj) {
-        obj = service.update(id, obj);
-        return ResponseEntity.ok().body(obj);
+    public ResponseEntity<Endereco> update(@PathVariable long id, @RequestBody Endereco endereco) {
+        endereco = service.update(id, endereco);
+        return ResponseEntity.ok().body(endereco);
     }
 
 }

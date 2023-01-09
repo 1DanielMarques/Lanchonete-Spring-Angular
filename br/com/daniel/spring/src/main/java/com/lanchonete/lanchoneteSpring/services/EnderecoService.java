@@ -1,7 +1,7 @@
 package com.lanchonete.lanchoneteSpring.services;
 
 import com.lanchonete.lanchoneteSpring.entities.Endereco;
-import com.lanchonete.lanchoneteSpring.repositories.IEnderecoRepository;
+import com.lanchonete.lanchoneteSpring.repositories.EnderecoRepository;
 import com.lanchonete.lanchoneteSpring.services.exceptions.DatabaseException;
 import com.lanchonete.lanchoneteSpring.services.exceptions.ResourceNotFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -15,21 +15,21 @@ import java.util.Optional;
 @Service
 public class EnderecoService {
 
-    private IEnderecoRepository repository;
+    private EnderecoRepository repository;
 
-    public EnderecoService(IEnderecoRepository repository) {
+    public EnderecoService(EnderecoRepository repository) {
         this.repository = repository;
     }
 
-    public Endereco insert(Endereco obj) {
-        return repository.save(obj);
+    public Endereco insert(Endereco endereco) {
+        return repository.save(endereco);
     }
 
-    public List<Endereco> insertAll(List<Endereco> obj) {
-        for (Endereco e : obj) {
+    public List<Endereco> insertAll(List<Endereco> enderecoList) {
+        for (Endereco e : enderecoList) {
             insert(e);
         }
-        return obj;
+        return enderecoList;
     }
 
     public List<Endereco> findAll() {
@@ -37,8 +37,8 @@ public class EnderecoService {
     }
 
     public Endereco findById(Long id) {
-        Optional<Endereco> obj = repository.findById(id);
-        return obj.orElseThrow(() -> new ResourceNotFoundException(id));
+        Optional<Endereco> endereco = repository.findById(id);
+        return endereco.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     public void delete(Long id) {
@@ -53,21 +53,21 @@ public class EnderecoService {
         }
     }
 
-    public Endereco update(Long id, Endereco obj) {
-        Endereco e1 = findById(id);
+    public Endereco update(Long id, Endereco enderecoNovo) {
+        Endereco endereco = findById(id);
         try {
-            e1 = updateData(e1, obj);
-            return repository.save(e1);
+            endereco = updateData(endereco, enderecoNovo);
+            return repository.save(endereco);
         } catch (EntityNotFoundException e) {
             throw new ResourceNotFoundException(id);
         }
     }
 
-    private Endereco updateData(Endereco e1, Endereco e2) {
-        e1.setBairro(e2.getBairro());
-        e1.setRua(e2.getRua());
-        e1.setNumero(e2.getNumero());
-        return e1;
+    private Endereco updateData(Endereco endereco, Endereco enderecoNovo) {
+        endereco.setBairro(enderecoNovo.getBairro());
+        endereco.setRua(enderecoNovo.getRua());
+        endereco.setNumero(enderecoNovo.getNumero());
+        return endereco;
     }
 
 }

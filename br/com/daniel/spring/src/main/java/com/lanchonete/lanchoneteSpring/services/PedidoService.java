@@ -5,7 +5,7 @@ import com.lanchonete.lanchoneteSpring.entities.Endereco;
 import com.lanchonete.lanchoneteSpring.entities.Lanche;
 import com.lanchonete.lanchoneteSpring.entities.Pedido;
 import com.lanchonete.lanchoneteSpring.entities.enums.TipoPagamento;
-import com.lanchonete.lanchoneteSpring.repositories.IPedidoRepository;
+import com.lanchonete.lanchoneteSpring.repositories.PedidoRepository;
 import com.lanchonete.lanchoneteSpring.services.exceptions.DatabaseException;
 import com.lanchonete.lanchoneteSpring.services.exceptions.ResourceNotFoundException;
 import org.json.JSONArray;
@@ -22,13 +22,13 @@ import java.util.Optional;
 @Service
 public class PedidoService {
 
-    private IPedidoRepository repository;
+    private PedidoRepository repository;
     private LancheService lancheService;
     private BebidaService bebidaService;
     private EnderecoService enderecoService;
 
 
-    public PedidoService(IPedidoRepository repository, LancheService lancheService, BebidaService bebidaService, EnderecoService enderecoService) {
+    public PedidoService(PedidoRepository repository, LancheService lancheService, BebidaService bebidaService, EnderecoService enderecoService) {
         this.repository = repository;
         this.lancheService = lancheService;
         this.bebidaService = bebidaService;
@@ -38,17 +38,17 @@ public class PedidoService {
     public Pedido insert(String jsonRequest) {
         String json = jsonRequest;
 
-        JSONObject obj = new JSONObject(json);
+        JSONObject jsonObject = new JSONObject(json);
 
-        TipoPagamento tipoPagamento = TipoPagamento.valueOf(obj.getString("tipoPagamento").toUpperCase());
+        TipoPagamento tipoPagamento = TipoPagamento.valueOf(jsonObject.getString("tipoPagamento").toUpperCase());
 
-        String bairro = obj.getJSONObject("endereco").getString("bairro");
-        String rua = obj.getJSONObject("endereco").getString("rua");
-        int numero = obj.getJSONObject("endereco").getInt("numero");
+        String bairro = jsonObject.getJSONObject("endereco").getString("bairro");
+        String rua = jsonObject.getJSONObject("endereco").getString("rua");
+        int numero = jsonObject.getJSONObject("endereco").getInt("numero");
         Endereco endereco = new Endereco(null, bairro, rua, numero);
         enderecoService.insert(endereco);
 
-        JSONArray lanches = obj.getJSONArray("lanches");
+        JSONArray lanches = jsonObject.getJSONArray("lanches");
         List<Lanche> lancheList = new ArrayList<>();
         for (int i = 0; i < lanches.length(); i++) {
             Long id = lanches.getJSONObject(i).getLong("id");
@@ -56,7 +56,7 @@ public class PedidoService {
             lancheList.add(lanche);
         }
 
-        JSONArray bebidas = obj.getJSONArray("bebidas");
+        JSONArray bebidas = jsonObject.getJSONArray("bebidas");
         List<Bebida> bebidaList = new ArrayList<>();
         for (int i = 0; i < bebidas.length(); i++) {
             Long id = bebidas.getJSONObject(i).getLong("id");
@@ -70,15 +70,15 @@ public class PedidoService {
         return repository.save(p);
     }
 
-    public Pedido insert(Pedido obj) {
-        return repository.save(obj);
+    public Pedido insert(Pedido pedido) {
+        return repository.save(pedido);
     }
 
-    public List<Pedido> insertAll(List<Pedido> obj) {
-        for (Pedido p : obj) {
+    public List<Pedido> insertAll(List<Pedido> pedidoList) {
+        for (Pedido p : pedidoList) {
             insert(p);
         }
-        return obj;
+        return pedidoList;
     }
 
 
@@ -90,16 +90,16 @@ public class PedidoService {
         switch (item) {
             case "lanche":
                 Lanche lanche = lancheService.findById(id);
-                for (Pedido p : findAll()) {
-                    if (p.getLanches().contains(lanche)) {
+                for (Pedido pedido : findAll()) {
+                    if (pedido.getLanches().contains(lanche)) {
                         return true;
                     }
                 }
                 break;
             case "bebida":
                 Bebida bebida = bebidaService.findById(id);
-                for (Pedido p : findAll()) {
-                    if (p.getBebidas().contains(bebida)) {
+                for (Pedido pedido : findAll()) {
+                    if (pedido.getBebidas().contains(bebida)) {
                         return true;
                     }
                 }
@@ -114,9 +114,9 @@ public class PedidoService {
     }
 
     public void delete(Long id) {
-        Pedido obj = findById(id);
+        Pedido pedido = findById(id);
         try {
-            repository.delete(obj);
+            repository.delete(pedido);
         } catch (
                 EmptyResultDataAccessException e) {
             throw new ResourceNotFoundException(id);
@@ -140,7 +140,6 @@ public class PedidoService {
                         }
                     }
                     pedido.calcTotal();
-                    ;
                 }
                 lancheService.delete(id);
                 break;
@@ -192,19 +191,19 @@ public class PedidoService {
     private Pedido updateData(Pedido pedido, String jsonRequest) {
         String json = jsonRequest;
 
-        JSONObject obj = new JSONObject(json);
+        JSONObject jsonObject = new JSONObject(json);
 
-        TipoPagamento tipoPagamento = TipoPagamento.valueOf(obj.getString("tipoPagamento"));
+        TipoPagamento tipoPagamento = TipoPagamento.valueOf(jsonObject.getString("tipoPagamento"));
         pedido.setTipoPagamento(tipoPagamento);
 
-        String bairro = obj.getJSONObject("endereco").getString("bairro");
-        String rua = obj.getJSONObject("endereco").getString("rua");
-        int numero = obj.getJSONObject("endereco").getInt("numero");
+        String bairro = jsonObject.getJSONObject("endereco").getString("bairro");
+        String rua = jsonObject.getJSONObject("endereco").getString("rua");
+        int numero = jsonObject.getJSONObject("endereco").getInt("numero");
         pedido.getEndereco().setBairro(bairro);
         pedido.getEndereco().setRua(rua);
         pedido.getEndereco().setNumero(numero);
 
-        JSONArray lanches = obj.getJSONArray("lanches");
+        JSONArray lanches = jsonObject.getJSONArray("lanches");
         List<Lanche> lancheList = new ArrayList<>();
         int qtdLanches = 0;
         for (int i = 0; i < lanches.length(); i++) {
@@ -215,7 +214,7 @@ public class PedidoService {
         pedido.setQtdLanches(qtdLanches);
         pedido.setLanches(lancheList);
 
-        JSONArray bebidas = obj.getJSONArray("bebidas");
+        JSONArray bebidas = jsonObject.getJSONArray("bebidas");
         List<Bebida> bebidaList = new ArrayList<>();
         int qtdBebidas = 0;
         for (int i = 0; i < bebidas.length(); i++) {

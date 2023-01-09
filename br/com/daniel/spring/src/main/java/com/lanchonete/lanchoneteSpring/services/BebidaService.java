@@ -1,9 +1,8 @@
 package com.lanchonete.lanchoneteSpring.services;
 
 import com.lanchonete.lanchoneteSpring.entities.Bebida;
-import com.lanchonete.lanchoneteSpring.entities.Lanche;
 import com.lanchonete.lanchoneteSpring.entities.Pedido;
-import com.lanchonete.lanchoneteSpring.repositories.IBebidaRepository;
+import com.lanchonete.lanchoneteSpring.repositories.BebidaRepository;
 import com.lanchonete.lanchoneteSpring.services.exceptions.DatabaseException;
 import com.lanchonete.lanchoneteSpring.services.exceptions.ResourceNotFoundException;
 import org.springframework.context.annotation.Lazy;
@@ -20,11 +19,11 @@ import java.util.Optional;
 @Service
 public class BebidaService {
 
-    private IBebidaRepository repository;
+    private BebidaRepository repository;
 
     private PedidoService pedidoService;
 
-    public BebidaService(IBebidaRepository repository, @Lazy PedidoService pedidoService) {
+    public BebidaService(BebidaRepository repository, @Lazy PedidoService pedidoService) {
         this.repository = repository;
         this.pedidoService = pedidoService;
     }
@@ -34,11 +33,11 @@ public class BebidaService {
         return repository.save(bebida);
     }
 
-    public List<Bebida> insertAll(List<Bebida> obj) {
-        for (Bebida b : obj) {
+    public List<Bebida> insertAll(List<Bebida> bebidaList) {
+        for (Bebida b : bebidaList) {
             insert(b);
         }
-        return obj;
+        return bebidaList;
     }
 
     public List<Bebida> findAll() {
@@ -74,14 +73,14 @@ public class BebidaService {
     }
 
     public Bebida findById(Long id) {
-        Optional<Bebida> obj = repository.findById(id);
-        return obj.orElseThrow(() -> new ResourceNotFoundException(id));
+        Optional<Bebida> bebida = repository.findById(id);
+        return bebida.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     public void delete(Long id) {
-        Bebida obj = findById(id);
+        Bebida bebida = findById(id);
         try {
-            repository.delete(obj);
+            repository.delete(bebida);
         } catch (
                 EmptyResultDataAccessException e) {
             throw new ResourceNotFoundException(id);
@@ -91,27 +90,27 @@ public class BebidaService {
         }
     }
 
-    public Bebida update(Long id, Bebida obj) {
-        Bebida b1 = findById(id);
+    public Bebida update(Long id, Bebida bebidaNova) {
+        Bebida bebida = findById(id);
         try {
-            b1 = updateData(b1, obj);
-            return repository.save(b1);
+            bebida = updateData(bebida, bebidaNova);
+            return repository.save(bebida);
         } catch (EntityNotFoundException e) {
             throw new ResourceNotFoundException(id);
         }
     }
 
-    private Bebida updateData(Bebida b1, Bebida b2) {
-        b1.setNome(b2.getNome());
-        b1.setMarca(b2.getMarca());
-        b1.setLitragem(b2.getLitragem());
-        b1.setSabor(b2.getSabor());
-        b1.setPreco(b2.getPreco());
-        format(b1);
-        for(Pedido pedido : pedidoService.findAll()){
+    private Bebida updateData(Bebida bebida, Bebida bebidaNova) {
+        bebida.setNome(bebidaNova.getNome());
+        bebida.setMarca(bebidaNova.getMarca());
+        bebida.setLitragem(bebidaNova.getLitragem());
+        bebida.setSabor(bebidaNova.getSabor());
+        bebida.setPreco(bebidaNova.getPreco());
+        format(bebida);
+        for (Pedido pedido : pedidoService.findAll()) {
             pedido.calcTotal();
         }
-        return b1;
+        return bebida;
     }
 
     private void format(Bebida bebida) {
