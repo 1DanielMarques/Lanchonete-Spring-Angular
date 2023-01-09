@@ -14,14 +14,15 @@ Corpo da requisição no formato JSON:<br>
 ## Tecnologias usadas
 * [Java](https://www.oracle.com/java/technologies/downloads/#jdk18-windows) - Linguagem de programação <img align="center" alt="Java-Logo" height="45" width="55" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original-wordmark.svg"/>
 * [Spring Boot](https://spring.io) - Framework <img align="center" alt="Spring-Logo" height="45" width="55" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original-wordmark.svg" />
-          
-          
-
+* [Angular](https://angular.io) - Framework <img align="center" alt="Spring-Logo" height="45" width="55" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg" />
 
 ## Conhecimentos adquiridos <br>
- * Mapear os objetos com as anotações (@)
- * Utilizar as anotações (@) para Injeção de dependência (@Autowired), entre outros como @Id, @JsonIgnore, @GeneratedValue, @RequestMapping...
- * Trabalhar com o padrão MVC (inspirado), tendo as **Entidades**, os **Repositorios**, **Services** e **Resources** (*Controladores*).
+ * Desenvolver API REST com Spring Boot
+ * Mapeamento objeto-relacional
+ * Validações dos dados da requisição no back-end
+ * Criar projeto Angular, componentes, interfaces, services
+ * Trabalhar com HTML, CSS e Typescript
+ * Receber e enviar dados para a API
 
 ## Autor
 * **Daniel Marques** <br>
