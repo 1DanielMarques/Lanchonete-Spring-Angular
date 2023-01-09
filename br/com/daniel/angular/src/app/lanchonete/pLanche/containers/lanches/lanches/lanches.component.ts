@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { catchError, Observable, of, lastValueFrom, firstValueFrom } from 'rxjs';
+import { catchError, firstValueFrom, Observable, of } from 'rxjs';
 import { Lanche } from 'src/app/lanchonete/model/lanche';
 import { LancheService } from 'src/app/lanchonete/services/lanche/lanche.service';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog/error-dialog.component';

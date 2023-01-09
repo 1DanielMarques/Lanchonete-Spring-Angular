@@ -125,7 +125,12 @@
           }}</mat-error>
         </mat-form-field>
         <mat-form-field class="endereco-numero">
-          <input type="number" matInput placeholder="N°" formControlName="numero" />
+          <input
+            type="number"
+            matInput
+            placeholder="N°"
+            formControlName="numero"
+          />
           <mat-error *ngIf="form.get('numero')?.invalid">{{
             getErrorMessage("numero")
           }}</mat-error>

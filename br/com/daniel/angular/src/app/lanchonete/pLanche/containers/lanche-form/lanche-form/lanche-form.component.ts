@@ -60,6 +60,7 @@ export class LancheFormComponent implements OnInit {
     this.onCancel();
     return this.snackBar.open('Lanche salvo com sucesso!', '', { duration: 5000 });
   }
+  
   onCancel() {
     this.location.back();
   }

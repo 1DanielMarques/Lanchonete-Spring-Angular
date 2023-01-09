@@ -1,4 +1,3 @@
-import { ConfirmDialogComponent } from 'src/app/shared/components/confirm-dialog/confirm-dialog/confirm-dialog.component';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -9,6 +8,7 @@ import { Pedido } from 'src/app/lanchonete/model/pedido';
 import { BebidaService } from 'src/app/lanchonete/services/bebida/bebida.service';
 import { LancheService } from 'src/app/lanchonete/services/lanche/lanche.service';
 import { PedidoService } from 'src/app/lanchonete/services/pedido/pedido.service';
+import { ConfirmDialogComponent } from 'src/app/shared/components/confirm-dialog/confirm-dialog/confirm-dialog.component';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog/error-dialog.component';
 
 import { EnderecoDialogComponent } from '../../../components/endereco-dialog/endereco-dialog/endereco-dialog.component';

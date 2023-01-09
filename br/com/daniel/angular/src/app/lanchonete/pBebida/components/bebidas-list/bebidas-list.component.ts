@@ -31,7 +31,7 @@ export class BebidasListComponent {
     let num: number = 0;
     bebidas.forEach(bebida => {
       num = +bebida.preco;
-        bebida.preco = num.toFixed(2);
+      bebida.preco = num.toFixed(2);
     });
     return true;
   }

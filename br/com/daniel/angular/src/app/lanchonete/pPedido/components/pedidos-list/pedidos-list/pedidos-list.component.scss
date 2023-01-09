@@ -6,7 +6,7 @@
 
 .smallColumn {
   flex: 0 0 140px;
- padding-left: 45px;
+  padding-left: 45px;
 
 }
 
@@ -26,14 +26,14 @@
 }
 
 //Lanches
-.mat-list-lanche-nome{
+.mat-list-lanche-nome {
   display: inline-block;
   width: 72%;
 
 
 }
 
-.mat-list-lanche-preco{
+.mat-list-lanche-preco {
   display: inline-block;
   width: 24%;
 }
@@ -45,7 +45,7 @@
 }
 
 
-.mdc-list-item.mdc-list-item--with-one-line{
+.mdc-list-item.mdc-list-item--with-one-line {
   height: 35px;
   width: 270px;
   padding: 0px 0px 0px 0px;
@@ -58,17 +58,17 @@
 
 //Bebidas
 
-.mat-list-bebida-marca{
+.mat-list-bebida-marca {
   display: inline-block;
   width: 53%;
 }
 
-.mat-list-bebida-litragem{
+.mat-list-bebida-litragem {
   display: inline-block;
   width: 18%;
 }
 
-.mat-list-bebida-preco{
+.mat-list-bebida-preco {
   display: inline-block;
   width: 24%;
 }
@@ -77,25 +77,25 @@
   padding-left: 10px;
   flex: 0 0 300px;
 }
+
 /* */
-.action-column-header-pedido{
+.action-column-header-pedido {
   padding-left: 42px;
   flex: 0 0 126px;
 
 }
 
-.action-column-pedido{
+.action-column-pedido {
   padding-left: 17px;
 }
 
 //Endereco
-.header-endereco{
+.header-endereco {
   padding-left: 20px;
   flex: 0 0 128px;
 }
 
-.cell-endereco{
+.cell-endereco {
   padding: 0px 0px 0px 0px;
   flex: 0 0 128px;
 }
-

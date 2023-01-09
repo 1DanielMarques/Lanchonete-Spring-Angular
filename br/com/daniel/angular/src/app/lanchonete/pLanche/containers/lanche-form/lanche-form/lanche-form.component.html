@@ -11,7 +11,13 @@
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <input type="number" matInput placeholder="Preço" formControlName="preco" #preco />
+        <input
+          type="number"
+          matInput
+          placeholder="Preço"
+          formControlName="preco"
+          #preco
+        />
         <mat-hint align="end">{{ preco.value.length || 0 }}/5</mat-hint>
         <mat-error *ngIf="form.get('preco')?.invalid">{{
           getErrorMessage("preco")

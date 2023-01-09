@@ -1,12 +1,8 @@
-import { PedidoService } from 'src/app/lanchonete/services/pedido/pedido.service';
-import { Pedido } from 'src/app/lanchonete/model/pedido';
 import { Injectable } from '@angular/core';
-import {
-  Router, Resolve,
-  RouterStateSnapshot,
-  ActivatedRouteSnapshot
-} from '@angular/router';
+import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
+import { Pedido } from 'src/app/lanchonete/model/pedido';
+import { PedidoService } from 'src/app/lanchonete/services/pedido/pedido.service';
 
 @Injectable({
   providedIn: 'root'

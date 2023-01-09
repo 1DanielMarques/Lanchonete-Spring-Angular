@@ -25,9 +25,7 @@
             <mat-panel-title> Dados </mat-panel-title>
           </mat-expansion-panel-header>
           <mat-list>
-            <mat-list-item
-              *ngFor="let lanche of pedido.lanches"
-            >
+            <mat-list-item *ngFor="let lanche of pedido.lanches">
               <div class="mat-list-lanche-nome">
                 {{ lanche.nome }}
               </div>
@@ -171,18 +169,15 @@
           <mat-panel-title> Dados </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-list>
-          <mat-list-item
-
-            class="mat-expansion-panel-body"
-          >
-          <button
-          class="mat-expansion-panel-body"
-          mat-icon-button
-          color="warn"
-          aria-label="Example icon button with a menu icon"
-        >
-          <mat-icon>block</mat-icon>
-        </button>
+          <mat-list-item class="mat-expansion-panel-body">
+            <button
+              class="mat-expansion-panel-body"
+              mat-icon-button
+              color="warn"
+              aria-label="Example icon button with a menu icon"
+            >
+              <mat-icon>block</mat-icon>
+            </button>
           </mat-list-item>
         </mat-list>
       </mat-expansion-panel>
@@ -201,21 +196,17 @@
           <mat-panel-title> Dados </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-list>
-          <mat-list-item
-            class="mat-expansion-panel-body"
-          >
-          <button
-          class="mat-expansion-panel-body"
-          mat-icon-button
-          color="warn"
-          aria-label="Example icon button with a menu icon"
-        >
-          <mat-icon>block</mat-icon>
-        </button>
+          <mat-list-item class="mat-expansion-panel-body">
+            <button
+              class="mat-expansion-panel-body"
+              mat-icon-button
+              color="warn"
+              aria-label="Example icon button with a menu icon"
+            >
+              <mat-icon>block</mat-icon>
+            </button>
           </mat-list-item>
         </mat-list>
-
-
       </mat-expansion-panel>
     </mat-accordion>
   </ng-template>

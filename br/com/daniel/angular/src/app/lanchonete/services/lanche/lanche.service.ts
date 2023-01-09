@@ -22,7 +22,7 @@ export class LancheService {
       );
   }
 
-  findLanchesPedido(id:string){
+  findLanchesPedido(id: string) {
     return this.httpClient.get<Lanche[]>(`${this.API}/${'pedido'}/${id}`);
   }
 

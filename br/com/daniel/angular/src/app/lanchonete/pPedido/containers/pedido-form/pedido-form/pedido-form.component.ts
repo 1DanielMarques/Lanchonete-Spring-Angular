@@ -78,7 +78,6 @@ export class PedidoFormComponent implements OnInit {
       this.total = this.totalAux.toFixed(2);
     }
 
-
     this.onRefresh();
 
     console.log(this.pedido_resolver);
@@ -96,11 +95,7 @@ export class PedidoFormComponent implements OnInit {
 
   }
 
-  verificaDecimal(item: any) {
-    let num: number = +item.preco;
-    item.preco = num.toFixed(2);
-    return true;
-  }
+
 
   onPagamento(pagamento: string) {
     this.taxaAux = +this.taxa;
@@ -149,7 +144,6 @@ export class PedidoFormComponent implements OnInit {
     this.endereco.bairro = this.form.value.bairro;
     this.endereco.numero = this.form.value.numero;
     this.pedido.tipoPagamento = this.form.value.tipoPagamento;
-
   }
 
   onSubmit() {
@@ -159,7 +153,7 @@ export class PedidoFormComponent implements OnInit {
       this.pedidoService.save(this.pedido).subscribe(
         () => {
           this.onSuccessSubmit();
-         // console.log(this.pedido)
+          // console.log(this.pedido)
         },
         () => this.onErrorSubmit());
     } else {
@@ -175,6 +169,10 @@ export class PedidoFormComponent implements OnInit {
   onErrorSubmit() {
     this.onCancel();
     this.snackBar.open('Erro ao salvar Pedido', '', { duration: 5000 });
+  }
+
+  onCancel() {
+    this.location.back();
   }
 
   onAddLanche(lanche: Lanche) {
@@ -223,10 +221,6 @@ export class PedidoFormComponent implements OnInit {
     }
   }
 
-  onCancel() {
-    this.location.back();
-  }
-
   getErrorMessage(formField: string) {
     const field = this.form.get(formField);
     if (field?.hasError('required')) {
@@ -239,6 +233,12 @@ export class PedidoFormComponent implements OnInit {
     }
 
     return 'Campo inválido.'
+  }
+
+  verificaDecimal(item: any) {
+    let num: number = +item.preco;
+    item.preco = num.toFixed(2);
+    return true;
   }
 
 }

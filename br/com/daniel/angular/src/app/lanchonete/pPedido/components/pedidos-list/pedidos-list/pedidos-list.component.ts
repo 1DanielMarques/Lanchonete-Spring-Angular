@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Endereco } from 'src/app/lanchonete/model/endereco';
-import { Lanche } from 'src/app/lanchonete/model/lanche';
 import { Pedido } from 'src/app/lanchonete/model/pedido';
 
 @Component({
@@ -21,6 +20,7 @@ export class PedidosListComponent implements OnInit {
       pedido.total = this.totalAux.toFixed(2);
     });
   }
+
   totalAux: number = 0;
   @Input() pedidos: Pedido[] = [];
   @Output() add = new EventEmitter(false);

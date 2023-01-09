@@ -35,7 +35,7 @@ export class LanchesListComponent {
     let num: number = 0;
     lanches.forEach(lanche => {
       num = +lanche.preco;
-        lanche.preco = num.toFixed(2);
+      lanche.preco = num.toFixed(2);
     });
     return true;
   }
